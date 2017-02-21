@@ -32,7 +32,9 @@
       
       
       
-      <a class="navbar-brand" href="#">Logo</a>
+      <!--<a class="navbar-brand" href="#">Logo</a>-->
+      <!-- Logo-->
+      <img src="images/logo.png" height="40" width="40">
     </div>
 
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -69,7 +71,7 @@
         
       <!--Login (at the right side)-->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#signUp-modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
@@ -92,8 +94,8 @@
       <div class="modal-body">
         <form role="form">
           <div class="form-group">
-            <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-            <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter Username">
           </div>
           <div class="form-group">
             <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
@@ -110,6 +112,39 @@
         <p>Forgot <a href="#">Password?</a></p>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<!--SignUp Modal-->
+<div class="modal fade" id="signUp-modal" role="dialog">
+  <div class="modal-dialog">
+    <!--Content here-->
+    <div class="modal-content">
+      <!-- The Header-->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4><span class="glyphicon glyphicon-lock"></span> Sign Up</h4>
+      </div>
+
+      <!-- Body(form)-->
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+            <input type="text" class="form-control" id="email" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+            <input type="text" class="form-control" id="psw" placeholder="Enter password">
+          </div>
+            <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-registration-mark"></span> Sign Up</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
