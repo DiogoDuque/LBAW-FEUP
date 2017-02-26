@@ -12,25 +12,133 @@
   <!--Tabs Content-->
   <div class="tab-content">
     <div id="recent" class="tab-pane fade in active">
-      <div class="container">
+      <!--Single Link-->
+      <div class="container awnser">
         <div class="row">
-          <div class="col-sm-4">
-            <h3>Column 1</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+          <div class="col-sm-9 pre">
+            <h4>My girl swallowed after oral now I'm worried she get pregnant. i bought her laxtives but don't know how to ask.<br>
+              <small>asked 55 seconds ago by <a href="profile.php">Peralta</a></small>
+            </h4>
           </div>
-          <div class="col-sm-4">
-            <h3>Column 2</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-thumbs-up"></span>        
+                2 
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                upvotes
+              </small>
+            </h4>
           </div>
-          <div class="col-sm-4">
-            <h3>Column 3</h3>        
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-thumbs-down"></span>        
+                5
+                <span class="glyphicon glyphicon-thumbs-down"></span>
+                 downvotes
+              </small>
+            </h4>
+          </div>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-comment"></span>
+                0
+                <span class="glyphicon glyphicon-comment"></span>
+                 answers
+              </small>
+            </h4>
           </div>
         </div>
       </div>
+
+      <hr class="main-menu-questions-divider">
+
+      <!--Single Link-->
+      <div class="container awnser">
+        <div class="row">
+          <div class="col-sm-9 pre">
+            <h4>My girl swallowed after oral now I'm worried she get pregnant. i bought her laxtives but don't know how to ask.<br>
+              <small>asked 55 seconds ago by <a href="profile.php">Peralta</a></small>
+            </h4>
+          </div>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-thumbs-up"></span>        
+                2 
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                upvotes
+              </small>
+            </h4>
+          </div>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-thumbs-down"></span>        
+                5
+                <span class="glyphicon glyphicon-thumbs-down"></span>
+                 downvotes
+              </small>
+            </h4>
+          </div>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-comment"></span>
+                0
+                <span class="glyphicon glyphicon-comment"></span>
+                 answers
+              </small>
+            </h4>
+          </div>
+        </div>
+      </div>
+
+      <hr class="main-menu-questions-divider">
+
+      <!--Single Link-->
+      <div class="container awnser">
+        <div class="row">
+          <div class="col-sm-9 pre">
+            <h4>My girl swallowed after oral now I'm worried she get pregnant. i bought her laxtives but don't know how to ask.<br>
+              <small>asked 55 seconds ago by <a href="profile.php">Peralta</a></small>
+            </h4>
+          </div>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-thumbs-up"></span>        
+                2 
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                upvotes
+              </small>
+            </h4>
+          </div>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-thumbs-down"></span>        
+                5
+                <span class="glyphicon glyphicon-thumbs-down"></span>
+                 downvotes
+              </small>
+            </h4>
+          </div>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-comment"></span>
+                0
+                <span class="glyphicon glyphicon-comment"></span>
+                 answers
+              </small>
+            </h4>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div id="popular" class="tab-pane fade">
@@ -38,7 +146,46 @@
     </div>
 
     <div id="controverse" class="tab-pane fade">
-      <p>More content.</p>
+      <!--Single Link-->
+      <div class="container awnser">
+        <div class="row">
+          <div class="col-sm-9 pre">
+            <h4>My girl swallowed after oral now I'm worried she get pregnant. i bought her laxtives but don't know how to ask.<br>
+              <small>asked 55 seconds ago by <a href="profile.php">Peralta</a></small>
+            </h4>
+          </div>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-thumbs-up"></span>        
+                2 
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                upvotes
+              </small>
+            </h4>
+          </div>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-thumbs-down"></span>        
+                5
+                <span class="glyphicon glyphicon-thumbs-down"></span>
+                 downvotes
+              </small>
+            </h4>
+          </div>
+          <div class="col-sm-1">
+            <h4 class="text-center">
+              <small>
+                <span class="glyphicon glyphicon-comment"></span>
+                0
+                <span class="glyphicon glyphicon-comment"></span>
+                 answers
+              </small>
+            </h4>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
