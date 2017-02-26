@@ -1,0 +1,27 @@
+.post{
+    border-top: solid 1px gray;
+}
+
+.post p{
+    text-align: justify;
+}
+
+.score{
+    text-align: center;
+    /*margin: 10px 0px;*/
+    font-size: medium;
+}
+
+.score a{
+    border: solid 1px black;
+    border-radius: 20px;
+    /*padding: 5px;*/
+}
+
+.plus1 a{
+    color: green;
+}
+
+.minus1 a{
+    color: red;
+}
