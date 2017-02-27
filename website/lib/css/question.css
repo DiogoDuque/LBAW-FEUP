@@ -8,14 +8,14 @@
 
 .score{
     text-align: center;
-    /*margin: 10px 0px;*/
+    margin: 10px 0px;
     font-size: medium;
 }
 
-.score a{
-    border: solid 1px black;
-    border-radius: 20px;
-    /*padding: 5px;*/
+.score{
+    /*border: solid 1px black;
+    /*border-radius: 20px;*/
+    padding: 0px 20px;
 }
 
 .plus1 a{
