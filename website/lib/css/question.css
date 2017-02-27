@@ -1,27 +1,32 @@
-.post{
+.question{
+    padding: 20px 10px;
     border-top: solid 1px gray;
-}
-
-.post p{
     text-align: justify;
 }
 
-.score{
-    text-align: center;
-    margin: 10px 0px;
-    font-size: medium;
+.post{
+    padding: 20px 10px;
+    border-top: solid 1px lightgray;
+    text-align: justify;
 }
 
-.score{
+.score-col{
+    margin: 10px -15px;
+    font-size: large;
+    list-style-type: none;
+}
+
+.score-col a{
+    text-decoration: none;
     /*border: solid 1px black;
-    /*border-radius: 20px;*/
-    padding: 0px 20px;
+    border-radius: 20px;
+    padding: 0px 20px;*/
 }
 
-.plus1 a{
+.score-col .glyphicon-thumbs-up{
     color: green;
 }
 
-.minus1 a{
+.score-col .glyphicon-thumbs-down{
     color: red;
 }
