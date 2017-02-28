@@ -4,11 +4,24 @@
     text-align: justify;
 }
 
-.post{
+.answer{
     padding: 20px 10px;
     border-top: solid 1px lightgray;
     text-align: justify;
 }
+
+.comment{
+    text-align: left;
+    font-size: small;
+    border-top: solid 1px lightgray;
+}
+
+
+.user{
+    text-align: center;
+}
+
+/*SCORE*/
 
 .score-col{
     margin: 10px -15px;
@@ -18,9 +31,6 @@
 
 .score-col a{
     text-decoration: none;
-    /*border: solid 1px black;
-    border-radius: 20px;
-    padding: 0px 20px;*/
 }
 
 .score-col .glyphicon-thumbs-up{

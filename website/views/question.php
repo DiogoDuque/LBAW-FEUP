@@ -17,8 +17,9 @@
                 </ul>
             </div>
             <!--User-->
-            <div class="col-md-1">
+            <div class="user col-md-1">
                 <img alt="User Pic" src="../resources/img/user.png" class="img-circle img-responsive" width="100" height="100">
+                <a href="#">Peralta</a>
             </div>
             <!--Text-->
             <div class="col-md-8">
@@ -29,12 +30,23 @@
             <div class="col-md-2">
                 <p>some xtra stuff, maybe some tags or "resources"</p>
             </div>
+            <!--Comments-->
+            <?php
+                for($j=0;$j<2;$j++) {
+            ?>
+                    <div class="comment col-md-6 col-md-offset-4">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam viverra feugiat erat posuere pellentesque. Nullam gravida lorem dolor, quis dignissim orci elementum sed<br>
+                            <a href="#">Peralta</a></p>
+                    </div>
+            <?php
+                }
+            ?>
         </div>
 
         <?php
         for($i=0;$i<3;$i++){
         ?>
-            <div class="post row">
+            <div class="answer row">
                 <!--Score-->
                 <div class="col-md-1 col-md-offset-1">
                     <ul class="score-col">
@@ -44,8 +56,9 @@
                     </ul>
                 </div>
                 <!--User-->
-                <div class="col-md-1">
+                <div class="user col-md-1">
                     <img alt="User Pic" src="../resources/img/user.png" class="img-circle img-responsive" width="100" height="100">
+                    <a href="#">Peralta</a>
                 </div>
                 <!--Text-->
                 <div class="col-md-7">
@@ -56,6 +69,17 @@
                 <div class="col-md-2">
                     <p>some xtra stuff, maybe some tags or "resources"</p>
                 </div>
+                <!--Comments-->
+                <?php
+                for($j=0;$j<2;$j++) {
+                ?>
+                    <div class="comment col-md-6 col-md-offset-4">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam viverra feugiat erat posuere pellentesque. Nullam gravida lorem dolor, quis dignissim orci elementum sed<br>
+                            <a href="#">Peralta</a></p>
+                    </div>
+                <?php
+                }
+                ?>
             </div>
         <?php
         }
