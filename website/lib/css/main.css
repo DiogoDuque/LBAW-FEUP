@@ -24,3 +24,8 @@ footer {
 .main-menu-questions-divider{
   margin: 0;
 }
+
+.btn.vertical-align{
+    vertical-align: middle;
+    margin: 0.75rem 1rem 0.5rem;
+}
