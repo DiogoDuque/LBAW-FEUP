@@ -8,6 +8,7 @@
         <h2>Lorem ipsum?</h2>
 
         <div class="question row">
+			
             <!--Score-->
             <div class="col-md-1">
                 <ul class="score-col">
@@ -15,6 +16,10 @@
                     <li><p class="score">3</p></li>
                     <li><a class="glyphicon glyphicon-thumbs-down" href="#"></a></li>
                 </ul>
+				<ul class="actions">	
+					<li><a class="glyphicon glyphicon-link" href="#"><br>Share</a></li>
+					<li><a class="glyphicon glyphicon-flag" href="#"><br>Report</a></li>
+				</ul>
             </div>
             <!--User-->
             <div class="user col-md-1">
@@ -54,6 +59,7 @@
                         <li><p class="score">3</p></li>
                         <li><a class="glyphicon glyphicon-thumbs-down" href="#"></a></li>
                     </ul>
+					<a class="glyphicon glyphicon-flag" href="#"><br>Report</a>
                 </div>
                 <!--User-->
                 <div class="user col-md-1">
