@@ -21,13 +21,13 @@
         
         <div class="col-sm-4">
           <div class="checkbox">
-            <label><input type="checkbox" value="">Search in Titles</label>
+            <label><input type="checkbox" value="">Search in Descriptions</label>
           </div>
         </div>
         
         <div class="col-sm-4">
           <div class="checkbox">
-            <label><input type="checkbox" value="">Search in Titles</label>
+            <label><input type="checkbox" value="">Search in Answers</label>
           </div>
         </div>
 
@@ -35,12 +35,14 @@
     </div>
 
     <div class="form-group">
-      <label for="sel1">Order by:</label>
-      <select class="form-control" id="sel1">
+      <label for="order">Order by:</label>
+      <select class="form-control" id="order">
+        <option>Most Recent</option>
+        <option>Least Recent</option>
+        <option>Best Score</option>
         <option>Most Voted</option>
         <option>Least Voted</option>
-        <option>3</option>
-        <option>4</option>
+        <option>Peraltamometer</option>
       </select>
     </div>
 
