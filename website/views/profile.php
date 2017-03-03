@@ -50,9 +50,9 @@
                                 </tbody>
                                 
                             </table>
-                <ul class="actions pull-right">	
-					<li><a class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></a></li>
-				</ul>
+                <div class="editP pull-right">	
+					<div class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></div>
+				</div>
 
                         </div>
                     </div>
