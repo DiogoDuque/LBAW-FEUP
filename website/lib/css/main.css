@@ -49,6 +49,18 @@ footer {
     display: inline-block;
 }
 
+.logo a:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+.logo a:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
 .tabela {
     padding-top: 30px;
 }

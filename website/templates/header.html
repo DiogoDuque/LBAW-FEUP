@@ -16,8 +16,8 @@
 
 <!--Big thing at the top-->
 <div class="jumbotron text-center">
-    <h1 class="logo">HoWhy</h1>
-    <img src="../resources/img/logo-vectors-original.svg" class="svg-logo logo">
+    <h1 class="logo"><a href="../views/home.php">HoWhy</a></h1>
+    <a href="../views/home.php"><img src="../resources/img/logo-vectors-original.svg" class="svg-logo logo"></a>
     <p>Where questions become answers!</p>
 </div>
 
@@ -33,11 +33,10 @@
                 <span class="icon-bar"></span>
             </button>
 
-
-
             <!--<a class="navbar-brand" href="#">Logo</a>-->
             <!-- Logo-->
-            <a class="navbar-brand" href="/views/home.php"><img src="../resources/img/logo-vectors-inverted.svg" height="40" width="40"></a>
+            <a class="navbar-brand" href="../views/home.php"><img src="../resources/img/logo-vectors-inverted.svg"
+                                                                  height="40" width="40"></a>
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -46,7 +45,8 @@
 
                 <!--Categories-->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories <span
+                            class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Foods and Drinks</a></li>
                         <li><a href="#">Sports</a></li>
@@ -63,17 +63,23 @@
                 <div class="form-group input-group">
                     <input type="text" class="form-control" placeholder="Search..">
                     <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </span>
+
+                        <button class="btn btn-default" type="button">
+                            <a href="../views/search.php">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </a>
+                        </button>
+
+                    </span>
                 </div>
             </form>
 
             <!--Login (at the right side)-->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" data-toggle="modal" data-target="#signUp-modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#signUp-modal"><span
+                        class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#login-modal"><span
+                        class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
 
@@ -105,7 +111,9 @@
                     <div class="checkbox">
                         <label><input type="checkbox" value="" checked>Remember me</label>
                     </div>
-                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    <button type="submit" class="btn btn-success btn-block"><span
+                            class="glyphicon glyphicon-off"></span> Login
+                    </button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -143,7 +151,9 @@
                         <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
                         <input type="text" class="form-control" id="psw" placeholder="Enter password">
                     </div>
-                    <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-registration-mark"></span> Sign Up</button>
+                    <button type="submit" class="btn btn-success btn-block"><span
+                            class="glyphicon glyphicon-registration-mark"></span> Sign Up
+                    </button>
                 </form>
             </div>
         </div>
