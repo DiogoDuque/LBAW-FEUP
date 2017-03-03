@@ -49,6 +49,18 @@ footer {
     display: inline-block;
 }
 
+a.noStyle:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+a.noStyle:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
 .logo a:link {
     text-decoration: inherit;
     color: inherit;
@@ -60,6 +72,8 @@ footer {
     color: inherit;
     cursor: auto;
 }
+
+
 
 .tabela {
     padding-top: 30px;

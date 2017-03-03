@@ -1,4 +1,4 @@
-<?php include_once "../templates/loggedInHeader.html";?>
+<?php include_once "../templates/header.php";?>
 
     <link rel="stylesheet" href="../lib/css/question.css">
 	<script>

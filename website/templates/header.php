@@ -1,3 +1,7 @@
+<?php
+    $logged_in = true
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +20,8 @@
 
 <!--Big thing at the top-->
 <div class="jumbotron text-center">
-    <h1 class="logo"><a href="../views/home.php">HoWhy</a></h1>
-    <a href="../views/home.php"><img src="../resources/img/logo-vectors-original.svg" class="svg-logo logo"></a>
+    <h1 class="logo"><a class ="noStyle" href="../views/home.php">HoWhy</a></h1>
+    <a class ="noStyle" href="../views/home.php"><img src="../resources/img/logo-vectors-original.svg" class="svg-logo logo"></a>
     <p>Where questions become answers!</p>
 </div>
 
@@ -55,8 +59,14 @@
                     </ul>
                 </li>
 
-            </ul>
+                <?php if($logged_in) { ?>
 
+                    <!--Admin Page(more content)-->
+                    <li><a href="#">Admin Page</a></li>
+
+                <?php } ?>
+
+            </ul>
 
             <!--Search Form (at the left side)-->
             <form class="navbar-form navbar-right" role="search">
@@ -74,6 +84,7 @@
                 </div>
             </form>
 
+            <?php if(!$logged_in) { ?>
             <!--Login (at the right side)-->
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#" data-toggle="modal" data-target="#signUp-modal"><span
@@ -81,6 +92,20 @@
                 <li><a href="#" data-toggle="modal" data-target="#login-modal"><span
                         class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
+            <?php }
+
+            else { ?>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><button type="button" class="btn btn-primary vertical-align"><a class ="noStyle" href="../views/newQuestion.php">Ask a question</a></button></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello, Peralta </a></li>
+                <li><a href="#" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+
+            <?php } ?>
+
+
+
         </div>
 
     </div>

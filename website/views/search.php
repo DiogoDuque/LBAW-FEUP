@@ -1,4 +1,4 @@
-<?php include_once "../templates/header.html";?>
+<?php include_once "../templates/header.php";?>
 
 <!--Content-->
 <div class="container">

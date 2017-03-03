@@ -1,4 +1,4 @@
-<?php include_once "../templates/loggedInHeader.html"; ?>
+<?php include_once "../templates/header.php"; ?>
 
 <div class="container">
   <h1 class="text-center">Ask a Question:</h1>
