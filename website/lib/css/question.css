@@ -40,3 +40,8 @@
 .score-col .glyphicon-thumbs-down{
     color: red;
 }
+
+.actions li{
+	display: inline-block;
+    list-style-type: none;
+}
