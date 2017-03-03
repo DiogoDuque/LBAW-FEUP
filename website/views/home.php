@@ -12,8 +12,8 @@
   <!--Tabs Content-->
   <div class="tab-content">
     <div id="recent" class="tab-pane fade in active">
-      <!--Single Link-->
-      <div class="container awnser">
+      <!--Multi Link-->
+      <div class="container answer">
         <div class="row">
           <div class="col-sm-9 pre">
             <h4><a class="home-question-title">My girl swallowed after oral now I'm worried she get pregnant. i bought her laxtives but don't know how to ask.</a><br>
@@ -56,7 +56,7 @@
       <hr class="main-menu-questions-divider">
 
       <!--Single Link-->
-      <div class="container awnser">
+      <div class="container answer">
         <div class="row">
           <div class="col-sm-9 pre">
             <h4><a class="home-question-title">My girl swallowed after oral now I'm worried she get pregnant. i bought her laxtives but don't know how to ask.</a><br>
@@ -99,7 +99,7 @@
       <hr class="main-menu-questions-divider">
 
       <!--Single Link-->
-      <div class="container awnser">
+      <div class="container answer">
         <div class="row">
           <div class="col-sm-9 pre">
             <h4><a class="home-question-title">My girl swallowed after oral now I'm worried she get pregnant. i bought her laxtives but don't know how to ask.</a><br>
@@ -147,7 +147,7 @@
 
     <div id="controverse" class="tab-pane fade">
       <!--Single Link-->
-      <div class="container awnser">
+      <div class="container answer">
         <div class="row">
           <div class="col-sm-9 pre">
             <h4><a class="home-question-title">My girl swallowed after oral now I'm worried she get pregnant. i bought her laxtives but don't know how to ask.</a><br>
