@@ -1,53 +1,134 @@
-<?php include_once "../templates/header.html" ?>
+<?php include_once "../templates/header.html";?>
 
-<link rel="stylesheet" href="../lib/css/search.css">
-
+<!--Content-->
 <div class="container">
+  <h1 class="text-center">Advanced Search</h1>
 
-    <h3 class="text-left">Keywords</h3>
-
-    <!-- Search bar -->
-    <div class="row" id="custom-search-input">
-
-        <div class="input-group col-md-12">
-            <input type="text" class="search-query form-control"/>
-            <span class="input-group-btn">
-
-                <button class="btn btn-danger" type="button">
-                    <span class=" glyphicon glyphicon-search"></span>
-                </button>
-            </span>
+  <form>
+    <div class="form-group">
+      <label for="text">Search for:</label>
+      <input type="text" class="form-control" id="text">
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-sm-4">
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Search in Titles</label>
+          </div>
+        </div>
+        
+        <div class="col-sm-4">
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Search in Descriptions</label>
+          </div>
+        </div>
+        
+        <div class="col-sm-4">
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Search in Answers</label>
+          </div>
         </div>
 
+      </div>
     </div>
 
-
-    <!-- Filters -->
-    <div class="row top10" id="custom-search-filters">
-        <div class="dropdown col-md-3">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Category
-                <span class="caret"></span>
-            </button>
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">Foods and Drinks</a></li>
-                <li><a class="dropdown-item" href="#">Sports</a></li>
-                <li><a class="dropdown-item" href="#">Computers</a></li>
-                <li><a class="dropdown-item" href="#">Art</a></li>
-            </ul>
-        </div>
-
-        <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-primary">
-                <input type="radio" name="answer_or_question" id="answer_radio" autocomplete="off"> Answer
-            </label>
-            <label class="btn btn-primary active">
-                <input type="radio" name="answer_or_question" id="question_radio" autocomplete="off"> Question
-            </label>
-        </div>
+    <div class="form-group">
+      <label for="order">Order by:</label>
+      <select class="form-control" id="order">
+        <option>Most Recent</option>
+        <option>Least Recent</option>
+        <option>Best Score</option>
+        <option>Most Voted</option>
+        <option>Least Voted</option>
+        <option>Peraltamometer</option>
+      </select>
     </div>
 
+    <h5>Filter by Category</h5>
+
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-sm-3">
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Foods and Drinks</label>
+          </div>
+        </div>
+        
+        <div class="col-sm-3">
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Sports</label>
+          </div>
+        </div>
+        
+        <div class="col-sm-3">
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Computers</label>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="checkbox">
+            <label><input type="checkbox" value="">Art</label>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-success btn-block">Search</button>
+    <button type="reset" class="btn btn-danger btn-block">Reset</button>
+  </form>
 </div>
 
-<?php include_once "../templates/footer.html" ?>
+<!-- RESULTS -->
+
+<h1 class="text-center">Results</h1>
+
+<!--Multi Link-->
+<div class="container answer">
+  <div class="row">
+    <div class="col-sm-9 pre">
+      <h4><a class="home-question-title">My girl swallowed after oral now I'm worried she get pregnant. i bought her laxtives but don't know how to ask.</a><br>
+        <small>asked 55 seconds ago by <a href="profile.php">Peralta</a></small>
+      </h4>
+    </div>
+    <div class="col-sm-1">
+      <h4 class="text-center">
+        <small>
+          <span class="glyphicon glyphicon-thumbs-up"></span>        
+          2 
+          <span class="glyphicon glyphicon-thumbs-up"></span>
+          upvotes
+        </small>
+      </h4>
+    </div>
+    <div class="col-sm-1">
+      <h4 class="text-center">
+        <small>
+          <span class="glyphicon glyphicon-thumbs-down"></span>        
+          5
+          <span class="glyphicon glyphicon-thumbs-down"></span>
+           downvotes
+        </small>
+      </h4>
+    </div>
+    <div class="col-sm-1">
+      <h4 class="text-center">
+        <small>
+          <span class="glyphicon glyphicon-comment"></span>
+          0
+          <span class="glyphicon glyphicon-comment"></span>
+           answers
+        </small>
+      </h4>
+    </div>
+  </div>
+</div>
+
+<hr class="main-menu-questions-divider">
+
+
+<?php include_once "../templates/footer.html";?>

@@ -17,26 +17,44 @@
 }
 
 
+/*USER*/
+
 .user{
     text-align: center;
 }
 
+.user img{
+    display: block;
+    margin: 0 auto;
+}
+
+
 /*SCORE*/
 
-.score-col{
-    margin: 10px -15px;
+.score{
+    margin: 15px -10px;
     font-size: large;
     list-style-type: none;
 }
 
-.score-col a{
-    text-decoration: none;
+.score li{
+    display: inline-block;
 }
 
-.score-col .glyphicon-thumbs-up{
+.score a{
+    text-decoration: none;
+    padding: 10px 10px;
+}
+
+.score .glyphicon-thumbs-up{
     color: green;
 }
 
-.score-col .glyphicon-thumbs-down{
+.score .glyphicon-thumbs-down{
     color: red;
+}
+
+.actions li{
+	display: inline-block;
+    list-style-type: none;
 }
