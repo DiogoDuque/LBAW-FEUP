@@ -3,10 +3,10 @@
 
 <div class="container">
     <div class="row">
-        <!--AQUI-->
+
         <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
         </div>
-        <!--AQUI-->
+
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
 
             <div class="panel panel-info">
@@ -50,9 +50,12 @@
                                 </tbody>
                                 
                             </table>
-                <div class="editP pull-right">	
-					<div class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></div>
-				</div>
+
+                <div class="edit pull-right">	
+                    <a href="#" title="Edit" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+                    <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+            </div>
 
                         </div>
                     </div>
