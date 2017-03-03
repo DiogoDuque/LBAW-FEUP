@@ -1,4 +1,4 @@
-<?php include_once "../templates/header.html" ?>
+<?php include_once "../templates/logged_in_header.html" ?>
 
 
 <div class="container">
@@ -48,7 +48,11 @@
                                 </tr>
 
                                 </tbody>
+                                
                             </table>
+                <ul class="actions pull-right">	
+					<li><a class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></a></li>
+				</ul>
 
                         </div>
                     </div>
