@@ -21,7 +21,7 @@
                                 <tbody>
                                 <tr>
                                     <td>Name:</td>
-                                    <td>Peralta o Biatch</td>
+                                    <td>Peralta, Knowledge Man</td>
                                 </tr>
                                 <tr>
                                     <td>Age:</td>
