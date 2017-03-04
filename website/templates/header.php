@@ -68,7 +68,7 @@
                 <?php if($logged_in) { ?>
 
                     <!--Admin Page(more content)-->
-                    <li><a href="#">Admin Page</a></li>
+                    <li><a href="#">Control Panel</a></li>
 
                 <?php } ?>
 
@@ -104,7 +104,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li><button type="button" class="btn btn-primary vertical-align"><a class ="noStyle" href="../views/newQuestion.php">Ask a question</a></button></li>
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello, Peralta </a></li>
+                <li><a href="   ../views/profile.php"><span class="glyphicon glyphicon-user"></span> Hello, Peralta </a></li>
                 <li><a href="#" data-toggle="modal"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
 
@@ -137,7 +137,7 @@
                     </div>
                     <div class="form-group">
                         <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                        <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                        <input type="password" class="form-control" id="psw" placeholder="Enter password">
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" value="" checked>Remember me</label>
@@ -176,11 +176,11 @@
                     </div>
                     <div class="form-group">
                         <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-                        <input type="text" class="form-control" id="email" placeholder="Enter email">
+                        <input type="email" class="form-control" id="email" placeholder="Enter email">
                     </div>
                     <div class="form-group">
                         <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                        <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                        <input type="password" class="form-control" id="psw" placeholder="Enter password">
                     </div>
                     <button type="submit" class="btn btn-success btn-block"><span
                             class="glyphicon glyphicon-registration-mark"></span> Sign Up
