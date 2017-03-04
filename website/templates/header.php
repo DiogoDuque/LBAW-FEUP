@@ -1,5 +1,5 @@
 <?php
-    $logged_in = false
+    $logged_in = true
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +11,15 @@
     <link rel="stylesheet" href="../vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../lib/css/main.css">
 
+    <!--  include jquery and boostrap  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- include summernote css/js (text editor) -->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+
+    <!--icon-->
     <link rel="icon" href="../resources/img/logo-64.ico">
 </head>
 <body>
