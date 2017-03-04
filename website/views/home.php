@@ -27,6 +27,7 @@ $questions_points = array(4, -2, 5, 0);
             <li><a data-toggle="tab" href="#controverse">Most Controversial</a></li>
         </ul>
 
+        <!--TODO: Make a template of question/answer and put it in the templates folder.-->
 
         <!--Tabs Content-->
         <div class="tab-content">
@@ -100,9 +101,8 @@ $questions_points = array(4, -2, 5, 0);
                         </div>
                         <div class="col-sm-1">
                             <h4 class="text-center">
+                                2
                                 <small>
-                                    <span class="glyphicon glyphicon-thumbs-up"></span>
-                                    2
                                     <span class="glyphicon glyphicon-thumbs-up"></span>
                                     upvotes
                                 </small>
@@ -110,9 +110,8 @@ $questions_points = array(4, -2, 5, 0);
                         </div>
                         <div class="col-sm-1">
                             <h4 class="text-center">
+                                50
                                 <small>
-                                    <span class="glyphicon glyphicon-thumbs-down"></span>
-                                    50
                                     <span class="glyphicon glyphicon-thumbs-down"></span>
                                     downvotes
                                 </small>
@@ -120,9 +119,8 @@ $questions_points = array(4, -2, 5, 0);
                         </div>
                         <div class="col-sm-1">
                             <h4 class="text-center">
+                                2
                                 <small>
-                                    <span class="glyphicon glyphicon-comment"></span>
-                                    0
                                     <span class="glyphicon glyphicon-comment"></span>
                                     answers
                                 </small>
