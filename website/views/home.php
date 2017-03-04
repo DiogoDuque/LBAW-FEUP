@@ -180,8 +180,7 @@
                 <div class="container answer">
                     <div class="row">
                         <div class="col-sm-9 pre">
-                            <h4><a class="home-question-title">My girl swallowed after oral now I'm worried she get
-                                    pregnant. i bought her laxtives but don't know how to ask.</a><br>
+                            <h4><a class="home-question-title">Is Trump the new Jesus?</a><br>
                                 <small>asked 55 seconds ago by <a href="profile.php">Peralta</a></small>
                             </h4>
                         </div>
@@ -199,7 +198,7 @@
                             <h4 class="text-center">
                                 <small>
                                     <span class="glyphicon glyphicon-thumbs-down"></span>
-                                    5
+                                    50
                                     <span class="glyphicon glyphicon-thumbs-down"></span>
                                     downvotes
                                 </small>
