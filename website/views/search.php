@@ -91,8 +91,8 @@
 <div class="container answer">
   <div class="row">
     <div class="col-sm-9 pre">
-      <h4><a class="home-question-title">My girl swallowed after oral now I'm worried she get pregnant. i bought her laxtives but don't know how to ask.</a><br>
-        <small>asked 55 seconds ago by <a href="profile.php">Peralta</a></small>
+      <h4><a class="home-question-title">Is Picasso a Renaissance influence?</a><br>
+        <small>asked 55 seconds ago by <a href="profile.php">Peralta</a> in <a>Arts</a></small>
       </h4>
     </div>
     <div class="col-sm-1">

@@ -1,4 +1,4 @@
-<?php include_once "../templates/logged_in_header.html" ?>
+<?php include_once "../templates/header.php" ?>
 
 
 <div class="container">
@@ -43,6 +43,7 @@
                                     <td>Email:</td>
                                     <td><a href="peraltas@hotmail.com">peraltas@hotmail.com</a></td>
                                 </tr>
+                                <tr>
                                 <td>Score:</td>
                                 <td>-5000</td>
                                 </tr>

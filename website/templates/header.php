@@ -1,5 +1,5 @@
 <?php
-    $logged_in = true
+    $logged_in = false
 ?>
 
 <!DOCTYPE html>
