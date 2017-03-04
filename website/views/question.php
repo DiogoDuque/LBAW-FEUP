@@ -12,6 +12,13 @@
         <!--Title-->
         <h2>Lorem ipsum?</h2>
 
+        <small class="pull-right">
+            8
+            <span class="glyphicon glyphicon-thumbs-up"></span>
+            5
+            <span class="glyphicon glyphicon-thumbs-down"></span>
+        </small>
+
         <!--Question-->
         <div class="question row">
 
@@ -88,6 +95,13 @@
             <?php
             for ($i = 0; $i < 3; $i++) {
                 ?>
+                <small class="pull-right">
+                    10
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    5
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                </small>
+
                 <div class="answer row">
                     <div class="col-md-2">
                         <!--User-->
@@ -99,7 +113,7 @@
                         <!--Score-->
                         <ul class="score">
                             <li><a class="glyphicon glyphicon-thumbs-up" href="#"></a></li>
-                            <li><p>3</p></li>
+                            <li><p>5</p></li>
                             <li><a class="glyphicon glyphicon-thumbs-down" href="#"></a></li>
                         </ul>
                     </div>
