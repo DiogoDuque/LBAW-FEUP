@@ -14,29 +14,16 @@
       <hr>
       
       <ul class="list-unstyled">
-        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">
-          <h5>Settings <i class="glyphicon glyphicon-chevron-down"></i></h5>
-          </a>
-            <ul class="list-unstyled collapse in" id="userMenu">
-                <li class="active"> <a href="#"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-envelope"></i> Messages <span class="badge badge-info">4</span></a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Options</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-user"></i> Staff List</a></li>
-            </ul>
-        </li>
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
           <h5>Reports <i class="glyphicon glyphicon-chevron-right"></i></h5>
           </a>
         
             <ul class="list-unstyled collapse" id="menu2">
-                <li><a href="#">Alerts</a>
+                <li><a href="#">Reports</a>
                 </li>
             </ul>
         </li>
-        <li class="nav-header">
-        <a href="#" data-toggle="collapse" data-target="#menu3">
-          <h5>Social Media <i class="glyphicon glyphicon-chevron-right"></i></h5>
-          </a>
+
         
             <ul class="list-unstyled collapse" id="menu3">
                 <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Facebook</a></li>
@@ -59,7 +46,7 @@
           
             <!-- center left-->	
          	<div class="col-md-6">
-			  <div class="well">Inbox Messages <span class="badge pull-right">3</span></div>
+			  <div class="well">Inbox Reports <span class="badge pull-right">3</span></div>
 
              
 	
