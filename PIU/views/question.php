@@ -8,7 +8,13 @@
     </script>
 
     <!--Content-->
-    <div class="container">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="home.php">Home</a></li>
+                <li>Sports</li>
+                <li class="active">Lorem ipsum?</li>        
+            </ol>
+    
         <!--Title-->
         <h2>Lorem ipsum?</h2>
 
