@@ -41,7 +41,7 @@
                                 </tr>
                                 <tr>
                                     <td>Email:</td>
-                                    <td><a href="peraltas@hotmail.com">peraltas@hotmail.com</a></td>
+                                    <td><a href="mailto:peraltas@hotmail.com">peraltas@hotmail.com</a></td>
                                 </tr>
                                 <tr>
                                 <td>Score:</td>
@@ -70,7 +70,7 @@
 <div class="container">
     <div class="row">
         <div class="title" align="center">
-            <h3>Historical</h3>
+            <h3>Your latest topics</h3>
         </div>
     </div>
 </div>

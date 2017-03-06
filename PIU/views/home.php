@@ -49,7 +49,7 @@ $questions_points = array(4, -2, 5, 0);
                             <h4><a href="../views/question.php"
                                    class="home-question-title"><?= $questions[$i] ?></a><br>
                                 <small>asked 55 seconds ago by <a href="profile.php">Peralta</a> in
-                                    <a><?= $questions_categories[$i] ?></a>
+                                    <a href="./search.php"><?= $questions_categories[$i] ?></a>
                                 </small>
                             </h4>
                         </div>
