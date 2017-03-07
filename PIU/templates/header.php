@@ -24,13 +24,6 @@
 </head>
 <body>
 
-<!--Big thing at the top-->
-<div class="jumbotron text-center">
-    <h1 class="logo"><a class ="noStyle" href="../views/home.php">HoWhy</a></h1>
-    <a class ="noStyle" href="../views/home.php"><img src="../resources/img/logo-vectors-original.svg" class="svg-logo logo"></a>
-    <p>Where questions become answers!</p>
-</div>
-
 <!--NavBar-->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -45,8 +38,8 @@
 
             <!--<a class="navbar-brand" href="#">Logo</a>-->
             <!-- Logo-->
-            <a class="navbar-brand" href="../views/home.php"><img src="../resources/img/logo-vectors-inverted.svg"
-                                                                  height="40" width="40"></a>
+            <a class="logo pull-left navbar-header" href="../views/home.php"><img src="../resources/img/howhy-logo-with-text.svg" height="30"></a>
+
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
