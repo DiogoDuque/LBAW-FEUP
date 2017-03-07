@@ -61,7 +61,7 @@
                 <?php if($logged_in) { ?>
 
                     <!--Admin Page(more content)-->
-                    <li><a href="#">Control Panel</a></li>
+                    <li><a href="../views/admin.php">Control Panel</a></li>
 
                 <?php } ?>
 
@@ -73,11 +73,9 @@
                     <input type="text" class="form-control" placeholder="Search..">
                     <span class="input-group-btn">
 
-                        <button class="btn btn-default" type="button">
-                            <a href="../views/search.php">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </a>
-                        </button>
+                        <a href ="../views/search.php" role="button" class="btn btn-default" type="button" data-toggle="tooltip" data-placement="bottom" title="Advanced search">
+                                <span class="glyphicon glyphicon-search search-icon"></span>
+                        </a>
 
                     </span>
                 </div>
@@ -98,7 +96,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><button type="button" class="btn btn-primary vertical-align"><a class ="noStyle" href="../views/newQuestion.php">Ask a question</a></button></li>
                 <li><a href="   ../views/profile.php"><span class="glyphicon glyphicon-user"></span> Hello, Peralta </a></li>
-                <li><a href="#" data-toggle="modal"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="../views/home.php" data-toggle="modal"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
 
             <?php } ?>
