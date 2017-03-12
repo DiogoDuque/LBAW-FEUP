@@ -4,17 +4,19 @@ $questions = array(
     "Why are the only possible values for a bit 0 and 1?",
     "Best side dish for a filet mignon?",
     "Do you like this?",
-    "What are the best Billiards training practices?"
+    "What are the best Billiards training practices?",
+    "Difference between DFS and BFS?"
 );
 
 $questions_categories = array(
     "Computers",
     "Food and Drinks",
     "Food and Drinks",
-    "Sports"
+    "Sports",
+    "Computers"
 );
 
-$questions_points = array(4, -2, 5, 0);
+$questions_points = array(4, -2, 5, 0, 7);
 
 ?>
 

@@ -208,34 +208,30 @@
                         <div class="control-group">
                           <label>Name</label>
                           <div class="controls">
-                           <input type="text" class="form-control" placeholder="Enter Name">
+                              <input type="text" class="form-control" placeholder="Enter Name">
                           </div>
-                        </div>      
-                        
-                        <div class="control-group">
-                          <label>Message</label>
-                          <div class="controls">
-                          	<textarea class="form-control"></textarea>
+                        </div>
+
+
+                          <div class="control-group">
+                              <label>Permissions</label>
+                              <div class="controls">
+                                  <select class="form-control">
+                                      <option>Moderator</option>
+                                      <option>Admin</option>
+                                  </select>
+                              </div>
                           </div>
-                        </div> 
-                             
-                        <div class="control-group">
-                          <label>Permissions</label>
-                          <div class="controls">
-                             <select class="form-control"><option>Moderator</option>
-                                                          <option>Admin</option></select>
+
+                          <div class="control-group">
+                              <label></label>
+                              <div class="controls">
+                                  <button type="submit" class="btn btn-primary">
+                                      Done
+                                  </button>
+                              </div>
                           </div>
-                        </div>    
-                        
-                        <div class="control-group">
-                          	<label></label>
-                        	<div class="controls">
-                        	<button type="submit" class="btn btn-primary">
-                              Done
-                            </button>
-                        	</div>
-                        </div>   
-                        
+
                       </form>
                 
                 
