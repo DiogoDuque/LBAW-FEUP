@@ -5,9 +5,9 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO public;
 
 /*ENUMS*/
-CREATE TYPE privilegeLevel AS ENUM ('Member', 'Moderator', 'Administrator');
+CREATE TYPE PrivilegeLevel AS ENUM ('Member', 'Moderator', 'Administrator');
 
-CREATE TYPE reportType AS ENUM ('DuplicateQuestion', 'LackOfClarity', 'InnapropriateLanguage', 'BadBehavior');
+CREATE TYPE ReportType AS ENUM ('DuplicateQuestion', 'LackOfClarity', 'InnapropriateLanguage', 'BadBehavior');
 
 /*TABLES*/
 
@@ -31,7 +31,7 @@ CREATE TABLE public.member
   username VARCHAR(20) NOT NULL,
   email VARCHAR(254) NOT NULL,
   hashed_pass CHAR(64) NOT NULL,
-  privilege_level privilegeLevel DEFAULT 'Member' NOT NULL,
+  privilege_level PrivilegeLevel DEFAULT 'Member' NOT NULL,
   reputation INT DEFAULT 0 NOT NULL,
   image_id INT,
   creation_date DATE DEFAULT current_date NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE public.report
   id SERIAL PRIMARY KEY,
   description TEXT NOT NULL,
   creation_date DATE DEFAULT current_date NOT NULL,
-  report_type reportType NOT NULL,
+  report_type ReportType NOT NULL,
   creator_id INT NOT NULL,
   post_id INT,
   CONSTRAINT report_member_id_fk FOREIGN KEY (creator_id) REFERENCES public.member (id),
@@ -93,8 +93,8 @@ CREATE TABLE public.question
 (
   post_id INT PRIMARY KEY,
   title TEXT NOT NULL,
-  view_count INT NOT NULL,
-  answer_count INT NOT NULL,
+  view_count INT DEFAULT 0 NOT NULL,
+  answer_count INT DEFAULT 0 NOT NULL,
   category_id INT NOT NULL,
   CONSTRAINT answer_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id)
 );
@@ -124,7 +124,7 @@ CREATE TABLE public.promotionDemotion
 (
   id SERIAL PRIMARY KEY,
   date DATE DEFAULT current_date NOT NULL,
-  privilege_level privilegeLevel NOT NULL,
+  privilege_level PrivilegeLevel NOT NULL,
   member_id INT NOT NULL,
   admin_id INT NOT NULL,
   CONSTRAINT promotionDemotion_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id),
@@ -140,7 +140,7 @@ BEGIN
        SELECT previlege_level
        FROM member
        WHERE member.id = NEW.admin_id
-     ) <> 'Administrator'::privilegeLevel) THEN
+     ) <> 'Administrator':: PrivilegeLevel) THEN
     RAISE EXCEPTION 'No Permission';
   END IF;
 

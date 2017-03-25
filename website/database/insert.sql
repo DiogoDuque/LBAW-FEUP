@@ -300,5 +300,9 @@ INSERT INTO "member" (username,email,hashed_pass) VALUES ('Debra','Suspendisse@s
 INSERT INTO "member" (username,email,hashed_pass) VALUES ('Casey','lacinia.Sed.congue@arcu.net','54F7909144AE5A2DAFC9F8E77C56E3FEAFC9A982A9F2691D2115C9AC09EC');
 INSERT INTO "member" (username,email,hashed_pass) VALUES ('Rhiannon','leo@risusquis.edu','893F45DEE822D5A576C1FA3DBC6877D92A132D56A6DA3D64D48CE520F70B');
 
+INSERT INTO "post" (author_id) VALUES (48),(17),(222),(202),(35),(195),(61),(133),(10),(236);
+INSERT INTO "post" (author_id) VALUES (6),(165),(12),(266),(248),(131),(263),(107),(199),(276);
+INSERT INTO "post" (author_id) VALUES (175),(272),(4),(107),(92),(68),(5),(14),(215),(145);
 
-
+INSERT INTO "question" (post_id, title, category_id) VALUES (1, 'How does gravity work?', 6), (2, 'What charcterizes Monet paintings?', 11);
+INSERT INTO "question" (post_id, title, category_id) VALUES (3, 'Who started WWII?', 7), (4, 'Manchester United coach in 1999?', 2);
