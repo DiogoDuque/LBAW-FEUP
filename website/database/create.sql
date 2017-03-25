@@ -216,3 +216,26 @@ AFTER UPDATE
   ON comment
 FOR EACH ROW
 EXECUTE PROCEDURE update_comment_mod_date_f();
+
+--update answer_count
+
+CREATE FUNCTION update_question_answer_count() RETURNS TRIGGER AS $BODY$
+BEGIN
+    IF(TG_OP = 'INSERT') THEN --INSERT
+      IF(NEW.answer_post_id_fk) THEN
+        answer_count=answer_count+1;
+      END IF;
+
+    ELSEIF(TG_OP = 'DELETE') THEN
+      IF(OLD.answer_post_id_fk) THEN
+        answer_count=answer_count-1;
+      END IF;
+END;
+$BODY$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_question_answer_count
+BEFORE INSERT OR DELETE
+  ON question
+FOR EACH ROW
+EXECUTE PROCEDURE update_question_answer_count();
+
