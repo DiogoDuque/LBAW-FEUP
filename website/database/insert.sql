@@ -301,3 +301,4 @@ INSERT INTO "member" (username,email,hashed_pass) VALUES ('Casey','lacinia.Sed.c
 INSERT INTO "member" (username,email,hashed_pass) VALUES ('Rhiannon','leo@risusquis.edu','893F45DEE822D5A576C1FA3DBC6877D92A132D56A6DA3D64D48CE520F70B');
 
 
+

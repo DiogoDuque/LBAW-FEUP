@@ -45,8 +45,8 @@ CREATE TABLE public.post
 (
   id SERIAL PRIMARY KEY,
   creation_date DATE DEFAULT current_date NOT NULL,
-  up_votes INT NOT NULL,
-  down_votes INT NOT NULL,
+  up_votes INT DEFAULT 0 NOT NULL,
+  down_votes INT DEFAULT 0 NOT NULL,
   author_id INT NOT NULL,
   image_ids INT[],
   CONSTRAINT post_member_id_fk FOREIGN KEY (author_id) REFERENCES public.member (id)
