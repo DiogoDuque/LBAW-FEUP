@@ -304,9 +304,32 @@ INSERT INTO public."post" (author_id) VALUES (48),(17),(222),(202),(35),(195),(6
 INSERT INTO public."post" (author_id) VALUES (6),(165),(12),(266),(248),(131),(263),(107),(199),(276);
 INSERT INTO public."post" (author_id) VALUES (175),(272),(4),(107),(92),(68),(5),(14),(215),(145);
 
+/*QUESTIONS and respective VERSIONS, VOTES and COMMENTS*/
 INSERT INTO public."question" (post_id, title, category_id) VALUES (1, 'How does gravity work?', 6), (2, 'What charcterizes Monet paintings?', 11);
 INSERT INTO public."question" (post_id, title, category_id) VALUES (3, 'Who started WWII?', 7), (4, 'Manchester United coach in 1999?', 2);
 INSERT INTO public."question" (post_id, title, category_id) VALUES (5, 'How does gravity work?', 6), (6, 'What charcterizes Monet paintings?', 11);
 INSERT INTO public."question" (post_id, title, category_id) VALUES (7, 'Who started WWII?', 7), (8, 'Manchester United coach in 1999?', 2);
 
 INSERT INTO public."version" (post_id, member_id, text) VALUES (1, 48, 'Is it magic or is there a reasonable explanation for it.');
+INSERT INTO public."version" (post_id, member_id, text) VALUES (2, 1, 'I have always wondered what are his differences, comparing to Monit.');
+INSERT INTO public."version" (post_id, member_id, text) VALUES (3, 222, 'Germany was one of the superpowers to ignite it, but who really attacked who?');
+INSERT INTO public."version" (post_id, member_id, text) VALUES (4, 202, 'I was not born yet, so theres is no way I could possibly know.');
+INSERT INTO public."version" (post_id, member_id, text) VALUES (5, 48, 'Is it magic or is there a reasonable explanation for it.');
+INSERT INTO public."version" (post_id, member_id, text) VALUES (6, 1, 'I have always wondered what are his differences, comparing to Monit.');
+INSERT INTO public."version" (post_id, member_id, text) VALUES (7, 222, 'Germany was one of the superpowers to ignite it, but who really attacked who?');
+INSERT INTO public."version" (post_id, member_id, text) VALUES (8, 202, 'I was not born yet, so theres is no way I could possibly know.');
+
+INSERT INTO public.vote (post_id, member_id, value) VALUES (1, 32, true), (1, 33, true), (1, 1, false);
+
+/*ANSWERS and respective VERSIONS, VOTES and COMMENTS*/
+INSERT INTO public.answer (post_id, correct, question_id) VALUES (10, false, 1), (11, true, 1);
+
+INSERT INTO public.version(text, post_id, member_id) VALUES ('It is just magic.', 10, 87), ('It comes from Earths mass.', 11, 99);
+
+INSERT INTO public.vote(post_id, member_id, value) VALUES (10, 10, FALSE ), (10, 11, FALSE );
+INSERT INTO public.vote(post_id, member_id, value) VALUES (11, 200, true);
+
+INSERT INTO public.comment(post_id, member_id, text) VALUES (10, 11, 'Dude, just go back to school.');
+
+
+
