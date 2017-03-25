@@ -319,17 +319,16 @@ INSERT INTO public."version" (post_id, member_id, text) VALUES (6, 1, 'I have al
 INSERT INTO public."version" (post_id, member_id, text) VALUES (7, 222, 'Germany was one of the superpowers to ignite it, but who really attacked who?');
 INSERT INTO public."version" (post_id, member_id, text) VALUES (8, 202, 'I was not born yet, so theres is no way I could possibly know.');
 
-INSERT INTO public.vote (post_id, member_id, value) VALUES (1, 32, true), (1, 33, true), (1, 1, false);
+INSERT INTO public.vote (post_id, member_id, value) VALUES (1, 32, false ), (1, 33, true ), (1, 34, true);
+
+INSERT INTO public.vote (post_id, member_id, value) VALUES (2, 32, false ), (2, 33, true ), (2, 34, true);
 
 /*ANSWERS and respective VERSIONS, VOTES and COMMENTS*/
 INSERT INTO public.answer (post_id, correct, question_id) VALUES (10, false, 1), (11, true, 1);
 
 INSERT INTO public.version(text, post_id, member_id) VALUES ('It is just magic.', 10, 87), ('It comes from Earths mass.', 11, 99);
 
-INSERT INTO public.vote(post_id, member_id, value) VALUES (10, 10, FALSE ), (10, 11, FALSE );
+INSERT INTO public.vote(post_id, member_id, value) VALUES (10, 10, FALSE ), (10, 11, FALSE ), (10, 111, FALSE );
 INSERT INTO public.vote(post_id, member_id, value) VALUES (11, 200, true);
 
 INSERT INTO public.comment(post_id, member_id, text) VALUES (10, 11, 'Dude, just go back to school.');
-
-
-

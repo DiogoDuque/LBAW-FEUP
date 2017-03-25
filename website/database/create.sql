@@ -137,7 +137,7 @@ CREATE FUNCTION check_admin_previleges_f()
   RETURNS trigger AS $$
 BEGIN
   IF((
-       SELECT previlege_level
+       SELECT privilege_level
        FROM member
        WHERE member.id = NEW.admin_id
      ) <> 'Administrator':: PrivilegeLevel) THEN
@@ -219,7 +219,7 @@ EXECUTE PROCEDURE update_comment_mod_date_f();
 
 --update answer_count
 
-CREATE FUNCTION update_question_answer_count() RETURNS TRIGGER AS $BODY$
+CREATE FUNCTION update_question_answer_count_f() RETURNS TRIGGER AS $BODY$
 BEGIN
     IF(TG_OP = 'INSERT') THEN --INSERT
       IF(NEW.answer_post_id_fk) THEN
@@ -230,12 +230,60 @@ BEGIN
       IF(OLD.answer_post_id_fk) THEN
         answer_count=answer_count-1;
       END IF;
+
+    END IF;
 END;
 $BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER update_question_answer_count
+CREATE TRIGGER update_question_answer_count_tr
 BEFORE INSERT OR DELETE
   ON question
 FOR EACH ROW
-EXECUTE PROCEDURE update_question_answer_count();
+EXECUTE PROCEDURE update_question_answer_count_f();
+
+-- Update user reputation base on votes on his posts
+
+CREATE FUNCTION update_reputation_f() RETURNS TRIGGER AS $BODY$
+
+DECLARE
+  repChange INT;
+  id1 INT;
+
+BEGIN
+  IF(TG_OP = 'INSERT') THEN
+    IF(NEW.value) THEN
+      repChange = 1;
+    ELSE
+      repChange = -1;
+    END IF;
+
+    UPDATE member AS m
+      SET reputation=reputation+repChange
+    FROM post AS p JOIN vote AS v ON p.id = NEW.post_id
+    WHERE m.id = p.author_id;
+
+    ELSE
+      IF(NEW.value) THEN
+        repChange = -1;
+      ELSE
+        repChange = 1;
+      END IF;
+
+      UPDATE member AS m
+      SET reputation=reputation+repChange
+      FROM post AS p JOIN vote AS v ON p.id = NEW.post_id
+      WHERE m.id = p.author_id;
+
+  END IF;
+
+  RETURN NEW;
+
+END;
+$BODY$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_reputation_tr
+BEFORE INSERT OR DELETE
+  ON vote
+FOR EACH ROW
+EXECUTE PROCEDURE update_reputation_f();
 
