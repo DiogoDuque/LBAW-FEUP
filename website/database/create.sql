@@ -247,7 +247,6 @@ CREATE FUNCTION update_reputation_f() RETURNS TRIGGER AS $BODY$
 
 DECLARE
   repChange INT;
-  id1 INT;
 
 BEGIN
   IF(TG_OP = 'INSERT') THEN
