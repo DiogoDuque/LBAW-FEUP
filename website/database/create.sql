@@ -287,3 +287,12 @@ BEFORE INSERT OR DELETE
 FOR EACH ROW
 EXECUTE PROCEDURE update_reputation_f();
 
+/* INDEXES */
+
+CREATE INDEX category_id_index ON category (id);
+CREATE INDEX member_id_index ON member (id);
+CREATE INDEX post_id_index ON post (id);
+CREATE INDEX answer_post_id_index ON answer (post_id);
+CREATE INDEX question_post_id_index ON question (post_id);
+CREATE INDEX promotionDemotion_id_index ON category (id);
+CREATE INDEX report_id_index ON report (id)
