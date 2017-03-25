@@ -120,15 +120,15 @@ CREATE TABLE public.version
   CONSTRAINT version_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id)
 );
 
-CREATE TABLE public.promotionDemontion
+CREATE TABLE public.promotionDemotion
 (
   id SERIAL PRIMARY KEY,
   date DATE DEFAULT current_date NOT NULL,
   privilege_level privilegeLevel NOT NULL,
   member_id INT NOT NULL,
   admin_id INT NOT NULL,
-  CONSTRAINT promotionDemontion_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id),
-  CONSTRAINT promotionDemontion_admin_id_fk FOREIGN KEY (admin_id) REFERENCES public.member (id)
+  CONSTRAINT promotionDemotion_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id),
+  CONSTRAINT promotionDemotion_admin_id_fk FOREIGN KEY (admin_id) REFERENCES public.member (id)
 );
 
 /*TRIGGERS*/
@@ -149,7 +149,7 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER check_admin_previleges_tr
 BEFORE INSERT OR UPDATE
-  ON promotiondemontion
+  ON promotiondemotion
 FOR EACH ROW
 EXECUTE PROCEDURE check_admin_previleges_f();
 
