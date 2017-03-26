@@ -326,3 +326,8 @@ BEFORE UPDATE OF correct
   FOR EACH ROW
   WHEN (NEW.correct=TRUE AND OLD.correct=FALSE)
 EXECUTE PROCEDURE one_correct_answer_per_question_f();
+
+/** OTHER INDEXES **/
+
+CREATE INDEX version_text_idx ON public.version USING GIN (to_tsvector('english', text));
+CREATE INDEX question_title_idx ON public.question USING GIN (to_tsvector('english', title));
