@@ -188,12 +188,14 @@ BEGIN
   IF TG_OP='DELETE' THEN
     UPDATE post SET up_votes=up_votes+up_vote, down_votes=down_votes+down_vote
     WHERE post.id=OLD.post_id;
+    RETURN OLD;
   ELSE
     UPDATE post SET up_votes=up_votes+up_vote, down_votes=down_votes+down_vote
     WHERE post.id=NEW.post_id;
+    RETURN NEW;
   END IF;
 
-  RETURN NEW;
+
 END;
 $BODY$ LANGUAGE plpgsql;
 
@@ -265,7 +267,7 @@ BEGIN
     RETURN NEW;
 
     ELSE
-      IF(NEW.value) THEN
+      IF(OLD.value) THEN
         repChange = -1;
       ELSE
         repChange = 1;
@@ -273,7 +275,7 @@ BEGIN
 
       UPDATE member AS m
       SET reputation=reputation+repChange
-      FROM post AS p JOIN vote AS v ON p.id = NEW.post_id
+      FROM post AS p JOIN vote AS v ON p.id = OLD.post_id
       WHERE m.id = p.author_id;
       RETURN OLD;
 
