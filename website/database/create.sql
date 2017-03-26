@@ -133,7 +133,7 @@ CREATE TABLE public.promotionDemotion
 
 /*TRIGGERS*/
 
-CREATE FUNCTION check_admin_previleges_f()
+CREATE FUNCTION check_admin_privileges_f()
   RETURNS trigger AS $$
 BEGIN
   IF((
@@ -143,15 +143,15 @@ BEGIN
      ) <> 'Administrator':: PrivilegeLevel) THEN
     RAISE EXCEPTION 'No Permission';
   END IF;
-
+  RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER check_admin_previleges_tr
+CREATE TRIGGER check_admin_privileges_tr
 BEFORE INSERT OR UPDATE
   ON promotiondemotion
 FOR EACH ROW
-EXECUTE PROCEDURE check_admin_previleges_f();
+EXECUTE PROCEDURE check_admin_privileges_f();
 
 CREATE FUNCTION update_vote_in_post_f() RETURNS TRIGGER AS $BODY$
 DECLARE
@@ -206,8 +206,7 @@ EXECUTE PROCEDURE update_vote_in_post_f();
 CREATE FUNCTION update_comment_mod_date_f() RETURNS TRIGGER AS $BODY$
 BEGIN
   new.last_modification_date=current_timestamp;
-  new.text='lalala';
-  RETURN new;
+  RETURN NEW;
 END;
 $BODY$ LANGUAGE plpgsql;
 
@@ -285,6 +284,23 @@ BEFORE INSERT OR DELETE
   ON vote
 FOR EACH ROW
 EXECUTE PROCEDURE update_reputation_f();
+
+-- Update the promoted member's privilege_level
+
+CREATE FUNCTION update_member_privilege_f() RETURNS TRIGGER AS $BODY$
+BEGIN
+  UPDATE member
+    SET privilege_level = NEW.privilege_level
+    WHERE member.id = NEW.member_id;
+  RETURN NEW;
+END;
+$BODY$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_member_privilege_tr
+AFTER INSERT
+  ON promotiondemotion
+FOR EACH ROW
+EXECUTE PROCEDURE update_member_privilege_f();
 
 /* INDEXES */
 
