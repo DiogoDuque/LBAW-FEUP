@@ -36,7 +36,7 @@ CREATE TABLE public.member
   image_id INT,
   creation_date DATE DEFAULT current_date NOT NULL,
   category_ids INT[],
-  CONSTRAINT member_image_id_fk FOREIGN KEY (image_id) REFERENCES public.image (id)
+  CONSTRAINT member_image_id_fk FOREIGN KEY (image_id) REFERENCES public.image (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE UNIQUE INDEX member_username_uindex ON public.member (username);
 CREATE UNIQUE INDEX member_email_uindex ON public.member (email);
@@ -49,7 +49,7 @@ CREATE TABLE public.post
   down_votes INT DEFAULT 0 NOT NULL,
   author_id INT NOT NULL,
   image_ids INT[],
-  CONSTRAINT post_member_id_fk FOREIGN KEY (author_id) REFERENCES public.member (id)
+  CONSTRAINT post_member_id_fk FOREIGN KEY (author_id) REFERENCES public.member (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE public.vote
@@ -59,8 +59,8 @@ CREATE TABLE public.vote
   value BOOLEAN NOT NULL,
   creation_date DATE DEFAULT current_date NOT NULL,
   CONSTRAINT vote_post_id_member_id_pk PRIMARY KEY (post_id, member_id),
-  CONSTRAINT vote_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id),
-  CONSTRAINT vote_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id)
+  CONSTRAINT vote_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT vote_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE public.comment
@@ -71,8 +71,8 @@ CREATE TABLE public.comment
   text TEXT NOT NULL,
   creation_date DATE DEFAULT current_date NOT NULL,
   last_modification_date DATE DEFAULT current_date NOT NULL,
-  CONSTRAINT comment_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id),
-  CONSTRAINT comment_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id)
+  CONSTRAINT comment_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT comment_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -84,8 +84,8 @@ CREATE TABLE public.report
   report_type ReportType NOT NULL,
   creator_id INT NOT NULL,
   post_id INT,
-  CONSTRAINT report_member_id_fk FOREIGN KEY (creator_id) REFERENCES public.member (id),
-  CONSTRAINT report_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id)
+  CONSTRAINT report_member_id_fk FOREIGN KEY (creator_id) REFERENCES public.member (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT report_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -96,7 +96,7 @@ CREATE TABLE public.question
   view_count INT DEFAULT 0 NOT NULL,
   answer_count INT DEFAULT 0 NOT NULL,
   category_id INT NOT NULL,
-  CONSTRAINT answer_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id)
+  CONSTRAINT answer_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -105,8 +105,8 @@ CREATE TABLE public.answer
   post_id INT PRIMARY KEY,
   correct BOOLEAN DEFAULT FALSE  NOT NULL,
   question_id INT NOT NULL,
-  CONSTRAINT answer_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id),
-  CONSTRAINT answer_question_post_id_fk FOREIGN KEY (question_id) REFERENCES public.question (post_id)
+  CONSTRAINT answer_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT answer_question_post_id_fk FOREIGN KEY (question_id) REFERENCES public.question (post_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE public.version
@@ -116,8 +116,8 @@ CREATE TABLE public.version
   date DATE DEFAULT current_date NOT NULL,
   post_id INT NOT NULL,
   member_id INT NOT NULL,
-  CONSTRAINT version_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id),
-  CONSTRAINT version_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id)
+  CONSTRAINT version_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT version_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE public.promotionDemotion
@@ -127,8 +127,8 @@ CREATE TABLE public.promotionDemotion
   privilege_level PrivilegeLevel NOT NULL,
   member_id INT NOT NULL,
   admin_id INT NOT NULL,
-  CONSTRAINT promotionDemotion_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id),
-  CONSTRAINT promotionDemotion_admin_id_fk FOREIGN KEY (admin_id) REFERENCES public.member (id)
+  CONSTRAINT promotionDemotion_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+  CONSTRAINT promotionDemotion_admin_id_fk FOREIGN KEY (admin_id) REFERENCES public.member (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /*TRIGGERS*/
@@ -220,23 +220,26 @@ EXECUTE PROCEDURE update_comment_mod_date_f();
 
 CREATE FUNCTION update_question_answer_count_f() RETURNS TRIGGER AS $BODY$
 BEGIN
-    IF(TG_OP = 'INSERT') THEN --INSERT
-      IF(NEW.answer_post_id_fk) THEN
-        answer_count=answer_count+1;
-      END IF;
+IF(TG_OP = 'INSERT') THEN
 
-    ELSEIF(TG_OP = 'DELETE') THEN
-      IF(OLD.answer_post_id_fk) THEN
-        answer_count=answer_count-1;
-      END IF;
+  UPDATE question AS q
+  SET answer_count=q.answer_count+1
+  WHERE q.post_id = NEW.question_id;
+  RETURN NEW;
 
-    END IF;
+ELSE
+  UPDATE question AS q
+  SET answer_count=q.answer_count-1
+  WHERE q.post_id = old.question_id;
+  RETURN old;
+
+END IF ;
 END;
 $BODY$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_question_answer_count_tr
 BEFORE INSERT OR DELETE
-  ON question
+  ON answer
 FOR EACH ROW
 EXECUTE PROCEDURE update_question_answer_count_f();
 
@@ -259,6 +262,7 @@ BEGIN
       SET reputation=reputation+repChange
     FROM post AS p JOIN vote AS v ON p.id = NEW.post_id
     WHERE m.id = p.author_id;
+    RETURN NEW;
 
     ELSE
       IF(NEW.value) THEN
@@ -271,10 +275,9 @@ BEGIN
       SET reputation=reputation+repChange
       FROM post AS p JOIN vote AS v ON p.id = NEW.post_id
       WHERE m.id = p.author_id;
+      RETURN OLD;
 
   END IF;
-
-  RETURN NEW;
 
 END;
 $BODY$ LANGUAGE plpgsql;
@@ -321,13 +324,3 @@ BEFORE UPDATE OF correct
   FOR EACH ROW
   WHEN (NEW.correct=TRUE AND OLD.correct=FALSE)
 EXECUTE PROCEDURE one_correct_answer_per_question_f();
-
-/* INDEXES */
-
-CREATE INDEX category_id_index ON category (id);
-CREATE INDEX member_id_index ON member (id);
-CREATE INDEX post_id_index ON post (id);
-CREATE INDEX answer_post_id_index ON answer (post_id);
-CREATE INDEX question_post_id_index ON question (post_id);
-CREATE INDEX promotionDemotion_id_index ON category (id);
-CREATE INDEX report_id_index ON report (id)
