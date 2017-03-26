@@ -302,6 +302,26 @@ AFTER INSERT
 FOR EACH ROW
 EXECUTE PROCEDURE update_member_privilege_f();
 
+-- Only 1 correct answer exists per question
+
+CREATE FUNCTION one_correct_answer_per_question_f () RETURNS trigger AS $$
+BEGIN
+  UPDATE answer
+    SET correct=false
+    WHERE question_id=NEW.question_id -- all belong to same question
+    AND answer.post_id <> NEW.post_id
+    AND answer.correct=true;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER one_correct_answer_per_question_tr
+BEFORE UPDATE OF correct
+  ON answer
+  FOR EACH ROW
+  WHEN (NEW.correct=TRUE AND OLD.correct=FALSE)
+EXECUTE PROCEDURE one_correct_answer_per_question_f();
+
 /* INDEXES */
 
 CREATE INDEX category_id_index ON category (id);
