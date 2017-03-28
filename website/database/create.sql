@@ -187,51 +187,6 @@ BEFORE INSERT OR DELETE
 FOR EACH ROW
 EXECUTE PROCEDURE update_question_answer_count_f();
 
--- Update user reputation base on votes on his posts
-
-CREATE FUNCTION update_reputation_f() RETURNS TRIGGER AS $BODY$
-
-DECLARE
-  repChange INT;
-
-BEGIN
-  IF(TG_OP = 'INSERT') THEN
-    IF(NEW.value) THEN
-      repChange = 1;
-    ELSE
-      repChange = -1;
-    END IF;
-
-    UPDATE member AS m
-      SET reputation=reputation+repChange
-    FROM post AS p JOIN vote AS v ON p.id = NEW.post_id
-    WHERE m.id = p.author_id;
-    RETURN NEW;
-
-    ELSE
-      IF(OLD.value) THEN
-        repChange = -1;
-      ELSE
-        repChange = 1;
-      END IF;
-
-      UPDATE member AS m
-      SET reputation=reputation+repChange
-      FROM post AS p JOIN vote AS v ON p.id = OLD.post_id
-      WHERE m.id = p.author_id;
-      RETURN OLD;
-
-  END IF;
-
-END;
-$BODY$ LANGUAGE plpgsql;
-
-CREATE TRIGGER update_reputation_tr
-BEFORE INSERT OR DELETE
-  ON vote
-FOR EACH ROW
-EXECUTE PROCEDURE update_reputation_f();
-
 -- Update the promoted member's privilege_level
 
 CREATE FUNCTION update_member_privilege_f() RETURNS TRIGGER AS $BODY$
