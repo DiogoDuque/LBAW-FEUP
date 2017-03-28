@@ -153,64 +153,6 @@ BEFORE INSERT OR UPDATE
 FOR EACH ROW
 EXECUTE PROCEDURE check_admin_privileges_f();
 
-CREATE FUNCTION update_vote_in_post_f() RETURNS TRIGGER AS $BODY$
-DECLARE
-  down_vote INT;
-  up_vote INT;
-BEGIN
-  IF(TG_OP = 'INSERT') THEN --INSERT
-    IF(NEW.value) THEN
-      up_vote=1;
-      down_vote=0;
-    ELSE
-      up_vote=0;
-      down_vote=1;
-    END IF;
-
-  ELSIF(TG_OP = 'UPDATE') THEN --UPDATE
-    IF(NEW.value) THEN
-      up_vote=1;
-      down_vote=-1;
-    ELSE
-      up_vote=-1;
-      down_vote=1;
-    END IF;
-
-  ELSEIF (OLD.value) THEN --DELETE
-    up_vote=-1;
-    down_vote=0;
-  ELSE
-    up_vote=0;
-    down_vote=-1;
-  END IF;
-
-  --UPDATE POST ACCORDINGLY
-  IF TG_OP='DELETE' THEN
-    UPDATE post SET up_votes=up_votes+up_vote, down_votes=down_votes+down_vote
-    WHERE post.id=OLD.post_id;
-    RETURN OLD;
-  ELSE
-    UPDATE post SET up_votes=up_votes+up_vote, down_votes=down_votes+down_vote
-    WHERE post.id=NEW.post_id;
-    RETURN NEW;
-  END IF;
-
-
-END;
-$BODY$ LANGUAGE plpgsql;
-
-CREATE TRIGGER update_vote_in_post_tr
-AFTER INSERT OR UPDATE OR DELETE
-  ON vote
-FOR EACH ROW
-EXECUTE PROCEDURE update_vote_in_post_f();
-
-CREATE FUNCTION update_comment_mod_date_f() RETURNS TRIGGER AS $BODY$
-BEGIN
-  new.last_modification_date=current_timestamp;
-  RETURN NEW;
-END;
-$BODY$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_mod_date_tr
 AFTER UPDATE
