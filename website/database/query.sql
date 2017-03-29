@@ -1,93 +1,73 @@
 -- Finding the questions in a category
-CREATE OR REPLACE FUNCTION find_questions_of_category_f(categoryId INTEGER) RETURNS SETOF INTEGER AS $$
-  SELECT public.question.post_id
-  FROM public.question JOIN public.category ON public.question.category_id = public.category.id
-  WHERE public.category.id = categoryId;
+CREATE OR REPLACE FUNCTION find_questions_of_category_f(categoryId INTEGER)
+    RETURNS TABLE(username VARCHAR(20), title TEXT, view_count INTEGER, text TEXT,
+                  answer_count INTEGER, up_votes INTEGER, down_votes INTEGER) AS $$
+  SELECT member.username, question.title, question.view_count,
+    version1.text, question.answer_count, post.up_votes, post.down_votes
+  FROM public.version AS version1
+  JOIN public.post ON post.id = version1.post_id
+  JOIN public.question ON public.question.post_id = public.post.id
+  JOIN public.category ON public.question.category_id = public.category.id
+  JOIN public.member ON post.author_id = member.id
+  WHERE public.category.id = categoryId AND version1.date=(SELECT max(version2.date) FROM version as version2 WHERE version1.id=version2.id);
 $$ LANGUAGE SQL;
 
 -- Usage
 SELECT find_questions_of_category_f(1) AS Questions;
 
+
 -- Finding the answers to a question
-CREATE OR REPLACE FUNCTION find_answers_of_a_question_f(questionId INTEGER) RETURNS SETOF INTEGER AS $$
-  SELECT public.answer.post_id
-  FROM public.answer JOIN public.question ON public.question.post_id = public.answer.question_id
-  WHERE public.answer.question_id = questionId;
+CREATE OR REPLACE FUNCTION find_answers_of_a_question_f(questionId INTEGER)
+    RETURNS TABLE(username VARCHAR(20), text TEXT,
+      up_votes INTEGER, down_votes INTEGER, correct BOOL) AS $$
+  SELECT member.username, version1.text, post.up_votes, post.down_votes, answer.correct
+    FROM public.version AS version1
+    JOIN public.post ON version1.post_id = post.id
+    JOIN public.answer ON post.id = answer.post_id
+    JOIN public.question ON public.question.post_id = public.answer.question_id
+    JOIN public.member ON post.author_id = member.id
+    WHERE public.answer.question_id = questionId
+          AND version1.date=(SELECT max(version2.date) FROM version as version2 WHERE version1.id=version2.id);
 $$ LANGUAGE SQL;
 
 -- Usage
 SELECT find_answers_of_a_question_f(1) AS Answers;
 
+
 -- Finding versions of a post
-CREATE OR REPLACE FUNCTION find_versions_of_a_post_f(postId INTEGER) RETURNS SETOF INTEGER AS $$
-  SELECT public.version.id
-  FROM public.post JOIN public.version ON public.post.id = public.version.post_id
+CREATE OR REPLACE FUNCTION find_versions_of_a_post_f(postId INTEGER)
+    RETURNS TABLE(text TEXT, date DATE) AS $$
+  SELECT version.text, version.date
+  FROM version
   WHERE public.version.post_id = postId;
 $$ LANGUAGE SQL;
 
 -- Usage
 SELECT find_versions_of_a_post_f(10) AS Versions;
 
+
 -- Finding comments to a post
-CREATE OR REPLACE FUNCTION find_comments_of_a_post_f(postId INTEGER) RETURNS SETOF INTEGER AS $$
-  SELECT public.comment.id
-  FROM public.post JOIN public.comment ON public.post.id = public.comment.post_id
+CREATE OR REPLACE FUNCTION find_comments_of_a_post_f(postId INTEGER)
+    RETURNS TABLE(username VARCHAR(20), text TEXT, last_mod_date DATE) AS $$
+  SELECT member.username, comment.text, comment.last_modification_date
+  FROM public.comment
+  JOIN public.member ON public.member.id = public.comment.member_id
   WHERE public.comment.post_id = postId;
 $$ LANGUAGE SQL;
 
 -- Usage
 SELECT find_comments_of_a_post_f(10) AS Comments;
 
--- Searching for the ids of a member's posts
-CREATE OR REPLACE FUNCTION find_posts_of_member_f(memberId INTEGER) RETURNS SETOF INTEGER AS $$
-  SELECT public.post.id
-  FROM public.post JOIN public.member ON post.author_id = member.id
-  WHERE author_id = memberId;
+
+-- Searching for a member's posts
+CREATE OR REPLACE FUNCTION find_posts_of_member_f(memberId INTEGER)
+    RETURNS TABLE(text TEXT, up_votes INTEGER, down_votes INTEGER) AS $$
+  SELECT version1.text, post.up_votes, post.down_votes
+  FROM public.version AS version1
+  JOIN public.post ON version1.post_id = post.id
+  WHERE post.author_id = memberId
+        AND version1.date=(SELECT max(version2.date) FROM version as version2 WHERE version1.id=version2.id);
 $$ LANGUAGE SQL;
 
 -- Usage
-SELECT find_posts_of_member_f(48) AS Posts;
-
--- Update the votes count on posts where it is needed
-CREATE OR REPLACE FUNCTION count_votes_f(id integer, last_update DATE, value BOOL) RETURNS INTEGER AS $$
-DECLARE
-  result INTEGER;
-BEGIN
-  SELECT COUNT(*) INTO result FROM vote
-    WHERE vote.post_id=$1 AND vote.creation_date>$2 AND vote.value=$3;
-  RETURN result;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE FUNCTION update_votes_in_posts_f (last_update DATE) RETURNS VOID AS $$
-BEGIN
-  UPDATE post
-    SET up_votes=up_votes+(count_votes_f(post.id,$1,TRUE)),
-      down_votes=down_votes+(count_votes_f(post.id,$1,FALSE));
-END;
-$$ LANGUAGE plpgsql;
-
--- Usage
-SELECT update_votes_in_posts_f('1999-01-08');
-
-
--- Update user reputation base on votes on his posts
-CREATE FUNCTION get_added_reputation(member_id INTEGER, last_update DATE, value BOOL) RETURNS INTEGER AS $$
-DECLARE
-  reputation INTEGER;
-BEGIN
-  SELECT COUNT(*) INTO reputation FROM vote
-    WHERE vote.member_id=$1 AND vote.creation_date>$2 AND vote.value=$3;
-  RETURN reputation;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE FUNCTION update_reputation_f(last_update DATE) RETURNS VOID AS $$
-BEGIN
-  UPDATE member
-    SET reputation=member.reputation+get_added_reputation(id, last_update, TRUE)-get_added_reputation(id, last_update, FALSE);
-END;
-$$ LANGUAGE plpgsql;
-
--- Usage
-SELECT update_reputation_f('1999-01-08');
+SELECT find_posts_of_member_f(3) AS Posts;

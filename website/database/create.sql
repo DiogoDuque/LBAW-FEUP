@@ -75,7 +75,6 @@ CREATE TABLE public.comment
   CONSTRAINT comment_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
 CREATE TABLE public.report
 (
   id SERIAL PRIMARY KEY,
@@ -88,7 +87,6 @@ CREATE TABLE public.report
   CONSTRAINT report_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
 CREATE TABLE public.question
 (
   post_id INT PRIMARY KEY,
@@ -98,7 +96,6 @@ CREATE TABLE public.question
   category_id INT NOT NULL,
   CONSTRAINT answer_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
 
 CREATE TABLE public.answer
 (
@@ -153,6 +150,12 @@ BEFORE INSERT OR UPDATE
 FOR EACH ROW
 EXECUTE PROCEDURE check_admin_privileges_f();
 
+CREATE FUNCTION update_comment_mod_date_f() RETURNS TRIGGER AS $BODY$
+BEGIN
+  NEW.last_modification_date=current_timestamp;
+  RETURN NEW;
+END;
+  $BODY$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_mod_date_tr
 AFTER UPDATE
