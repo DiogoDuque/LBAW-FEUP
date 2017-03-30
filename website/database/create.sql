@@ -231,3 +231,8 @@ EXECUTE PROCEDURE one_correct_answer_per_question_f();
 
 CREATE INDEX version_text_idx ON public.version USING GIN (to_tsvector('english', text));
 CREATE INDEX question_title_idx ON public.question USING GIN (to_tsvector('english', title));
+
+CREATE INDEX question_id_idx ON public.answer USING hash(question_id);
+CREATE INDEX post_id_idx ON public.version USING hash(post_id);
+CREATE INDEX post_id2_idx ON public.comment USING hash(post_id);
+CREATE INDEX author_id_idx ON public.post USING hash(author_id);
