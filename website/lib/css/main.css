@@ -93,3 +93,46 @@ a.noStyle:visited {
     color: #337ab7;
 }
 
+
+
+
+.comment-box form textarea {
+    margin-top: 1rem;
+    background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -ms-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    color: #777777;
+    float: left;
+    font-size: 14px;
+    height: 142px;
+    letter-spacing: 0.3px;
+    padding: 20px;
+    width: 100%;
+    resize:vertical;
+    outline:none;
+    border: 1px solid #F2F2F2;
+}
+
+
+.comment-box form button {
+    border: medium none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    color: #fff;
+    float: right;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    margin-right: 9px;
+    margin-top: 9px;
+    padding: 6px 15px;
+}
+
+
+

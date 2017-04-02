@@ -66,6 +66,7 @@
                     sagittis nunc.</p>
                 <ul class="actions pull-right">
                     <li><a class="glyphicon glyphicon-link" href="#" data-toggle="tooltip" title="Share"></a></li>
+                    <li><a class="glyphicon glyphicon-comment" href="#" data-toggle="tooltip" title="Comment"></a></li>
                     <li><a class="glyphicon glyphicon-flag" href="#" data-toggle="tooltip" title="Report"></a></li>
                     <li><a class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></a></li>
                     <li><a class="glyphicon glyphicon-trash" href="#" data-toggle="tooltip" title="Remove"></a></li>
@@ -90,6 +91,17 @@
                 <?php
             }
             ?>
+
+            <div class="comment col-md-9 col-md-offset-3">
+                <div class="widget-area no-padding blank">
+                    <div class="comment-box">
+                        <form>
+                            <textarea placeholder="Comment" ></textarea>
+                            <button type="submit" class="btn btn-success green">Comment</button>
+                        </form>
+                    </div><!-- Status Upload  -->
+                </div><!-- Widget Area -->
+            </div>
         </div>
 
 
@@ -146,6 +158,8 @@
                             euismod. Praesent tristique dolor sapien, et interdum orci rhoncus vel. Sed odio sem,
                             vulputate nec vulputate maximus, pharetra non est. Vivamus porta sagittis nunc.</p>
                         <ul class="actions pull-right">
+                            <li><a class="glyphicon glyphicon-comment" href="#" data-toggle="tooltip" title="Comment"></a>
+                            </li>
                             <li><a class="glyphicon glyphicon-flag" href="#" data-toggle="tooltip" title="Report"></a>
                             </li>
                             <li><a class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></a>
