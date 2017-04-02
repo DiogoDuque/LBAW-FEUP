@@ -236,3 +236,4 @@ CREATE INDEX question_id_idx ON public.answer USING hash(question_id);
 CREATE INDEX post_id_idx ON public.version USING hash(post_id);
 CREATE INDEX post_id2_idx ON public.comment USING hash(post_id);
 CREATE INDEX author_id_idx ON public.post USING hash(author_id);
+CREATE INDEX category_id_idx ON public.question USING hash(category_id);
