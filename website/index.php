@@ -1,6 +1,6 @@
 <?php
 
-    header("Location: ./views/home.php");
+    header("Location: ./pages/home.php");
     die();
 
 ?>
