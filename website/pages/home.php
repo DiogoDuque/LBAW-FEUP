@@ -1,4 +1,4 @@
-<?php include_once "../templates/header.tpl";
+<?php include_once "../templates/common/header.tpl";
 
 $questions = array(
     "Why are the only possible values for a bit 0 and 1?",
