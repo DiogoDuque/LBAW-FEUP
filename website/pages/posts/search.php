@@ -1,4 +1,10 @@
-<?php include_once "../templates/header.tpl";?>
+<?php
+
+include_once("../../config/init.php");
+
+$smarty->display("common/header.tpl");
+
+?>
 
 <!--Content-->
 <div class="container">
@@ -91,8 +97,8 @@
 <div class="container answer">
   <div class="row">
     <div class="col-sm-9 pre">
-      <h4><a href="posts/question.php" class="home-question-title">Is Picasso a Renaissance influence?</a><br>
-        <small>asked 55 seconds ago by <a href="profile.php">Peralta</a> in <a href="./search.php">Arts</a></small>
+      <h4><a href="question.php" class="home-question-title">Is Picasso a Renaissance influence?</a><br>
+        <small>asked 55 seconds ago by <a href="../profile/view_profile.php">Peralta</a> in <a href="search.php">Arts</a></small>
       </h4>
     </div>
     <div class="col-sm-1">
@@ -131,4 +137,4 @@
 <hr class="main-menu-questions-divider">
 
 
-<?php include_once "../templates/footer.tpl";?>
+<?php $smarty->display("common/footer.tpl"); ?>

@@ -39,7 +39,7 @@
                 <div class="user">
                     <img alt="User Pic" src="../../resources/img/user.png" class="img-circle img-responsive" width="100"
                          height="100">
-                    <a href="../profile.php">Peralta</a>
+                    <a href="../profile/view_profile.php">Peralta</a>
                 </div>
                 <!--Score-->
                 <ul class="score">
@@ -86,7 +86,7 @@
                 <div class="comment col-md-9 col-md-offset-3">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam viverra feugiat erat posuere
                         pellentesque. Nullam gravida lorem dolor, quis dignissim orci elementum sed</p>
-                    <a href="../profile.php">Peralta</a>
+                    <a href="../profile/view_profile.php">Peralta</a>
                     <ul class="actions pull-right">
                         <li><a class="glyphicon glyphicon-flag" href="#" data-toggle="tooltip" title="Report"></a></li>
                         <li><a class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></a></li>
@@ -132,7 +132,7 @@
                         <div class="user">
                             <img alt="User Pic" src="../../resources/img/user.png" class="img-circle img-responsive"
                                  width="100" height="100">
-                            <a href="../profile.php">Peralta</a>
+                            <a href="../profile/view_profile.php">Peralta</a>
                         </div>
                         <!--Score-->
                         <ul class="score">
@@ -181,7 +181,7 @@
                         <div class="comment col-md-9 col-md-offset-3">
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam viverra feugiat erat
                                 posuere pellentesque. Nullam gravida lorem dolor, quis dignissim orci elementum sed</p>
-                            <a href="../profile.php">Peralta</a>
+                            <a href="../profile/view_profile.php">Peralta</a>
                             <ul class="actions pull-right">
                                 <li><a class="glyphicon glyphicon-flag" href="#" data-toggle="tooltip"
                                        title="Report"></a></li>

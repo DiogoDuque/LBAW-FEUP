@@ -16,7 +16,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 
     <!--icon-->
-    <link rel="icon" href="{$BASE_DIR}resources/img/logo-64.ico">
+    <link rel="icon" href="{$BASE_URL}resources/img/logo-64.ico">
 </head>
 <body>
 

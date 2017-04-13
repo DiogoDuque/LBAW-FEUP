@@ -1,4 +1,8 @@
-<?php include_once "../templates/header.tpl";
+<?php
+
+include_once("../config/init.php");
+
+$smarty->display("common/header.tpl");
 
 $questions = array(
     "Why are the only possible values for a bit 0 and 1?",
@@ -50,8 +54,8 @@ $questions_points = array(4, -2, 5, 0, 7);
                         <div class="col-sm-10 pre">
                             <h4><a href="/question.php"
                                    class="home-question-title"><?= $questions[$i] ?></a><br>
-                                <small>asked 55 seconds ago by <a href="profile.php">Peralta</a> in
-                                    <a href="./search.php"><?= $questions_categories[$i] ?></a>
+                                <small>asked 55 seconds ago by <a href="profile/view_profile.php">Peralta</a> in
+                                    <a href="posts/search.php"><?= $questions_categories[$i] ?></a>
                                 </small>
                             </h4>
                         </div>
@@ -98,7 +102,7 @@ $questions_points = array(4, -2, 5, 0, 7);
                     <div class="row">
                         <div class="col-sm-9 pre">
                             <h4><a class="home-question-title">Is Trump the new Jesus?</a><br>
-                                <small>asked 55 seconds ago by <a href="profile.php">Peralta</a></small>
+                                <small>asked 55 seconds ago by <a href="profile/view_profile.php">Peralta</a></small>
                             </h4>
                         </div>
                         <div class="col-sm-1">
@@ -136,4 +140,4 @@ $questions_points = array(4, -2, 5, 0, 7);
 
     <script type="text/javascript" src="../lib/js/home.js"></script>
 
-<?php include_once "../templates/footer.tpl"; ?>
+<?php $smarty->display("common/footer.tpl"); ?>

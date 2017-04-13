@@ -1,4 +1,10 @@
-<?php include_once "../templates/header.tpl" ?>
+<?php
+
+include_once("../../config/init.php");
+
+$smarty->display("common/header.tpl");
+
+?>
 
 
 <div class="container">
@@ -15,7 +21,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../resources/img/user.png" class="img-circle img-responsive"> </div>
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../../resources/img/user.png" class="img-circle img-responsive"> </div>
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
                                 <tbody>
@@ -118,5 +124,5 @@
     </div>
 </div>
 
-<?php include_once "../templates/footer.tpl" ?>
+<?php $smarty->display("common/footer.tpl"); ?>
 

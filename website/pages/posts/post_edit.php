@@ -1,4 +1,10 @@
-<?php include_once "../templates/header.tpl"; ?>
+<?php
+
+include_once("../../config/init.php");
+
+$smarty->display("common/header.tpl");
+
+?>
 
 <div class="container">
     <h1 class="text-center">Edit Post</h1>
@@ -37,4 +43,4 @@
     </form>
 </div>
 
-<?php include_once "../templates/footer.tpl"; ?>
+<?php $smarty->display("common/footer.tpl"); ?>

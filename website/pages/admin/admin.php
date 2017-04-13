@@ -1,7 +1,13 @@
-<!-- Header -->
+<?php
 
-<?php include_once "../templates/header.tpl" ?>
-<script type="text/javascript" src="../lib/js/membersTabelAdmin.js"></script>
+include_once("../../config/init.php");
+
+$smarty->display("common/header.tpl");
+
+?>
+
+
+<script type="text/javascript" src="../../lib/js/membersTabelAdmin.js"></script>
 
 
 <!-- Main -->
@@ -253,4 +259,4 @@
 </div>
 <!-- /Main -->
 
-<?php include_once "../templates/footer.tpl" ?>
+<?php $smarty->display("common/footer.tpl"); ?>
