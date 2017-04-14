@@ -1,5 +1,7 @@
 <?php
 
+// TODO: Verify with professor if we can use these functions or the PDO's exceptions should be enough
+
 function checkIfUsernameExists($username){
     global $conn;
     try {
@@ -23,6 +25,29 @@ function checkIfUsernameExists($username){
     }
 }
 
+function checkIfEmailExists($email){
+    global $conn;
+    try {
+        $stmt = $conn->prepare("SELECT * FROM public.member WHERE email = ?");
+        $stmt->execute(array($email));
+
+        $list_of_emails = $stmt->fetchAll();
+
+        if(count($list_of_emails) != 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    catch (PDOException $e)
+    {
+        echo $e->getMessage();
+    }
+}
+
 function createUser($username, $password, $email) {
     global $conn;
 
@@ -31,6 +56,12 @@ function createUser($username, $password, $email) {
     {
         echo "Username already exists.";
         return -1;
+    }
+
+    if(checkIfEmailExists($email))
+    {
+        echo "An account is already associated with the email given.";
+        return -2;
     }
 
     try {
