@@ -8,9 +8,9 @@ error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 $BASE_DIR = dirname(dirname(__FILE__), 1) . "/"; // == website/
 $BASE_URL = '/LBAW-FEUP/website/'; //FIXME
 
-$conn = new PDO('pgsql:host=localhost; dbname=postgres', 'postgres', 'postgres');  // FIXME
-$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//$conn = new PDO('pgsql:host=localhost; port=5432; dbname=postgres', 'postgres', 'postgres');  // FIXME
+//$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+//$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 include_once($BASE_DIR . '/vendors/smarty/Smarty.class.php');
 
@@ -33,6 +33,5 @@ unset($_SESSION['field_errors']);
 unset($_SESSION['form_values']);
 
 $smarty->force_compile = true;
-
 
 ?>

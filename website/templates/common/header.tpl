@@ -54,9 +54,8 @@
                     </ul>
                 </li>
 
-
-                <!--Admin Page(more content)-->
-                <li><a href="../views/admin.php">Control Panel</a></li>
+                    <!--Admin Page(more content)-->
+                    <li><a href="../views/admin.php">Control Panel</a></li>
 
             </ul>
 
@@ -82,11 +81,13 @@
                         class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
 
+
             <ul class="nav navbar-nav navbar-right">
                 <li><button type="button" class="btn btn-primary vertical-align"><a class ="noStyle" href="../views/newQuestion.php">Ask a question</a></button></li>
                 <li><a href="   ../views/profile.php"><span class="glyphicon glyphicon-user"></span> Hello, Peralta </a></li>
                 <li><a href="../views/home.php" data-toggle="modal"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
+
 
 
         </div>
