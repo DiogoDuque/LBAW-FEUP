@@ -2,8 +2,14 @@
 
 function createUser($username, $password, $email) {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO (username,email,hashed_pass) member VALUES (?, ?, ?)");
-    $stmt->execute(array($username, $email, sha1($password)));
+    $stmt = $conn->prepare("INSERT INTO member (username, email, hashed_pass)VALUES (?, ?, ?)");
+    try {
+        $stmt->execute(array($username, $email, sha1($password)));
+    }
+    catch (PDOException $e)
+    {
+
+    }
 }
 
 function isLoginCorrect($username, $password) {

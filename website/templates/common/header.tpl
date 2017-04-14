@@ -135,7 +135,7 @@
 </div>
 
 <!--SignUp Modal-->
-<div class="modal fade" id="signUp-modal" role="dialog" action="{$BASE_URL}/actions/signup.php" method="post">
+<div class="modal fade" id="signUp-modal" role="dialog">
     <div class="modal-dialog">
         <!--Content here-->
         <div class="modal-content">
@@ -147,18 +147,20 @@
 
             <!-- Body(form)-->
             <div class="modal-body">
-                <form role="form">
+                <form action="{$BASE_URL}actions/auth/signup.php" method="post">
+                    <input type='hidden' name='posted' value='true'>
+
                     <div class="form-group">
                         <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter username">
+                        <input name="username" type="text" class="form-control" id="username" placeholder="Enter username" required>
                     </div>
                     <div class="form-group">
                         <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email">
+                        <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" required>
                     </div>
                     <div class="form-group">
                         <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                        <input type="password" class="form-control" id="psw" placeholder="Enter password">
+                        <input name="password" type="password" class="form-control" id="psw" placeholder="Enter password" required>
                     </div>
                     <button type="submit" class="btn btn-success btn-block"><span
                             class="glyphicon glyphicon-registration-mark"></span> Sign Up

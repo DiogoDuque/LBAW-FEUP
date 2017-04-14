@@ -6,7 +6,7 @@ session_start();
 error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 
 $BASE_DIR = dirname(dirname(__FILE__), 1) . "/"; // == website/
-$BASE_URL = '/LBAW-FEUP/website/'; //FIXME
+$BASE_URL = '/'; //FIXME
 
 $conn = new PDO('pgsql:host=localhost; port=5432; dbname=postgres', 'postgres', 'postgres');  // FIXME
 $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -19,6 +19,7 @@ $smarty = new Smarty;
 $smarty->template_dir = $BASE_DIR . 'templates/';
 $smarty->compile_dir = $BASE_DIR . 'templates_c/';
 
+$smarty->assign('BASE_DIR', $BASE_DIR); // FIXME
 $smarty->assign('BASE_URL', $BASE_URL); // FIXME
 
 $smarty->assign('ERROR_MESSAGES', $_SESSION['error_messages']);
