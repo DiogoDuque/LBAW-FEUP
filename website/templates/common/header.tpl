@@ -34,7 +34,7 @@
 
             <!--<a class="navbar-brand" href="#">Logo</a>-->
             <!-- Logo-->
-            <a class="logo pull-left navbar-header" href="../views/home.php"><img src="../../resources/img/howhy-logo-with-text.svg" height="30"></a>
+            <a class="logo pull-left navbar-header" href="{$BASE_URL}pages/home.php"><img src="{$BASE_URL}resources/img/howhy-logo-with-text.svg" height="30"></a>
 
         </div>
 
@@ -135,14 +135,14 @@
 </div>
 
 <!--SignUp Modal-->
-<div class="modal fade" id="signUp-modal" role="dialog">
+<div class="modal fade" id="signUp-modal" role="dialog" action="{$BASE_URL}/actions/signup.php" method="post">
     <div class="modal-dialog">
         <!--Content here-->
         <div class="modal-content">
             <!-- The Header-->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4><span class="glyphicon glyphicon-lock"></span> Sign Up</h4>
+                <h4><span class="glyphicon glyphicon-lock"></span>Sign Up</h4>
             </div>
 
             <!-- Body(form)-->
