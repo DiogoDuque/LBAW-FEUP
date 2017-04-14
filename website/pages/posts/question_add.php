@@ -9,7 +9,7 @@ $smarty->display("common/header.tpl");
 <div class="container">
   <h1 class="text-center">Ask a Question:</h1>
 
-  <form action="../actions/post/question-add.php" method="post" enctype="multipart/form-data">
+  <form action="../../actions/post/question-add.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" class="form-control" name="title">
