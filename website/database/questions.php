@@ -1,23 +1,18 @@
 <?php
 
-$title = $_POST['title'];
-$category = $_POST['category'];
-$text = $_POST['text'];
-$author_id = 1; //TODO get from logged in, not hardcoded
-
-function submitQuestion(){
+function submitQuestion($title, $category, $text, $author_id){
     global $conn;
-    global $title;
-    global $category;
-    global $text;
-    global $author_id;
 
     $stmt=$conn->prepare("INSERT INTO public.post(author_id) VALUES(:author_id)");
     $stmt->bindParam(':author_id',$author_id,PDO::PARAM_INT);
     $stmt->execute();
 
-    $post_id=$conn->query("SELECT id FROM public.post WHERE id=MAX(id)");
-    $category_id=$conn->query("SELECT id FROM public.category WHERE name=$category");
+    $post_id = intval($conn->lastInsertId());
+
+    $stmt = $conn->prepare("SELECT id FROM public.category WHERE name=?");
+    $stmt->execute(array($category));
+
+    $category_id = intval($stmt->fetch());
 
     $stmt=$conn->prepare("INSERT INTO public.question (post_id,title,category_id) VALUES($post_id,:title,:category_id)");
     $stmt->bindParam(':title',$title,PDO::PARAM_STR);
@@ -28,9 +23,3 @@ function submitQuestion(){
     $stmt->bindParam(':text',$text,PDO::PARAM_STR);
     $stmt->execute();
 }
-
-
-submitQuestion();
-//TODO make verifications and return result
-
-?>
