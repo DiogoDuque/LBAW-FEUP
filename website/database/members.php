@@ -2,6 +2,14 @@
 
 // TODO: Verify with professor if we can use these functions or the PDO's exceptions should be enough
 
+if(isset($_POST['action']) && function_exists($_POST['action'])) {
+
+    $action = $_POST['action'];
+    $getData = $action();
+    echo $getData ? 'true' : 'false';
+
+}
+
 function checkIfUsernameExists($username){
     global $conn;
     try {
@@ -54,13 +62,15 @@ function createUser($username, $password, $email) {
 
     if(checkIfUsernameExists($username))
     {
-        echo "Username already exists.";
+        $_SESSION['error_messages'] = "Username already exists.";
+
         return -1;
     }
 
     if(checkIfEmailExists($email))
     {
-        echo "An account is already associated with the email given.";
+        $_SESSION['error_messages'] =  "An account is already associated with the email given.";
+
         return -2;
     }
 

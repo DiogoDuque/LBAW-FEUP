@@ -9,7 +9,9 @@
     $password = $_POST["password"];
 
     if(createUser($username, $password, $email) != 0){
-        header( "refresh:2;url={$BASE_URL}" );
+        header( "refresh:3;url={$BASE_URL}" );
+        $smarty->assign('redirect_destiny', $BASE_URL);
+        $smarty->display('common/info.tpl');
     }
     else{
         header("Location: {$BASE_URL}");

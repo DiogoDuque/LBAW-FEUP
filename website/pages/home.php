@@ -140,4 +140,6 @@ $questions_points = array(4, -2, 5, 0, 7);
 
     <script type="text/javascript" src="../lib/js/home.js"></script>
 
+
+
 <?php $smarty->display("common/footer.tpl"); ?>

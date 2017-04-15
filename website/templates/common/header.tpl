@@ -171,3 +171,9 @@
     </div>
 </div>
 
+<script type="text/javascript" src="{$BASE_URL}lib/js/signup_modal.js">
+
+    validateUsername();
+
+</script>
+

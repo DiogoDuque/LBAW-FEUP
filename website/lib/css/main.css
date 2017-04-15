@@ -134,5 +134,10 @@ a.noStyle:visited {
     padding: 6px 15px;
 }
 
+.alert {
+    text-align: center;
+    font-size: 2rem;
+}
+
 
 
