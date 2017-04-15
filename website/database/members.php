@@ -94,4 +94,12 @@ function isLoginCorrect($username, $password) {
     $stmt->execute(array($username, sha1($password)));
     return $stmt->fetch() == true;
 }
-?>
+
+function getMember($id){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM public.member WHERE id = ?");
+    $stmt->execute(array($id));
+
+    return $stmt->fetch();
+}
