@@ -2,7 +2,7 @@
 
 include_once ("../../config/init.php");
 
-include_once ("{$BASE_DIR}database/questions.php");
+include_once ($BASE_DIR."database/questions.php");
 
 $title = $_POST['title'];
 $category = $_POST['category'];

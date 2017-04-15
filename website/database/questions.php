@@ -22,4 +22,16 @@ function submitQuestion($title, $category, $text, $author_id){
     $stmt=$conn->prepare("INSERT INTO public.version (post_id,member_id,text) VALUES ($post_id,$author_id,:text)");
     $stmt->bindParam(':text',$text,PDO::PARAM_STR);
     $stmt->execute();
+
+    return $post_id;
 }
+
+function getQuestion($post_id){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM public.question WHERE post_id = ?");
+    $stmt->execute(array($post_id));
+
+    return $stmt->fetch();
+}
+

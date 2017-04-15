@@ -2,7 +2,13 @@
 
     include_once ("../../config/init.php");
 
+    include_once ($BASE_DIR."database/questions.php");
+
     $smarty->display("common/header.tpl");
+
+    $post_id = $_GET["id"];
+
+    $question = getQuestion($post_id);
 
     ?>
 
