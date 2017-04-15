@@ -71,28 +71,22 @@
 
     <!--TODO: Put Comments in template-->
     {for $foo=0 to 1}
-    <div class="comment col-md-9 col-md-offset-3">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam viverra feugiat erat posuere
-            pellentesque. Nullam gravida lorem dolor, quis dignissim orci elementum sed</p>
-        <a href="{$BASE_URL}profile/view_profile.php">Peralta</a>
-        <ul class="actions pull-right">
-            <li><a class="glyphicon glyphicon-flag" href="#" data-toggle="tooltip" title="Report"></a></li>
-            <li><a class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></a></li>
-            <li><a class="glyphicon glyphicon-trash" href="#" data-toggle="tooltip" title="Remove"></a></li>
-        </ul>
-
-    </div>
+        {include file='comments/comment.tpl'}
     {/for}
 
-    <!--TODO: Put comment form in template-->
-    <div class="comment col-md-9 col-md-offset-3">
-        <div class="widget-area no-padding blank">
-            <div class="comment-box">
-                <form>
-                    <textarea placeholder="Comment" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam viverra feugiat erat posuere pellentesque. Nullam gravida lorem dolor, quis dignissim orci elementum sed</textarea>
-                    <button type="submit" class="btn btn-success green">Apply</button>
-                </form>
-            </div><!-- Status Upload  -->
-        </div><!-- Widget Area -->
+    {if (true)}
+        {include file='comments/comment_form.tpl'}
+    {/if}
+
+    <div class="answers">
+
+        <h4 >Answers</h4>
+
+        {for $foo=0 to 1}
+            {include file='posts/answer.tpl'}
+        {/for}
+
+
     </div>
+
 </div>
