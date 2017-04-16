@@ -1,6 +1,6 @@
 {assign "answer_post" $getter->getPost($answer.post_id)}
 {assign "answer_category" $getter->getCategory($answer.category_id)}
-{assign "answer_author" $getter->getMember($answer_post.author_id)}
+{assign "answer_author" $getter->getMemberById($answer_post.author_id)}
 {assign "answer_version" $getter->getLatestPostVersion($answer.post_id)}
 
 <small class="pull-right">

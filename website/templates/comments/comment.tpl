@@ -1,7 +1,7 @@
 <div class="comment col-md-9 col-md-offset-3">
     <p>{$comment.text}</p>
 
-    {assign "comment_author" $getter->getMember($comment.member_id)}
+    {assign "comment_author" $getter->getMemberById($comment.member_id)}
 
     <a href="{$BASE_URL}profile/view_profile.php">{$comment_author.username}</a>
     <ul class="actions pull-right">

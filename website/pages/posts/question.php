@@ -14,16 +14,15 @@
 
     $question_id = $_GET["id"];
 
-    $question = getQuestion($question_id);
+    $question = $getter->getQuestion($question_id);
 
     $smarty->assign("getter", $getter);
     $smarty->assign("question", $question);
 
-
     $smarty->display("common/header.tpl");
     $smarty->display("posts/question.tpl");
 
-    if ($logged_in) { ?>
+    if (isset($_SESSION["username"])) { ?>
 
         <div class="new-answer">
             <h3>Your answer</h3>

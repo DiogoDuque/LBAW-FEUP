@@ -2,7 +2,7 @@
 
 {assign "question_post" $getter->getPost($question.post_id)}
 {assign "question_category" $getter->getCategory($question.category_id)}
-{assign "question_author" $getter->getMember($question_post.author_id)}
+{assign "question_author" $getter->getMemberById($question_post.author_id)}
 {assign "question_version" $getter->getLatestPostVersion($question.post_id)}
 
 
@@ -52,11 +52,11 @@
         <div class="col-md-10">
             <p>{$question_version.text}</p>
             <ul class="actions pull-right">
-                <li><a class="glyphicon glyphicon-link" href="#" data-toggle="tooltip" title="Share"></a></li>
-                <li><a class="glyphicon glyphicon-comment" href="#" data-toggle="tooltip" title="Comment"></a></li>
-                <li><a class="glyphicon glyphicon-flag" href="#" data-toggle="tooltip" title="Report"></a></li>
-                <li><a class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></a></li>
-                <li><a class="glyphicon glyphicon-trash" href="#" data-toggle="tooltip" title="Remove"></a></li>
+                <li><a class="glyphicon glyphicon-link" href="" data-toggle="tooltip" title="Share"></a></li>
+                <li><a class="glyphicon glyphicon-comment" href="" data-toggle="tooltip" title="Comment"></a></li>
+                <li><a class="glyphicon glyphicon-flag" href="" data-toggle="tooltip" title="Report"></a></li>
+                <li><a class="glyphicon glyphicon-pencil" href="{$BASE_URL}pages/posts/post_edit.php?id={$question.post_id}" data-toggle="tooltip" title="Edit"></a></li>
+                <li><a class="glyphicon glyphicon-trash" href="" data-toggle="tooltip" title="Remove"></a></li>
             </ul>
         </div>
     </div>
@@ -66,7 +66,7 @@
     {assign "comments" $getter->getCommentsToPost($question.post_id)}
 
     {foreach $comments as $comment}
-        {include file='comments/comment.tpl'}
+        {*{include file='comments/comment.tpl'}*}
     {/foreach}
 
     {*EDIT COMMENT FORM*}
