@@ -36,13 +36,13 @@ $currentVersion = $getter->getLatestPostVersion($_GET["id"]);
 
 <script>
     function sendEditedText(){
-        document.editedText.value = $('#summernote').code();
+        document.editedText.value = $('#summernote').summernote('code');
         document.forms["sampleForm"].submit();
     }
 
     function resetEditedText(){
-        document.editedText.value = <?= json_encode($currentVersion["text"], JSON_HEX_TAG);?>;
-        document.forms["sampleForm"].submit();
+        var uneditedText = <?= json_encode($currentVersion["text"], JSON_HEX_TAG);?>;
+        $('#summernote').summernote('code', uneditedText);
     }
 </script>
 
