@@ -54,8 +54,11 @@
                     </ul>
                 </li>
 
+                {if (isset($USERNAME))}
                     <!--Admin Page(more content)-->
                     <li><a href="../views/admin.php">Control Panel</a></li>
+                {/if}
+
 
             </ul>
 
@@ -65,7 +68,7 @@
                     <input type="text" class="form-control" placeholder="Search..">
                     <span class="input-group-btn">
 
-                        <a href ="../views/search.php" role="button" class="btn btn-default" type="button" data-toggle="tooltip" data-placement="bottom" title="Advanced search">
+                        <a href ="{$BASE_URL}views/search.php" role="button" class="btn btn-default" type="button" data-toggle="tooltip" data-placement="bottom" title="Advanced search">
                                 <span class="glyphicon glyphicon-search search-icon"></span>
                         </a>
 
@@ -73,21 +76,21 @@
                 </div>
             </form>
 
-            <!--Login (at the right side)-->
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" data-toggle="modal" data-target="#signUp-modal"><span
-                        class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#login-modal"><span
-                        class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
-
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><button type="button" class="btn btn-primary vertical-align"><a class ="noStyle" href="../views/newQuestion.php">Ask a question</a></button></li>
-                <li><a href="   ../views/profile.php"><span class="glyphicon glyphicon-user"></span> Hello, Peralta </a></li>
-                <li><a href="../views/home.php" data-toggle="modal"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-            </ul>
-
+            {if (!isset($USERNAME))}
+                <!--Login (at the right side)-->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" data-toggle="modal" data-target="#signUp-modal"><span
+                            class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal"><span
+                            class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            {else}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><button type="button" class="btn btn-primary vertical-align"><a class ="noStyle" href="{$BASE_URL}views/newQuestion.php">Ask a question</a></button></li>
+                    <li><a href="{$BASE_URL}pages/profile/profile.php"><span class="glyphicon glyphicon-user"></span> Hello, Peralta </a></li>
+                    <li><a href="{$BASE_URL}actions/auth/logout.php" data-toggle="modal"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                </ul>
+            {/if}
 
 
         </div>
@@ -108,14 +111,14 @@
 
             <!-- Body(form)-->
             <div class="modal-body">
-                <form role="form">
+                <form role="form" action="{$BASE_URL}actions/auth/login.php" method="post">
                     <div class="form-group">
                         <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter Username">
+                        <input name="username" type="text" class="form-control" id="username" placeholder="Enter Username">
                     </div>
                     <div class="form-group">
                         <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                        <input type="password" class="form-control" id="psw" placeholder="Enter password">
+                        <input name="password" type="password" class="form-control" id="psw" placeholder="Enter password">
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" value="" checked>Remember me</label>

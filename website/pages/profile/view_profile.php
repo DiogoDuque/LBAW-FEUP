@@ -6,7 +6,6 @@ $smarty->display("common/header.tpl");
 
 ?>
 
-
 <div class="container">
     <div class="row">
 
@@ -27,7 +26,7 @@ $smarty->display("common/header.tpl");
                                 <tbody>
                                 <tr>
                                     <td>Name:</td>
-                                    <td>Peralta, Knowledge Man</td>
+                                    <td>Peralta, Knowledge Man<?=$_SESSION["id"]?></td>
                                 </tr>
                                 <tr>
                                     <td>Age:</td>

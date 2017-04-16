@@ -6,12 +6,23 @@
 	$username = $_POST['username'];
   	$password = $_POST['password'];  
 
-	if (isLoginCorrect($username, $password)) {
+	if ($id = isLoginCorrect($username, $password)) {
+
 		$_SESSION['username'] = $username;
-		header("Location: {$BASE_URL}/pages/profile/view_profile.php");
+		$_SESSION['member_id'] = $id;
+
+		$destination = $BASE_URL."pages/profile/view_profile.php";
+
+		header("Location: ".$destination);
+
 	} else {
 		$_SESSION['error'] = "Error: username or password wrong!";
-		header("Location: {$BASE_URL}/pages/home.php");
+
+        $destination = $BASE_URL."pages/home.php";
+
+		header("Location: ".$destination);
+
 	}
 
-?>
+exit();
+

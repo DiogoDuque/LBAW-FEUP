@@ -90,9 +90,10 @@ function isLoginCorrect($username, $password) {
     global $conn;
     $stmt = $conn->prepare("SELECT * 
                             FROM member 
-                            WHERE username = ? AND password = ?");
+                            WHERE username = ? AND hashed_pass = ?");
     $stmt->execute(array($username, sha1($password)));
-    return $stmt->fetch() == true;
+
+    return ($stmt->fetch()["id"] != null);
 }
 
 function getMember($id){
