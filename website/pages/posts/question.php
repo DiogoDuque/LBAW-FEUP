@@ -3,9 +3,7 @@
     include_once ("../../config/init.php");
 
     include_once ($BASE_DIR."database/questions.php");
-    include_once ($BASE_DIR."database/posts.php");
     include_once ($BASE_DIR."database/members.php");
-    include_once ($BASE_DIR."database/categories.php");
 
     include_once ($BASE_DIR."database/DatabaseGetter.php");
 

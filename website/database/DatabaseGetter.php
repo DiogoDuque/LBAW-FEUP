@@ -11,11 +11,20 @@ class DatabaseGetter{
         return $stmt->fetch();
     }
 
-    function getMember($id){
+    function getMemberById($id){
         global $conn;
 
         $stmt = $conn->prepare("SELECT * FROM public.member WHERE id = ?");
         $stmt->execute(array($id));
+
+        return $stmt->fetch();
+    }
+
+    function getMemberByUsername($username){
+        global $conn;
+
+        $stmt = $conn->prepare("SELECT * FROM public.member WHERE username = ?");
+        $stmt->execute(array($username));
 
         return $stmt->fetch();
     }

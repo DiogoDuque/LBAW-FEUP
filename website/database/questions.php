@@ -25,13 +25,3 @@ function submitQuestion($title, $category, $text, $author_id){
 
     return $post_id;
 }
-
-function getQuestion($post_id){
-    global $conn;
-
-    $stmt = $conn->prepare("SELECT * FROM public.question WHERE post_id = ?");
-    $stmt->execute(array($post_id));
-
-    return $stmt->fetch();
-}
-

@@ -9,7 +9,6 @@
 	if ($id = isLoginCorrect($username, $password)) {
 
 		$_SESSION['username'] = $username;
-		$_SESSION['member_id'] = $id;
 
 		$destination = $BASE_URL."pages/profile/view_profile.php";
 

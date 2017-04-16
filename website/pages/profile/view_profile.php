@@ -1,10 +1,16 @@
 <?php
 
 include_once("../../config/init.php");
+include ($BASE_DIR."database/DatabaseGetter.php");
 
 $smarty->display("common/header.tpl");
 
+$getter = new DatabaseGetter();
+$user = $getter->getMemberByUsername($_SESSION["username"]);
+
 ?>
+
+{
 
 <div class="container">
     <div class="row">
@@ -26,7 +32,7 @@ $smarty->display("common/header.tpl");
                                 <tbody>
                                 <tr>
                                     <td>Name:</td>
-                                    <td>Peralta, Knowledge Man<?=$_SESSION["id"]?></td>
+                                    <td>Peralta, Knowledge Man</td>
                                 </tr>
                                 <tr>
                                     <td>Age:</td>
