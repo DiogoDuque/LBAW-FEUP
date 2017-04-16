@@ -5,6 +5,9 @@ include_once ($BASE_DIR."database/DatabaseGetter.php");
 
 $smarty->display("common/header.tpl");
 
+if (!isset($_GET['id']))
+    die('Missing post ID.');
+
 $getter = new DatabaseGetter();
 
 $post = $getter->getPost($_GET["id"]);
@@ -16,17 +19,23 @@ $currentVersion = $getter->getLatestPostVersion($_GET["id"]);
     <h1 class="text-center">Edit Post</h1>
 
     <!--TODO: Put text to a PHP POST.-->
-    <form>
+    <form action="<?=$BASE_URL?>actions/post/post_apply_edit.php" method="post">
+
         <input type="hidden" name="editedText" id="editedText" value="">
-        <div class="new-answer">
-            <div id="summernote" class="formgroup">
+        <input type="hidden" name="postId" value="<?=$_GET["id"]?>">
+
+        <div class="new-post">
+
+            <textarea id="summernote" class="formgroup"  name="editedText">
                     <?=$currentVersion["text"]?>
-            </div>
+            </textarea>
+
             <script>
                 $(document).ready(function() {
                     $('#summernote').summernote();
                 });
             </script>
+
         </div>
 
         <button type="submit" onclick="sendEditedText()" class="btn btn-success">Apply</button>
@@ -36,7 +45,6 @@ $currentVersion = $getter->getLatestPostVersion($_GET["id"]);
 
 <script>
     function sendEditedText(){
-        document.editedText.value = $('#summernote').summernote('code');
         document.forms["sampleForm"].submit();
     }
 
