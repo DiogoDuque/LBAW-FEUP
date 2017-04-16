@@ -8,10 +8,15 @@ $smarty->display("common/header.tpl");
 if (!isset($_GET['id']))
     die('Missing post ID.');
 
+if (!isset($_SESSION['username']))
+    die('Member not authenticated.');
+
 $getter = new DatabaseGetter();
 
 $post = $getter->getPost($_GET["id"]);
 $currentVersion = $getter->getLatestPostVersion($_GET["id"]);
+
+$member_id = intval($getter->getMemberByUsername($_SESSION["username"])["id"]);
 
 ?>
 
@@ -21,12 +26,12 @@ $currentVersion = $getter->getLatestPostVersion($_GET["id"]);
     <!--TODO: Put text to a PHP POST.-->
     <form action="<?=$BASE_URL?>actions/post/post_apply_edit.php" method="post">
 
-        <input type="hidden" name="editedText" id="editedText" value="">
-        <input type="hidden" name="postId" value="<?=$_GET["id"]?>">
+        <input type="hidden" name="post_id" value="<?=$_GET["id"]?>">
+        <input type="hidden" name="member_id" value="<?=$member_id?>">
 
         <div class="new-post">
 
-            <textarea id="summernote" class="formgroup"  name="editedText">
+            <textarea id="summernote" class="formgroup"  name="edited_text">
                     <?=$currentVersion["text"]?>
             </textarea>
 
