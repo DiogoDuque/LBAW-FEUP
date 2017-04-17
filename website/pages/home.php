@@ -52,7 +52,7 @@ $questions_points = array(4, -2, 5, 0, 7);
                 <div class="container answer">
                     <div class="row">
                         <div class="col-sm-10 pre">
-                            <h4><a href="/question.php"
+                            <h4><a href="<?=$BASE_URL?>pages/posts/question.php?id=<?=$i+1?>"
                                    class="home-question-title"><?= $questions[$i] ?></a><br>
                                 <small>asked 55 seconds ago by <a href="profile/view_profile.php">Peralta</a> in
                                     <a href="posts/search.php"><?= $questions_categories[$i] ?></a>
@@ -101,7 +101,7 @@ $questions_points = array(4, -2, 5, 0, 7);
                 <div class="container answer">
                     <div class="row">
                         <div class="col-sm-9 pre">
-                            <h4><a class="home-question-title">Is Trump the new Jesus?</a><br>
+                            <h4><a class="home-question-title" href="<?=$BASE_URL?>pages/posts/question.php?id=10">Is Trump the new Jesus?</a><br>
                                 <small>asked 55 seconds ago by <a href="profile/view_profile.php">Peralta</a></small>
                             </h4>
                         </div>

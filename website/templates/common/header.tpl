@@ -56,7 +56,7 @@
 
                 {if (isset($USERNAME))}
                     <!--Admin Page(more content)-->
-                    <li><a href="../views/admin.php">Control Panel</a></li>
+                    <li><a href="{$BASE_URL}pages/admin/admin.php">Control Panel</a></li>
                 {/if}
 
 
@@ -68,7 +68,7 @@
                     <input type="text" class="form-control" placeholder="Search..">
                     <span class="input-group-btn">
 
-                        <a href ="{$BASE_URL}views/search.php" role="button" class="btn btn-default" type="button" data-toggle="tooltip" data-placement="bottom" title="Advanced search">
+                        <a href ="{$BASE_URL}pages/search.php" role="button" class="btn btn-default" type="button" data-toggle="tooltip" data-placement="bottom" title="Advanced search">
                                 <span class="glyphicon glyphicon-search search-icon"></span>
                         </a>
 
@@ -87,7 +87,7 @@
             {else}
                 <ul class="nav navbar-nav navbar-right">
                     <li><button type="button" class="btn btn-primary vertical-align"><a class ="noStyle" href="{$BASE_URL}views/newQuestion.php">Ask a question</a></button></li>
-                    <li><a href="{$BASE_URL}pages/profile/profile.php"><span class="glyphicon glyphicon-user"></span> Hello, Peralta </a></li>
+                    <li><a href="{$BASE_URL}pages/profile/view_profile.php"><span class="glyphicon glyphicon-user"></span> Hello, Peralta </a></li>
                     <li><a href="{$BASE_URL}actions/auth/logout.php" data-toggle="modal"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 </ul>
             {/if}
