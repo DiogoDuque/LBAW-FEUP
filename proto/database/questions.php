@@ -12,7 +12,7 @@ function submitQuestion($title, $category, $text, $author_id){
     $stmt = $conn->prepare("SELECT id FROM public.category WHERE name=?");
     $stmt->execute(array($category));
 
-    $category_id = intval($stmt->fetch());
+    $category_id = intval($stmt->fetch()["id"]);
 
     $stmt=$conn->prepare("INSERT INTO public.question (post_id,title,category_id) VALUES($post_id,:title,:category_id)");
     $stmt->bindParam(':title',$title,PDO::PARAM_STR);

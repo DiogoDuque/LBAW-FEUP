@@ -12,22 +12,22 @@ $smarty->display("common/header.tpl");
   <form action="../../actions/post/question_add.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="title">Title</label>
-      <input type="text" class="form-control" name="title">
+      <input type="text" class="form-control" name="title" required>
     </div>
 
     <div class="form-group">
       <label for="category">Category</label>
-      <select class="form-control" id="category" name=""category>
-        <option>Foods and Drinks</option>
+      <select class="form-control" id="category" name="category" required>
+        <option>Food</option>
         <option>Sports</option>
-        <option>Computers</option>
+        <option>Technology</option>
         <option>Art</option>
       </select>
     </div>
   
     <div class="form-group">
       <label for="text">Text</label>
-      <textarea rows="5" class="form-control" name="text"></textarea>
+      <textarea rows="5" class="form-control" name="text" required></textarea>
     </div>
   
     <button type="submit" class="btn btn-default">Submit</button>
