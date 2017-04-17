@@ -15,6 +15,8 @@
     }
     else{
         header("Location: {$BASE_URL}");
-        exit();
+
+        $_SESSION['username'] = $username;
     }
 
+    exit();
