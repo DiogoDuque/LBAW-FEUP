@@ -73,4 +73,31 @@ class DatabaseGetter{
 
         return $stmt->fetchAll();
     }
+
+    function getMostRecentQuestions($number_of_questions){
+        global $conn;
+
+        $stmt = $conn->prepare("SELECT * FROM public.question JOIN public.post ON question.post_id = post.id ORDER BY creation_date DESC LIMIT ?");
+        $stmt->execute(array($number_of_questions));
+
+        return $stmt->fetchAll();
+    }
+
+    function getMostPopularQuestions($number_of_questions){
+        global $conn;
+
+        $stmt = $conn->prepare("SELECT * FROM public.question ORDER BY view_count DESC LIMIT ?");
+        $stmt->execute(array($number_of_questions));
+
+        return $stmt->fetchAll();
+    }
+
+    function getMostControversialQuestions($number_of_questions){
+        global $conn;
+
+        $stmt = $conn->prepare("SELECT * FROM public.question JOIN public.post ON question.post_id = post.id ORDER BY down_votes DESC LIMIT ?");
+        $stmt->execute(array($number_of_questions));
+
+        return $stmt->fetchAll();
+    }
 }

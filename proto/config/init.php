@@ -1,14 +1,14 @@
 <?php
 
-session_set_cookie_params(3600); //FIXME
+session_set_cookie_params(3600, '/~lbaw1623'); //FIXME
 session_start();
 
 error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 
-$BASE_DIR = dirname(dirname(__FILE__), 1) . "/"; // == website/
-$BASE_URL = "/"; //FIXME
+$BASE_DIR = "/opt/lbaw/lbaw1623/public_html/LBAW-FEUP/proto/"; // == website/
+$BASE_URL = "/~lbaw1623/LBAW-FEUP/proto/"; //FIXME
 
-$conn = new PDO('pgsql:host=localhost; port=5432; dbname=postgres', 'postgres', 'postgres');  // FIXME
+$conn = new PDO('pgsql:host=dbm; dbname=lbaw1623', 'lbaw1623', 'bj66ak24');  // FIXME
 $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -19,8 +19,8 @@ $smarty = new Smarty;
 $smarty->template_dir = $BASE_DIR . 'templates/';
 $smarty->compile_dir = $BASE_DIR . 'templates_c/';
 
-$smarty->assign('BASE_DIR', $BASE_DIR); // FIXME
-$smarty->assign('BASE_URL', $BASE_URL); // FIXME
+$smarty->assign('BASE_DIR', $BASE_DIR);
+$smarty->assign('BASE_URL', $BASE_URL);
 
 $smarty->assign('ERROR_MESSAGES', $_SESSION['error_messages']);
 $smarty->assign('FIELD_ERRORS', $_SESSION['field_errors']);
