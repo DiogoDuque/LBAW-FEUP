@@ -47,7 +47,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories <span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Foods and Drinks {$BASE_DIR}vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css</a></li>
+                        <li><a href="#">Foods and Drinks</a></li>
                         <li><a href="#">Sports</a></li>
                         <li><a href="#">Computers</a></li>
                         <li><a href="#">Art</a></li>
