@@ -34,7 +34,7 @@ CREATE TABLE public.member
   privilege_level PrivilegeLevel DEFAULT 'Member' NOT NULL,
   reputation INT DEFAULT 0 NOT NULL,
   image_id INT,
-  creation_date DATE DEFAULT current_date NOT NULL,
+  creation_date TIMESTAMP DEFAULT current_timestamp NOT NULL,
   category_ids INT[],
   CONSTRAINT member_image_id_fk FOREIGN KEY (image_id) REFERENCES public.image (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -44,7 +44,7 @@ CREATE UNIQUE INDEX member_email_uindex ON public.member (email);
 CREATE TABLE public.post
 (
   id SERIAL PRIMARY KEY,
-  creation_date DATE DEFAULT current_date NOT NULL,
+  creation_date TIMESTAMP DEFAULT current_timestamp NOT NULL,
   up_votes INT DEFAULT 0 NOT NULL,
   down_votes INT DEFAULT 0 NOT NULL,
   author_id INT NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE public.vote
   post_id INT,
   member_id INT,
   value BOOLEAN NOT NULL,
-  creation_date DATE DEFAULT current_date NOT NULL,
+  creation_date TIMESTAMP DEFAULT current_timestamp NOT NULL,
   CONSTRAINT vote_post_id_member_id_pk PRIMARY KEY (post_id, member_id),
   CONSTRAINT vote_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT vote_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -69,8 +69,8 @@ CREATE TABLE public.comment
   post_id INT NOT NULL,
   member_id INT NOT NULL,
   text TEXT NOT NULL,
-  creation_date DATE DEFAULT current_date NOT NULL,
-  last_modification_date DATE DEFAULT current_date NOT NULL,
+  creation_date TIMESTAMP DEFAULT current_timestamp NOT NULL,
+  last_modification_date TIMESTAMP DEFAULT current_timestamp NOT NULL,
   CONSTRAINT comment_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT comment_member_id_fk FOREIGN KEY (member_id) REFERENCES public.member (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -79,7 +79,7 @@ CREATE TABLE public.report
 (
   id SERIAL PRIMARY KEY,
   description TEXT NOT NULL,
-  creation_date DATE DEFAULT current_date NOT NULL,
+  creation_date TIMESTAMP DEFAULT current_timestamp NOT NULL,
   report_type ReportType NOT NULL,
   creator_id INT NOT NULL,
   post_id INT,
@@ -110,7 +110,7 @@ CREATE TABLE public.version
 (
   id SERIAL PRIMARY KEY,
   text TEXT NOT NULL,
-  date DATE DEFAULT current_date NOT NULL,
+  date TIMESTAMP DEFAULT current_timestamp NOT NULL,
   post_id INT NOT NULL,
   member_id INT NOT NULL,
   CONSTRAINT version_post_id_fk FOREIGN KEY (post_id) REFERENCES public.post (id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -120,7 +120,7 @@ CREATE TABLE public.version
 CREATE TABLE public.promotionDemotion
 (
   id SERIAL PRIMARY KEY,
-  date DATE DEFAULT current_date NOT NULL,
+  date TIMESTAMP DEFAULT current_timestamp NOT NULL,
   privilege_level PrivilegeLevel NOT NULL,
   member_id INT NOT NULL,
   admin_id INT NOT NULL,

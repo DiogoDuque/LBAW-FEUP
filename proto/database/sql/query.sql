@@ -36,7 +36,7 @@ SELECT find_answers_of_a_question_f(1) AS Answers;
 
 -- Finding versions of a post
 CREATE OR REPLACE FUNCTION find_versions_of_a_post_f(postId INTEGER)
-    RETURNS TABLE(text TEXT, date DATE) AS $$
+    RETURNS TABLE(text TEXT, date TIMESTAMP) AS $$
   SELECT version.text, version.date
   FROM version
   WHERE public.version.post_id = postId;
@@ -48,7 +48,7 @@ SELECT find_versions_of_a_post_f(10) AS Versions;
 
 -- Finding comments to a post
 CREATE OR REPLACE FUNCTION find_comments_of_a_post_f(postId INTEGER)
-    RETURNS TABLE(username VARCHAR(20), text TEXT, last_mod_date DATE) AS $$
+    RETURNS TABLE(username VARCHAR(20), text TEXT, last_mod_date TIMESTAMP) AS $$
   SELECT member.username, comment.text, comment.last_modification_date
   FROM public.comment
   JOIN public.member ON public.member.id = public.comment.member_id
