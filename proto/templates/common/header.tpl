@@ -86,8 +86,8 @@
                 </ul>
             {else}
                 <ul class="nav navbar-nav navbar-right">
-                    <li><button type="button" class="btn btn-primary vertical-align"><a class ="noStyle" href="{$BASE_URL}views/newQuestion.php">Ask a question</a></button></li>
-                    <li><a href="{$BASE_URL}pages/profile/view_profile.php"><span class="glyphicon glyphicon-user"></span> Hello, Peralta </a></li>
+                    <li><button type="button" class="btn btn-primary vertical-align"><a class ="noStyle" href="{$BASE_URL}pages/posts/question_add.php">Ask a question</a></button></li>
+                    <li><a href="{$BASE_URL}pages/profile/view_profile.php"><span class="glyphicon glyphicon-user"></span> Hello, {$USERNAME} </a></li>
                     <li><a href="{$BASE_URL}actions/auth/logout.php" data-toggle="modal"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 </ul>
             {/if}

@@ -32,7 +32,7 @@ $user = $getter->getMemberByUsername($_SESSION["username"]);
                                 <tbody>
                                 <tr>
                                     <td>Name:</td>
-                                    <td>Peralta, Knowledge Man</td>
+                                    <td><?=$user["username"]?></td>
                                 </tr>
                                 <tr>
                                     <td>Age:</td>
@@ -52,7 +52,7 @@ $user = $getter->getMemberByUsername($_SESSION["username"]);
                                 </tr>
                                 <tr>
                                     <td>Email:</td>
-                                    <td><a href="mailto:peraltas@hotmail.com">peraltas@hotmail.com</a></td>
+                                    <td><a href="mailto:<?=$user["email"]?>"><?=$user["email"]?></a></td>
                                 </tr>
                                 <tr>
                                 <td>Score:</td>
@@ -130,4 +130,3 @@ $user = $getter->getMemberByUsername($_SESSION["username"]);
 </div>
 
 <?php $smarty->display("common/footer.tpl"); ?>
-
