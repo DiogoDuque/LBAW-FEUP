@@ -114,11 +114,11 @@
                 <form role="form" action="{$BASE_URL}actions/auth/login.php" method="post">
                     <div class="form-group">
                         <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
-                        <input name="username" type="text" class="form-control" id="username" placeholder="Enter Username">
+                        <input name="username" type="text" class="form-control" id="username" placeholder="Enter Username" required>
                     </div>
                     <div class="form-group">
                         <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                        <input name="password" type="password" class="form-control" id="psw" placeholder="Enter password">
+                        <input name="password" type="password" class="form-control" id="psw" placeholder="Enter password" required>
                     </div>
                     <div class="checkbox">
                         <label><input type="checkbox" value="" checked>Remember me</label>
@@ -155,17 +155,21 @@
 
                     <div class="form-group">
                         <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
-                        <input name="username" type="text" class="form-control" id="username" placeholder="Enter username" required>
+                        <input name="username" type="text" class="form-control" id="username_signup" placeholder="Enter username" required>
                     </div>
                     <div class="form-group">
                         <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-                        <input name="email" type="email" class="form-control" id="email" placeholder="Enter email" required>
+                        <input name="email" type="email" class="form-control" id="email_signup" placeholder="Enter email" required>
                     </div>
                     <div class="form-group">
                         <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                        <input name="password" type="password" class="form-control" id="psw" placeholder="Enter password" required>
+                        <input name="password" type="password" class="form-control" id="psw_signup" placeholder="Enter password" required>
                     </div>
-                    <button type="submit" class="btn btn-success btn-block"><span
+                    <div class="form-group">
+                        <label for="confirm_psw"><span class="glyphicon glyphicon-eye-ope"></span> Confirm Password</label>
+                        <input name="confirm_password" type="password" class="form-control" id="confirm_psw_signup" placeholder="Reenter password" required><span id='message'></span>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block" id="button_signup"><span
                             class="glyphicon glyphicon-registration-mark"></span> Sign Up
                     </button>
                 </form>
@@ -174,9 +178,29 @@
     </div>
 </div>
 
-<script type="text/javascript" src="{$BASE_URL}lib/js/signup_modal.js">
+<script type="text/javascript" src="../../lib/js/signup_modal.js"></script>
 
-    validateUsername();
+<script>
+
+    $('#button_signup').prop('disabled', true);
+
+    $('#psw_signup, #confirm_psw_signup').on('keyup', function () {
+        if ($('#psw_signup').val() == $('#confirm_psw_signup').val()) {
+            $('#message').html('Matching').css('color', 'green');
+            $('#button_signup').prop('disabled', false);
+        } else {
+            $('#message').html('Not Matching').css('color', 'red');
+            $('#button_signup').prop('disabled', true);
+        }
+
+        console.log($('#psw_signup').val());
+        console.log($('#confirm_psw_signup').val());
+    });
 
 </script>
+
+
+
+    
+
 

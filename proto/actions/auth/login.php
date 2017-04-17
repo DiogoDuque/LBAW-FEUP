@@ -15,11 +15,13 @@
 		header("Location: ".$destination);
 
 	} else {
-		$_SESSION['error'] = "Error: username or password wrong!";
+		$_SESSION['error_messages'] = "Error: username or password wrong!";
 
         $destination = $BASE_URL."pages/home.php";
 
-		header("Location: ".$destination);
+        header( "refresh:3;url={$destination}" );
+        $smarty->assign('redirect_destiny', $destination);
+        $smarty->display('common/info.tpl');
 
 	}
 
