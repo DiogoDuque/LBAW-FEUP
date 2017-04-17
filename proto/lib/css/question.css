@@ -1,0 +1,60 @@
+.question{
+    padding: 20px 10px;
+    border-top: solid 1px gray;
+    text-align: justify;
+}
+
+.answer{
+    padding: 20px 10px;
+    border-top: solid 1px lightgray;
+    text-align: justify;
+}
+
+.comment{
+    text-align: left;
+    font-size: small;
+    border-top: solid 1px lightgray;
+}
+
+
+/*USER*/
+
+.user{
+    text-align: center;
+}
+
+.user img{
+    display: block;
+    margin: 0 auto;
+}
+
+
+/*SCORE*/
+
+.score{
+    margin: 15px -10px;
+    font-size: large;
+    list-style-type: none;
+}
+
+.score li{
+    display: inline-block;
+}
+
+.score a{
+    text-decoration: none;
+    padding: 10px 10px;
+}
+
+.score .glyphicon-thumbs-up{
+    color: green;
+}
+
+.score .glyphicon-thumbs-down{
+    color: red;
+}
+
+.actions li{
+	display: inline-block;
+    list-style-type: none;
+}
