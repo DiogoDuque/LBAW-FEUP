@@ -10,6 +10,24 @@ if(isset($_POST['action']) && function_exists($_POST['action'])) {
 
 }
 
+function getMemberById($id){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM public.member WHERE id = ?");
+    $stmt->execute(array($id));
+
+    return $stmt->fetch();
+}
+
+function getMemberByUsername($username){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM public.member WHERE username = ?");
+    $stmt->execute(array($username));
+
+    return $stmt->fetch();
+}
+
 function checkIfUsernameExists($username){
     global $conn;
     try {
@@ -31,6 +49,8 @@ function checkIfUsernameExists($username){
     {
         echo $e->getMessage();
     }
+
+    return false;
 }
 
 function checkIfEmailExists($email){
@@ -54,6 +74,8 @@ function checkIfEmailExists($email){
     {
         echo $e->getMessage();
     }
+
+    return false;
 }
 
 function createUser($username, $password, $email) {

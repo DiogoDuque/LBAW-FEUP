@@ -2,10 +2,8 @@
 
 include_once("../../config/init.php");
 include_once ($BASE_DIR."database/posts.php");
-include_once ($BASE_DIR."database/members.php");
 include_once ($BASE_DIR."database/versions.php");
-
-$smarty->display("common/header.tpl");
+include_once ($BASE_DIR."database/members.php");
 
 if (!isset($_GET['id']))
     die('Missing post ID.');
@@ -13,6 +11,9 @@ if (!isset($_GET['id']))
 if (!isset($_SESSION['username']))
     die('Member not authenticated.');
 
+$smarty->display("common/header.tpl");
+
+$getter = new DatabaseGetter();
 
 $post = getPost($_GET["id"]);
 $currentVersion = getLatestPostVersion($_GET["id"]);
@@ -36,8 +37,20 @@ $member_id = intval(getMemberByUsername($_SESSION["username"])["id"]);
             </textarea>
 
             <script>
-                $(document).ready(function() {
-                    $('#summernote').summernote();
+                $(document).ready(function () {
+                    var summernote = $('#summernote');
+                    summernote.summernote({
+                        height: '20rem',
+                        minHeight: '20rem',
+                        toolbar: [
+                            // [groupName, [list of button]]
+                            ['style', ['bold', 'italic', 'underline', 'clear']],
+                            ['font', ['strikethrough', 'superscript', 'subscript']],
+                            ['para', ['ul', 'ol']],
+                            ['insert', ['link', 'table']],
+                            ['misc', ['undo', 'redo', 'help']]
+                        ]
+                    });
                 });
             </script>
 

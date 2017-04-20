@@ -3,10 +3,19 @@
 include_once ("../../config/init.php");
 
 include_once ($BASE_DIR."database/questions.php");
+
 include_once ($BASE_DIR."database/members.php");
 
-$getter = new DatabaseGetter();
+if (!isset($_POST['title']))
+    die('Missing title.');
 
+if (!isset($_POST['category']))
+    die('Missing post category.');
+
+if (!isset($_POST['text']))
+    die("Missing text.");
+
+// Gather data for creating
 $title = $_POST['title'];
 $category = $_POST['category'];
 $text = $_POST['text'];

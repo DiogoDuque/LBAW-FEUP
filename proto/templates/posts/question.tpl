@@ -1,11 +1,3 @@
-{*QUESTION ASSIGNINGEMENTS*}
-
-{assign "question_post" $getter->getPost($question.post_id)}
-{assign "question_category" $getter->getCategory($question.category_id)}
-{assign "question_author" $getter->getMemberById($question_post.author_id)}
-{assign "question_version" $getter->getLatestPostVersion($question.post_id)}
-
-
 <link rel="stylesheet" href="{$BASE_URL}lib/css/question.css">
 
 <!--Content-->
@@ -63,32 +55,44 @@
 
 
     {*COMMENTS*}
-    {assign "comments" $getter->getCommentsToPost($question.post_id)}
 
-    {foreach $comments as $comment}
-        {*{include file='comments/comment.tpl'}*}
+    {foreach $question_comments as $comment}
+        {include file='comments/comment.tpl'}
     {/foreach}
 
     {*EDIT COMMENT FORM*}
     {if (true)}
-        {include file='comments/comment_form.tpl'}
+        {*{include file='comments/comment_form.tpl'}*}
     {/if}
 
     <div class="answers">
 
-        {assign "answers" $getter->getAnswersToQuestion($question.post_id)}
-
-        {if (count($answers) > 0)}
+        {if (count($question_answers) > 0)}
             <h4 >Answers</h4>
         {else}
             <h4 >No answers</h4>
         {/if}
 
-        {foreach $answers as $answer}
+        {foreach $question_answers as $answer}
             {include file='posts/answer.tpl'}
         {/foreach}
 
 
     </div>
+
+    {if (isset($USERNAME))}
+        {include file='forms/answer_add.tpl'}
+    {/if}
+
+    <script>
+        $(document).ready(function () {
+            $('.glyphicon-thumbs-up').on('click', function() {
+                window.alert("up"); //TODO
+            });
+            $('.glyphicon-thumbs-down').on('click', function() {
+                window.alert("down"); //TODO
+            });
+        });
+    </script>
 
 </div>

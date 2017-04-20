@@ -34,7 +34,7 @@ $smarty->display("common/header.tpl");
             <ul class="list-unstyled collapse" id="menu3">
                 <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Facebook</a></li>
             </ul>
-        </li>
+
       </ul>
            
 
@@ -195,8 +195,7 @@ $smarty->display("common/header.tpl");
 
           
                         
-                      </form>
- 
+
                 
 
 

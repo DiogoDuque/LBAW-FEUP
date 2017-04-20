@@ -4,34 +4,54 @@
 
     include_once ($BASE_DIR."database/questions.php");
     include_once ($BASE_DIR."database/members.php");
+    include_once ($BASE_DIR."database/posts.php");
+    include_once ($BASE_DIR."database/comments.php");
+    include_once ($BASE_DIR."database/answers.php");
+    include_once ($BASE_DIR."database/versions.php");
+    include_once ($BASE_DIR."database/categories.php");
+
 
     if (!isset($_GET['id']))
         die('Missing question ID.');
 
     $question_id = $_GET["id"];
 
-    $question = $getter->getQuestion($question_id);
+    $question = getQuestion($question_id);
+    $question_post = getPost($question_id);
+    $question_category = getCategory($question["category_id"]);
+    $question_author = getMemberById($question_post["author_id"]);
+    $question_version = getLatestPostVersion($question_id);
+    $question_comments = getCommentsToPost($question_id);
+    $question_answers = getAnswersToQuestion($question_id);
 
-    $smarty->assign("getter", $getter);
+
+    foreach ($question_comments as $key => $value)
+    {
+        $comment = $question_comments[$key];
+        $question_comments[$key]["member"] = getMemberById($comment["member_id"]);
+    }
+
+    foreach ($question_answers as $key => $value)
+    {
+        $answer = $question_answers[$key];
+        $answer_post = getPost($answer["post_id"]);
+
+        $question_answers[$key]["post"] = $answer_post;
+        $question_answers[$key]["author"] = getMemberById($answer_post["author_id"]);
+        $question_answers[$key]["version"] = getLatestPostVersion($answer["post_id"]);
+    }
+
     $smarty->assign("question", $question);
+    $smarty->assign("question_post", $question_post);
+    $smarty->assign("question_category",$question_category );
+    $smarty->assign("question_author", $question_author);
+    $smarty->assign("question_version", $question_version);
+
+    $smarty->assign("question_comments", $question_comments);
+    $smarty->assign("question_answers", $question_answers);
+
 
     $smarty->display("common/header.tpl");
     $smarty->display("posts/question.tpl");
 
-    if (isset($_SESSION["username"])) { ?>
-
-        <div class="new-answer">
-            <h3>Your answer</h3>
-            <div id="summernote" class="formgroup"></div>
-            <script>
-                $(document).ready(function () {
-                    $('#summernote').summernote();
-                });
-            </script>
-
-            <button type="submit" class="btn btn-success">Submit</button>
-        </div>
-
-    <?php } ?>
-
-<?php $smarty->display("common/footer.tpl"); ?>
+    $smarty->display("common/footer.tpl"); ?>
