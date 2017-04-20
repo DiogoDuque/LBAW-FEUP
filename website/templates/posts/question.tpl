@@ -56,7 +56,7 @@
 
     {*COMMENTS*}
 
-    {foreach $comments as $comment}
+    {foreach $question_comments as $comment}
         {include file='comments/comment.tpl'}
     {/foreach}
 
@@ -67,13 +67,13 @@
 
     <div class="answers">
 
-        {if (count($answers) > 0)}
+        {if (count($question_answers) > 0)}
             <h4 >Answers</h4>
         {else}
             <h4 >No answers</h4>
         {/if}
 
-        {foreach $answers as $answer}
+        {foreach $question_answers as $answer}
             {include file='posts/answer.tpl'}
         {/foreach}
 

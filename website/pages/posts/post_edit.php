@@ -5,13 +5,13 @@ include_once ($BASE_DIR."database/posts.php");
 include_once ($BASE_DIR."database/versions.php");
 include_once ($BASE_DIR."database/members.php");
 
-$smarty->display("common/header.tpl");
-
 if (!isset($_GET['id']))
     die('Missing post ID.');
 
 if (!isset($_SESSION['username']))
     die('Member not authenticated.');
+
+$smarty->display("common/header.tpl");
 
 $getter = new DatabaseGetter();
 
