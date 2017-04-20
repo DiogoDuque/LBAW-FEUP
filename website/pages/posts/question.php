@@ -41,8 +41,6 @@
         $question_answers[$key]["version"] = getLatestPostVersion($answer["post_id"]);
     }
 
-
-
     $smarty->assign("question", $question);
     $smarty->assign("question_post", $question_post);
     $smarty->assign("question_category",$question_category );
