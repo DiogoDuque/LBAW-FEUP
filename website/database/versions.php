@@ -10,3 +10,12 @@ function addVersion($text, $post_id, $member_id){
 
     return $version_id;
 }
+
+function getLatestPostVersion($post_id){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM public.version WHERE post_id = ? ORDER BY date DESC LIMIT 1");
+    $stmt->execute(array($post_id));
+
+    return $stmt->fetch();
+}

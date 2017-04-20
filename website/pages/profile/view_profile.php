@@ -1,12 +1,11 @@
 <?php
 
 include_once("../../config/init.php");
-include ($BASE_DIR."database/DatabaseGetter.php");
+include ($BASE_DIR."database/members.php");
 
 $smarty->display("common/header.tpl");
 
-$getter = new DatabaseGetter();
-$user = $getter->getMemberByUsername($_SESSION["username"]);
+$user = getMemberByUsername($_SESSION["username"]);
 
 ?>
 

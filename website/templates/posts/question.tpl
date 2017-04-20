@@ -1,11 +1,3 @@
-{*QUESTION ASSIGNINGEMENTS*}
-
-{assign "question_post" $getter->getPost($question.post_id)}
-{assign "question_category" $getter->getCategory($question.category_id)}
-{assign "question_author" $getter->getMemberById($question_post.author_id)}
-{assign "question_version" $getter->getLatestPostVersion($question.post_id)}
-
-
 <link rel="stylesheet" href="{$BASE_URL}lib/css/question.css">
 
 <!--Content-->
@@ -63,20 +55,17 @@
 
 
     {*COMMENTS*}
-    {assign "comments" $getter->getCommentsToPost($question.post_id)}
 
     {foreach $comments as $comment}
-        {*{include file='comments/comment.tpl'}*}
+        {include file='comments/comment.tpl'}
     {/foreach}
 
     {*EDIT COMMENT FORM*}
     {if (true)}
-        {include file='comments/comment_form.tpl'}
+        {*{include file='comments/comment_form.tpl'}*}
     {/if}
 
     <div class="answers">
-
-        {assign "answers" $getter->getAnswersToQuestion($question.post_id)}
 
         {if (count($answers) > 0)}
             <h4 >Answers</h4>
@@ -90,5 +79,9 @@
 
 
     </div>
+
+    {if (isset($USERNAME))}
+        {include file='forms/answer_add.tpl'}
+    {/if}
 
 </div>

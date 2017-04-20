@@ -1,7 +1,9 @@
 <?php
 
 include_once("../../config/init.php");
-include_once ($BASE_DIR."database/DatabaseGetter.php");
+include_once ($BASE_DIR."database/posts.php");
+include_once ($BASE_DIR."database/members.php");
+include_once ($BASE_DIR."database/versions.php");
 
 $smarty->display("common/header.tpl");
 
@@ -11,12 +13,10 @@ if (!isset($_GET['id']))
 if (!isset($_SESSION['username']))
     die('Member not authenticated.');
 
-$getter = new DatabaseGetter();
 
-$post = $getter->getPost($_GET["id"]);
-$currentVersion = $getter->getLatestPostVersion($_GET["id"]);
-
-$member_id = intval($getter->getMemberByUsername($_SESSION["username"])["id"]);
+$post = getPost($_GET["id"]);
+$currentVersion = getLatestPostVersion($_GET["id"]);
+$member_id = intval(getMemberByUsername($_SESSION["username"])["id"]);
 
 ?>
 

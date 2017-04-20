@@ -5,12 +5,8 @@
     include_once ($BASE_DIR."database/questions.php");
     include_once ($BASE_DIR."database/members.php");
 
-    include_once ($BASE_DIR."database/DatabaseGetter.php");
-
     if (!isset($_GET['id']))
         die('Missing question ID.');
-
-    $getter = new DatabaseGetter();
 
     $question_id = $_GET["id"];
 
