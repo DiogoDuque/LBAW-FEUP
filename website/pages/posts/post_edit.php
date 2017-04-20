@@ -36,8 +36,20 @@ $member_id = intval($getter->getMemberByUsername($_SESSION["username"])["id"]);
             </textarea>
 
             <script>
-                $(document).ready(function() {
-                    $('#summernote').summernote();
+                $(document).ready(function () {
+                    var summernote = $('#summernote');
+                    summernote.summernote({
+                        height: '20rem',
+                        minHeight: '20rem',
+                        toolbar: [
+                            // [groupName, [list of button]]
+                            ['style', ['bold', 'italic', 'underline', 'clear']],
+                            ['font', ['strikethrough', 'superscript', 'subscript']],
+                            ['para', ['ul', 'ol']],
+                            ['insert', ['link', 'table']],
+                            ['misc', ['undo', 'redo', 'help']]
+                        ]
+                    });
                 });
             </script>
 
