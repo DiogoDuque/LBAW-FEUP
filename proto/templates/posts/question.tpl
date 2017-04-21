@@ -101,23 +101,21 @@
     $(document).ready(function () {
         $('.glyphicon-thumbs-up').on('click', function() {
             var voteValue="up"; //vote.value
-            var username = $(this).parent().parent().parent().children(".user").children("a").get(0).innerHTML; //vote.member_id
+            //TODO get the voter's username
             var questionId = getGET(document.location.search)["id"]; //question.id, use to get vote.post_id
+            //estes proximos 2 valores sao para ter a certeza que encontramos o post certo para referenciar no post
+            var posterUsername = $(this).parent().parent().parent().children(".user").children("a").get(0).innerHTML; //author of the post receiving the vote
             var postText = $(this).parent().parent().parent().parent().children().not(".userInfo").children("p").get(0).innerHTML; //version.text -> version.post_id
-            /*               if post_id==question_id
-                               vote.post_id=question_id
-                             else vote.post_id=answer_id WHERE version is latest (use 'WHERE MAX(date)')
-                                */
+            //TODO ajax call
         });
         $('.glyphicon-thumbs-down').on('click', function() {
             var voteValue="down"; //vote.value
-            var username = $(this).parent().parent().parent().children(".user").children("a").get(0).innerHTML; //vote.member_id
+            //TODO get the voter's username
             var questionId = getGET(document.location.search)["id"]; //question.id, use to get vote.post_id
+            //estes proximos 2 valores sao para ter a certeza que encontramos o post certo para referenciar no post
+            var posterUsername = $(this).parent().parent().parent().children(".user").children("a").get(0).innerHTML; //author of the post receiving the vote
             var postText = $(this).parent().parent().parent().parent().children().not(".userInfo").children("p").get(0).innerHTML; //version.text -> version.post_id
-            /*               if post_id==question_id
-             vote.post_id=question_id
-             else vote.post_id=answer_id WHERE version is latest (use 'WHERE MAX(date)')
-             */
+            //TODO ajax call
         });
     });
 </script>
