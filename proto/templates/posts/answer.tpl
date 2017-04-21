@@ -6,7 +6,7 @@
 </small>
 
 <div class="answer row">
-    <div class="col-md-2">
+    <div class="userInfo col-md-2">
         <!--User-->
         <div class="user">
             <img alt="User Pic" src="{$BASE_URL}resources/img/user.png" class="img-circle img-responsive"

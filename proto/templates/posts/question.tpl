@@ -22,7 +22,7 @@
     <!--Question-->
     <div class="question row">
 
-        <div class="col-md-2">
+        <div class="userInfo col-md-2">
 
             <!--User-->
             <div class="user">
@@ -76,23 +76,48 @@
         {foreach $question_answers as $answer}
             {include file='posts/answer.tpl'}
         {/foreach}
-
-
     </div>
 
     {if (isset($USERNAME))}
         {include file='forms/answer_add.tpl'}
     {/if}
-
-    <script>
-        $(document).ready(function () {
-            $('.glyphicon-thumbs-up').on('click', function() {
-                window.alert("up"); //TODO
-            });
-            $('.glyphicon-thumbs-down').on('click', function() {
-                window.alert("down"); //TODO
-            });
-        });
-    </script>
-
 </div>
+
+<script>
+    function getGET(qs) {
+        qs = qs.split("+").join(" ");
+        var params = {},
+            tokens,
+            re = /[?&]?([^=]+)=([^&]*)/g;
+
+        while (tokens = re.exec(qs)) {
+            params[decodeURIComponent(tokens[1])]
+                = decodeURIComponent(tokens[2]);
+        }
+
+        return params;
+    }
+
+    $(document).ready(function () {
+        $('.glyphicon-thumbs-up').on('click', function() {
+            var voteValue="up"; //vote.value
+            var username = $(this).parent().parent().parent().children(".user").children("a").get(0).innerHTML; //vote.member_id
+            var questionId = getGET(document.location.search)["id"]; //question.id, use to get vote.post_id
+            var postText = $(this).parent().parent().parent().parent().children().not(".userInfo").children("p").get(0).innerHTML; //version.text -> version.post_id
+            /*               if post_id==question_id
+                               vote.post_id=question_id
+                             else vote.post_id=answer_id WHERE version is latest (use 'WHERE MAX(date)')
+                                */
+        });
+        $('.glyphicon-thumbs-down').on('click', function() {
+            var voteValue="down"; //vote.value
+            var username = $(this).parent().parent().parent().children(".user").children("a").get(0).innerHTML; //vote.member_id
+            var questionId = getGET(document.location.search)["id"]; //question.id, use to get vote.post_id
+            var postText = $(this).parent().parent().parent().parent().children().not(".userInfo").children("p").get(0).innerHTML; //version.text -> version.post_id
+            /*               if post_id==question_id
+             vote.post_id=question_id
+             else vote.post_id=answer_id WHERE version is latest (use 'WHERE MAX(date)')
+             */
+        });
+    });
+</script>

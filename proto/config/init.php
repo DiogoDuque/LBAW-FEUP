@@ -1,9 +1,7 @@
 <?php
-
-session_set_cookie_params(3600, '/~lbaw1623'); //FIXME
 session_start();
 
-error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
+error_reporting(E_ERROR); // E_NOTICE by default
 
 // GNOMO $BASE_DIR = "/opt/lbaw/lbaw1623/public_html/LBAW-FEUP/proto/"; // == proto/
 // GNOMO $BASE_URL = "/~lbaw1623/LBAW-FEUP/proto/";
