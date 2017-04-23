@@ -33,9 +33,9 @@
 
             <!--Score-->
             <ul class="score">
-                <li><a class="glyphicon glyphicon-thumbs-up" href="#"></a></li>
-                <li><p>{$question_post.up_votes - $question_post.down_votes}</p></li>
-                <li><a class="glyphicon glyphicon-thumbs-down" href="#"></a></li>
+                <li><a class="glyphicon glyphicon-thumbs-up" data-post_id="{$question.post_id}" href="#"></a></li>
+                <li><p class="post_score">{$question_post.up_votes - $question_post.down_votes}</p></li>
+                <li><a class="glyphicon glyphicon-thumbs-down" data-post_id="{$question.post_id}" href="#"></a></li>
             </ul>
 
         </div>
@@ -104,10 +104,40 @@
             window.alert("You must login to vote!");
             return;
         }
-        var questionId = getGET(document.location.search)["id"]; //question.id, use to get vote.post_id
-        //estes proximos 2 valores sao para ter a certeza que encontramos o post certo para referenciar no post
-        var posterUsername = elem.parent().parent().parent().children(".user").children("a").get(0).innerHTML; //author of the post receiving the vote
-        var postText = elem.parent().parent().parent().parent().children().not(".userInfo").children("p").get(0).innerHTML; //version.text -> version.post_id
+        var post_id = elem.data("post_id");
+
+        var v = 0;
+
+        if(voteValue =="up")
+            {
+                v = 1;
+            }
+        else
+            {
+                v = -1;
+            }
+
+        $.ajax({
+            type: "POST",
+            url: "{$BASE_URL}actions/post/cast_vote.php",
+            data:   {
+                value : voteValue,
+                post_id : post_id
+            },
+            success: function(response){
+                if(response.status === "error")
+                    window.alert("Duplicated vote.");
+                else{
+                    elem.html( function(i, oldval) {
+                        return parseInt(oldval, 10) + v;
+                    });
+                }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
     }
 
     $(document).ready(function () {
