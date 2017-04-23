@@ -40,5 +40,7 @@ else{
     $response['status'] = success;
 }
 
+updateVotes();
+
 echo json_encode($response);
 

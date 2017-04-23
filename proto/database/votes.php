@@ -7,8 +7,7 @@ function addVote($post_id, $member_id, $value)
     try {
         $stmt = $conn->prepare("INSERT INTO public.vote(post_id, member_id, value) VALUES (?, ?, ?)");
         $stmt->execute(array($post_id, $member_id, $value));
-        $result = $stmt->fetch();
-        return $result;
+        return true;
     }
 
     catch (PDOException $err) {
@@ -20,4 +19,13 @@ function addVote($post_id, $member_id, $value)
 
         return false;
     }
+}
+
+function updateVotes(){
+
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT update_votes_in_posts_f (?)");
+    $stmt->execute(array(date('Y-m-d')));
+
 }
