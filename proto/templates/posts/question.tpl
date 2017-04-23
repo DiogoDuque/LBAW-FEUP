@@ -83,7 +83,7 @@
     {/if}
 </div>
 
-<script>
+<script type='text/javascript'>
     function getGET(qs) {
         qs = qs.split("+").join(" ");
         var params = {},
@@ -98,24 +98,27 @@
         return params;
     }
 
+    function castVote(elem, voteValue){
+        var voterName = $("body").children(".navbar").children(".container-fluid").children(".collapse").children("ul.navbar-right").children("li").children("a").text().split(' ')[2];
+        if(voterName == "Up"){
+            window.alert("You must login to vote!");
+            return;
+        }
+        var questionId = getGET(document.location.search)["id"]; //question.id, use to get vote.post_id
+        //estes proximos 2 valores sao para ter a certeza que encontramos o post certo para referenciar no post
+        var posterUsername = elem.parent().parent().parent().children(".user").children("a").get(0).innerHTML; //author of the post receiving the vote
+        var postText = elem.parent().parent().parent().parent().children().not(".userInfo").children("p").get(0).innerHTML; //version.text -> version.post_id
+    }
+
     $(document).ready(function () {
         $('.glyphicon-thumbs-up').on('click', function() {
             var voteValue="up"; //vote.value
-            //TODO get the voter's username
-            var questionId = getGET(document.location.search)["id"]; //question.id, use to get vote.post_id
-            //estes proximos 2 valores sao para ter a certeza que encontramos o post certo para referenciar no post
-            var posterUsername = $(this).parent().parent().parent().children(".user").children("a").get(0).innerHTML; //author of the post receiving the vote
-            var postText = $(this).parent().parent().parent().parent().children().not(".userInfo").children("p").get(0).innerHTML; //version.text -> version.post_id
-            //TODO ajax call
+            castVote($(this),voteValue);
+
         });
         $('.glyphicon-thumbs-down').on('click', function() {
             var voteValue="down"; //vote.value
-            //TODO get the voter's username
-            var questionId = getGET(document.location.search)["id"]; //question.id, use to get vote.post_id
-            //estes proximos 2 valores sao para ter a certeza que encontramos o post certo para referenciar no post
-            var posterUsername = $(this).parent().parent().parent().children(".user").children("a").get(0).innerHTML; //author of the post receiving the vote
-            var postText = $(this).parent().parent().parent().parent().children().not(".userInfo").children("p").get(0).innerHTML; //version.text -> version.post_id
-            //TODO ajax call
+            castVote($(this),voteValue);
         });
     });
 </script>
