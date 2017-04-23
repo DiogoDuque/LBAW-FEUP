@@ -178,7 +178,7 @@
     </div>
 </div>
 
-<script type="text/javascript" src="../../lib/js/signup_modal.js"></script>
+<script type="text/javascript" src="{$BASE_URL}lib/js/signup_modal.js"></script>
 
 <script>
 

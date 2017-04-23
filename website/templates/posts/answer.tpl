@@ -6,7 +6,7 @@
 </small>
 
 <div class="answer row">
-    <div class="col-md-2">
+    <div class="userInfo col-md-2">
         <!--User-->
         <div class="user">
             <img alt="User Pic" src="{$BASE_URL}resources/img/user.png" class="img-circle img-responsive"
@@ -15,9 +15,9 @@
         </div>
         <!--Score-->
         <ul class="score">
-            <li><a class="glyphicon glyphicon-thumbs-up" href="#"></a></li>
-            <li><p>{$answer.post.up_votes - $answer.post.down_votes}</p></li>
-            <li><a class="glyphicon glyphicon-thumbs-down" href="#"></a></li>
+            <li><a class="glyphicon glyphicon-thumbs-up" data-post_id="{$answer.post_id}" href="#"></a></li>
+            <li><p class="post_score">{$answer.post.up_votes - $answer.post.down_votes}</p></li>
+            <li><a class="glyphicon glyphicon-thumbs-down" data-post_id="{$answer.post_id}" href="#"></a></li>
         </ul>
     </div>
     <!--Text-->
