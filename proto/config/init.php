@@ -3,16 +3,10 @@ session_start();
 
 error_reporting(E_ERROR); // E_NOTICE by default
 
-// GNOMO $BASE_DIR = "/opt/lbaw/lbaw1623/public_html/LBAW-FEUP/proto/"; // == proto/
-// GNOMO $BASE_URL = "/~lbaw1623/LBAW-FEUP/proto/";
+$BASE_DIR = "/opt/lbaw/lbaw1623/public_html/LBAW-FEUP/proto/"; // == proto/
+$BASE_URL = "/~lbaw1623/LBAW-FEUP/proto/";
 
-
-// GNOMO $conn = new PDO('pgsql:host=dbm; dbname=lbaw1623', 'lbaw1623', 'bj66ak24');
-
-$BASE_DIR = dirname(dirname(__FILE__), 1) . "/"; // == website/
-$BASE_URL = "/"; //FIXME
-
-$conn = new PDO('pgsql:host=localhost; port=5432; dbname=postgres', 'postgres', 'postgres');  // FIXME
+$conn = new PDO('pgsql:host=dbm; dbname=lbaw1623', 'lbaw1623', 'bj66ak24');
 
 $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
