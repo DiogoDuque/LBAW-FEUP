@@ -1,6 +1,6 @@
 <?php
 
-session_set_cookie_params(3600, '/~lbaw1623');
+session_set_cookie_params(3600);
 session_start();
 
 ini_set('display_errors', 1);
