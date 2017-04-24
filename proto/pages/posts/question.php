@@ -14,6 +14,8 @@
     if (!isset($_GET['id']))
         die('Missing question ID.');
 
+    $_SESSION["last_question_visited"] = $_SERVER['REQUEST_URI'];
+
     $question_id = $_GET["id"];
 
     $question = getQuestion($question_id);

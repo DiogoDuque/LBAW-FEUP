@@ -13,8 +13,6 @@ if (!isset($_SESSION['username']))
 
 $smarty->display("common/header.tpl");
 
-$getter = new DatabaseGetter();
-
 $post = getPost($_GET["id"]);
 $currentVersion = getLatestPostVersion($_GET["id"]);
 $member_id = intval(getMemberByUsername($_SESSION["username"])["id"]);

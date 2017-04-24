@@ -128,7 +128,7 @@
                 if(response.status === "error")
                     window.alert("Duplicated vote.");
                 else{
-                    $(".post_score").load(document.URL + " .post_score");
+                    location.reload();
                 }
 
             },
