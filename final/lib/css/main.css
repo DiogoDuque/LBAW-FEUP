@@ -1,0 +1,143 @@
+/* Remove the navbar's default rounded borders and increase the bottom margin */ 
+.navbar {
+  margin-bottom: 50px;
+  border-radius: 0;
+}
+
+/* Remove the jumbotron's default bottom margin */ 
+ .jumbotron {
+  margin-bottom: 0;
+}
+
+/* Add a gray background color and some padding to the footer */
+footer {
+  margin-top: 20px;
+  background-color: #f2f2f2;
+  padding: 25px;
+}
+
+/* Center logo*/
+.navbar-brand > img {
+  height:200%;
+  margin-top: -25%;
+}
+
+.main-menu-questions-divider{
+  margin: 0;
+}
+
+.btn.vertical-align{
+    vertical-align: middle;
+    margin: 0.75rem 1rem 0.5rem;
+}
+
+.svg-logo{
+    height: 40px;
+    width: 40px;
+    margin-bottom: 1em;
+}
+
+@media screen and (min-width: 768px) {
+    .svg-logo {
+        height: 67px;
+        width: 67px;
+        margin-bottom: 2em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .logo {
+        margin-left: 10px;
+    }
+}
+
+.logo {
+    display: inline-block;
+}
+
+a.noStyle:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+a.noStyle:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+.logo {
+    max-height: 100%;
+    width: auto;
+    margin-top: 5px;
+}
+
+.logo a:link {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+.logo a:visited {
+    text-decoration: inherit;
+    color: inherit;
+    cursor: auto;
+}
+
+.tabela {
+    padding-top: 30px;
+}
+
+.search-icon {
+    color: #337ab7;
+}
+
+
+
+
+.comment-box form textarea {
+    margin-top: 1rem;
+    background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -ms-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    color: #777777;
+    float: left;
+    font-size: 14px;
+    height: 142px;
+    letter-spacing: 0.3px;
+    padding: 20px;
+    width: 100%;
+    resize:vertical;
+    outline:none;
+    border: 1px solid #F2F2F2;
+}
+
+
+.comment-box form button {
+    border: medium none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    color: #fff;
+    float: right;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    margin-right: 9px;
+    margin-top: 9px;
+    padding: 6px 15px;
+}
+
+.alert {
+    text-align: center;
+    font-size: 2rem;
+}
+
+
+

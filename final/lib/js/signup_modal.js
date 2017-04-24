@@ -1,0 +1,1 @@
+// TODO: Check username and email availabilty by AJAX

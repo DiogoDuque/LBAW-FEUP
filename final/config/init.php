@@ -5,7 +5,7 @@ session_start();
 
 error_reporting(E_ERROR | E_WARNING); // E_NOTICE by default
 
-$BASE_DIR = dirname(dirname(__FILE__), 1) . "/"; // == website/
+$BASE_DIR = dirname(dirname(__FILE__), 1) . "/"; // == final/
 $BASE_URL = "/"; //FIXME
 
 $conn = new PDO('pgsql:host=localhost; port=5432; dbname=postgres', 'postgres', 'postgres');  // FIXME

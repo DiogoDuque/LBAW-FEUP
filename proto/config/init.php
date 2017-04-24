@@ -12,7 +12,7 @@ $BASE_URL = "/~lbaw1623/LBAW-FEUP/proto/";
 
 $conn = new PDO('pgsql:host=dbm; dbname=lbaw1623', 'lbaw1623', 'bj66ak24');
 
-// $BASE_DIR = dirname(dirname(__FILE__), 1) . "/"; // == website/
+// $BASE_DIR = dirname(dirname(__FILE__), 1) . "/"; // == final/
 // $BASE_URL = "/"; //FIXME
 //
 // $conn = new PDO('pgsql:host=localhost; port=5432; dbname=postgres', 'postgres', 'postgres');  // FIXME
