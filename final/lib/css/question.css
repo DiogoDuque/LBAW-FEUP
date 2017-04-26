@@ -41,18 +41,40 @@
     display: inline-block;
 }
 
-.score a{
+.score span{
     text-decoration: none;
     padding: 10px 10px;
 }
 
-.score .glyphicon-thumbs-up{
+.glyphicon-thumbs-down, .glyphicon-thumbs-up {
+    color: grey;
+}
+
+.score .glyphicon-thumbs-down, .score .glyphicon-thumbs-up {
+    cursor: pointer;
+}
+
+.glyphicon-thumbs-up.on{
+    color: #00c800;
+}
+
+.glyphicon-thumbs-up.on:hover{
     color: green;
 }
 
-.score .glyphicon-thumbs-down{
+.glyphicon-thumbs-down.on{
     color: red;
 }
+
+.glyphicon-thumbs-down.on:hover{
+    color: #c80000;
+}
+
+.glyphicon-thumbs-down:hover, glyphicon-thumbs-down:visited, .glyphicon-thumbs-up:hover, glyphicon-thumbs-up:visited {
+    color: black;
+}
+
+
 
 .actions li{
 	display: inline-block;

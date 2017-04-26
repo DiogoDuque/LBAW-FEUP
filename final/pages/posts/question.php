@@ -60,3 +60,4 @@
     $smarty->display("posts/question.tpl");
 
     $smarty->display("common/footer.tpl"); ?>
+
