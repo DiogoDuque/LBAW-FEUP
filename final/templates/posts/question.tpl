@@ -45,10 +45,14 @@
             <p>{$question_version.text}</p>
             <ul class="actions pull-right">
                 <li><a class="glyphicon glyphicon-link" href="" data-toggle="tooltip" title="Share"></a></li>
-                <li><a class="glyphicon glyphicon-comment" href="" data-toggle="tooltip" title="Comment"></a></li>
-                <li><a class="glyphicon glyphicon-flag" href="" data-toggle="tooltip" title="Report"></a></li>
-                <li><a class="glyphicon glyphicon-pencil" href="{$BASE_URL}pages/posts/post_edit.php?id={$question.post_id}" data-toggle="tooltip" title="Edit"></a></li>
-                <li><a class="glyphicon glyphicon-trash" href="" data-toggle="tooltip" title="Remove"></a></li>
+                {if $currentUser}
+                    <li><a class="glyphicon glyphicon-comment" href="" data-toggle="tooltip" title="Comment"></a></li>
+                    <li><a class="glyphicon glyphicon-flag" href="" data-toggle="tooltip" title="Report"></a></li>
+                    {if $currentUser.privilege_level=="Administrator" || $currentUser.privilege_level=="Moderator"}
+                        <li><a class="glyphicon glyphicon-pencil" href="{$BASE_URL}pages/posts/post_edit.php?id={$question.post_id}" data-toggle="tooltip" title="Edit"></a></li>
+                        <li><a class="glyphicon glyphicon-trash" href="{$BASE_URL}actions/post/question_delete.php?id={$question.post_id}" data-toggle="tooltip" title="Remove"></a></li>
+                    {/if}
+                {/if}
             </ul>
         </div>
     </div>
