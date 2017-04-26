@@ -25,6 +25,7 @@
     $question_version = getLatestPostVersion($question_id);
     $question_comments = getCommentsToPost($question_id);
     $question_answers = getAnswersToQuestion($question_id);
+    $currentUser = getMemberByUsername($_SESSION['username']);
 
 
     foreach ($question_comments as $key => $value)
@@ -51,6 +52,8 @@
 
     $smarty->assign("question_comments", $question_comments);
     $smarty->assign("question_answers", $question_answers);
+
+    $smarty->assign("currentUser",$currentUser);
 
 
     $smarty->display("common/header.tpl");
