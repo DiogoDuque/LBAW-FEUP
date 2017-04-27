@@ -27,9 +27,9 @@ function displayMembersList($members, $privilege){
       <div class="control-group">
         <label></label>
         <div class="controls">
-          <button type="submit" class="btn btn-primary">Remove</button>
+          <button id="removeMember" type="submit" class="btn btn-primary">Remove</button>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
 <?php
@@ -39,10 +39,6 @@ $memberInfos = getAllUsernamesAndPrivileges();
 
 $smarty->display("common/header.tpl");
 ?>
-
-
-<script type="text/javascript" src="../../lib/js/membersTabelAdmin.js"></script>
-
 
 <!-- Main -->
 <div class="container">
@@ -54,50 +50,45 @@ $smarty->display("common/header.tpl");
       <hr>
       
       <ul class="list-unstyled">
-        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
-          <h5>Reports <i class="glyphicon glyphicon-chevron-right"></i></h5>
-        </a>
+        <li class="nav-header">
+          <a href="#" data-toggle="collapse" data-target="#menu2">
+            <h5>Reports <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
         
-        <ul class="list-unstyled collapse" id="menu2">
-          <li><a href="#">Reports</a>
-          </li>
+          <ul class="list-unstyled collapse" id="menu2">
+            <li><a href="#">Reports</a>
+            </li>
+          </ul>
+        </li>
+
+
+        <ul class="list-unstyled collapse" id="menu3">
+          <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Facebook</a></li>
         </ul>
-      </li>
-
-
-      <ul class="list-unstyled collapse" id="menu3">
-        <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Facebook</a></li>
       </ul>
+    </div><!-- /col-3 -->
 
-    </ul>
+    <div class="col-md-9">
 
+      <!-- column 2 -->	
+      <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>  
+      <hr>
+      <div class="row">
 
-  </div><!-- /col-3 -->
-  <div class="col-md-9">
+      <!-- center left-->	
+      <div class="col-md-6">
+        <div class="well">Inbox Reports <span class="badge pull-right">3</span></div>
+          <hr>
 
-    <!-- column 2 -->	
-    <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>  
-
-  <hr>
-
-  <div class="row">
-
-
-
-    <!-- center left-->	
-    <div class="col-md-6">
-      <div class="well">Inbox Reports <span class="badge pull-right">3</span></div>
-        <hr>
-
-       <!--tabs-->
-        <div class="container">
-          <div class="col-md-4">
-            <ul class="nav nav-tabs" id="myTab">
-              <li class="active"><a href="#members" data-toggle="tab">Members</a></li>
-              <li><a href="#moderators" data-toggle="tab">Moderators</a></li>
-              <li><a href="#admins" data-toggle="tab">Admins</a></li>
-            </ul>
-            <div class="tab-content">
+          <!--tabs-->
+          <div class="container">
+            <div class="col-md-4">
+              <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#members" data-toggle="tab">Members</a></li>
+                <li><a href="#moderators" data-toggle="tab">Moderators</a></li>
+                <li><a href="#admins" data-toggle="tab">Admins</a></li>
+              </ul>
+              <div class="tab-content">
               
               <?php
                 displayMembersList($memberInfos,"Member");
@@ -193,3 +184,45 @@ $smarty->display("common/header.tpl");
 <!-- /Main -->
 
 <?php $smarty->display("common/footer.tpl"); ?>
+
+<script type="text/javascript" src="../../lib/js/membersTabelAdmin.js"></script>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    $("#removeMember").click(function() {
+      var membersList = $("li.list-group-item.list-group-item-primary.active");
+      
+      //check if there are users to be removed
+      if(membersList.length<0)
+        return;
+
+      //warning window
+      if(!window.confirm("Are you sure you want to remove "+membersList.length+" members?"))
+        return;
+      
+      //confirmation window
+      var password = window.prompt("Confirm your password:");
+      if(password==null)
+        return;
+
+      //ajax request
+      var usernames = [];
+      for(i=0; i<membersList.length; i++){
+        usernames.push(membersList.get(i).innerText);
+      }
+      var requestData = [password,usernames];
+      var request = $.ajax({
+        url: "../../actions/member/member_delete.php",
+        type: "POST",
+        dataType: "json",
+        data: JSON.stringify(requestData),
+        success: function(data){
+          window.warning(data.message+data.users);
+          context.reload();
+        }
+      });
+
+    });
+  });
+</script>
