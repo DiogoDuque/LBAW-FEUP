@@ -114,11 +114,11 @@ $smarty->display("common/header.tpl");
           </div>
 
           <div class="panel-body">
-            <form class="form form-vertical">
+            <form id="add_category" action="../../actions/admin/create_category.php" method="post" enctype="multipart/form-data" class="form form-vertical">
               <div class="control-group">
                 <label>Name</label>
                 <div class="controls">
-                 <input type="text" class="form-control" placeholder="Enter Name">
+                 <input id="new_category_name" type="text" class="form-control" placeholder="Enter Name" name="name" required>
                </div>
              </div>      
              <div class="control-group">
@@ -130,6 +130,32 @@ $smarty->display("common/header.tpl");
                 </div>
               </div>
             </form>
+              <script type='text/javascript'>
+                  $("#add_category").submit(function(event) {
+
+                      event.preventDefault();
+
+                      var $form = $( this );
+                      var url = $form.attr( 'action' );
+                      var data = {name: $("#new_category_name").val()};
+                      $.ajax({
+                          type: "POST",
+                          url: url,
+                          data: data,
+                          success: function(data){
+                              console.log(data);
+                              if (data.status == 'error')
+                                  alert("\"" + data.name + "\" category already exists");
+                              else
+                                  alert("\"" + data.name + "\"  category was successfully created.\nYou may need to update to see the changes.");
+                          },
+                          error: function(xhr){
+                              alert("An error occured: " + xhr.status + " " + xhr.statusText);
+                          }
+                      });
+
+                  });
+              </script>
           </div><!--/panel content-->
 
         </div><!--/panel-->
