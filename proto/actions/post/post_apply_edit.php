@@ -1,8 +1,12 @@
 <?php
 
     include_once ("../../config/init.php");
+    include_once ($BASE_DIR."database/answers.php");
+    include_once ($BASE_DIR."database/posts.php");
 
-    if (!isset($_POST['edited_text']))
+
+
+if (!isset($_POST['edited_text']))
         die('Missing text.');
 
     if (!isset($_POST['post_id']))
@@ -18,6 +22,9 @@
     include_once ($BASE_DIR."database/versions.php");
 
     addVersion($text, $post_id, $member_id);
+    if (isAnswer($post_id)) {
+        $post_id = getQuestionId($post_id);
+    }
 
     $destination = $BASE_URL."pages/posts/question.php?id=".$post_id;
 
