@@ -20,6 +20,7 @@
             <li><a class="glyphicon glyphicon-thumbs-down" data-post_id="{$answer.post_id}" href="#"></a></li>
         </ul>
     </div>
+
     <!--Text-->
     <div class="col-md-10">
         <p>{$answer.version.text}</p>
@@ -28,7 +29,7 @@
             </li>
             <li><a class="glyphicon glyphicon-flag" href="#" data-toggle="tooltip" title="Report"></a>
             </li>
-            <li><a class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></a>
+            <li><a class="glyphicon glyphicon-pencil" href="{$BASE_URL}pages/posts/post_edit.php?id={$answer.post_id}"  data-toggle="tooltip" title="Edit"></a>
             </li>
             <li><a class="glyphicon glyphicon-trash" href="#" data-toggle="tooltip" title="Remove"></a>
             </li>

@@ -7,7 +7,6 @@ if(isset($_POST['action']) && function_exists($_POST['action'])) {
     $action = $_POST['action'];
     $getData = $action();
     echo $getData ? 'true' : 'false';
-
 }
 
 function getMemberById($id){
@@ -116,4 +115,11 @@ function isLoginCorrect($username, $password) {
     $stmt->execute(array($username, sha1($password)));
 
     return ($stmt->fetch()["id"] != null);
+}
+
+function getAllUsernamesAndPrivileges(){
+    global $conn;
+    $stmt = $conn->prepare("SELECT username, privilege_level FROM member");
+    $stmt->execute();
+    return $stmt->fetchAll();
 }
