@@ -15,9 +15,9 @@
         </div>
         <!--Score-->
         <ul class="score">
-            <li><a class="glyphicon glyphicon-thumbs-up" data-post_id="{$answer.post_id}" href="#"></a></li>
-            <li><p class="post_score">{$answer.post.up_votes - $answer.post.down_votes}</p></li>
-            <li><a class="glyphicon glyphicon-thumbs-down" data-post_id="{$answer.post_id}" href="#"></a></li>
+            <li><span class="glyphicon glyphicon-thumbs-up" data-post_id="{$answer.post_id}" ></span></li>
+            <li><p class="post_score" data-post_id="{$answer.post_id}">{$answer.post.up_votes - $answer.post.down_votes}</p></li>
+            <li><span class="glyphicon glyphicon-thumbs-down" data-post_id="{$answer.post_id}" ></span></li>
         </ul>
     </div>
     <!--Text-->
