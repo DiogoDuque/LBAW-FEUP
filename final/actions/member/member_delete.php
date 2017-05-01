@@ -3,32 +3,35 @@
 include_once ("../../config/init.php");
 include_once ($BASE_DIR."database/members.php");
 
-$strRequest = file_get_contents('php://input');
-$Request = json_decode($strRequest);
+header('Content-Type: application/json');
+$response = array();
 
-$password = $Request[0];
-$usernames = $Request[1];
+$data = json_decode(stripslashes($_POST['data']));
+
+$password = $data[0];
+$usernames = $data[1];
 $currentUser = getMemberByUsername($_SESSION['username']);
 
-$data['message']="All users were successfully deleted";
-$data['users']="";
+$response['message']="All users were successfully deleted";
+$response['users']=" ";
 
-if($currentUser['hashed_pass'] != sha1($password)){ //check for password
-	$data['message'] = "Password does not match";
+if(strcmp(str_replace(' ', '',$currentUser['hashed_pass']), sha1($password)) != 0){ //check for password
+	$response['message'] = "Password does not match";
 
 } else if($currentUser['privilege_level'] != "Administrator"){ //check for permissions
-	$data['message'] = "User does not have permissions for that";
+	$response['message'] = "User does not have permissions for that";
 
 } else{
 	global $conn;
 	foreach ($usernames as $user) {
-		$stmt = $conn->prepare("DELETE FROM public.member WHERE username = ?");
+		$user=mb_substr($user,1,NULL,"UTF-8");
+		$stmt = $conn->prepare("DELETE FROM member WHERE username = ?");
 		if(!$stmt->execute(array($user))){ //if operation went wrong
-			$data['message'] = "Some users may have not been deleted: ";
-			$data['users'] = $data['users'].$user." ";
+			$response['message'] = "Some users may have not been deleted: ";
+			$response['users'] = $response['users'].$user." ";
 		}
 	}
 }
 
-echo json_encode($data);
+echo json_encode($response);
 ?>

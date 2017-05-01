@@ -223,12 +223,8 @@ $smarty->display("common/header.tpl");
       if(membersList.length<0)
         return;
 
-      //warning window
-      if(!window.confirm("Are you sure you want to remove "+membersList.length+" members?"))
-        return;
-      
       //confirmation window
-      var password = window.prompt("Confirm your password:");
+      var password = window.prompt("Are you sure you want to remove "+membersList.length+" members? If you are, confirm your password:");
       if(password==null)
         return;
 
@@ -238,14 +234,16 @@ $smarty->display("common/header.tpl");
         usernames.push(membersList.get(i).innerText);
       }
       var requestData = [password,usernames];
-      var request = $.ajax({
+      $.ajax({
         url: "../../actions/member/member_delete.php",
         type: "POST",
-        dataType: "json",
-        data: JSON.stringify(requestData),
+        data: {data: JSON.stringify(requestData)},
         success: function(data){
-          window.warning(data.message+data.users);
-          context.reload();
+          window.alert(data.message+data.users);
+          location.reload();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
         }
       });
 
