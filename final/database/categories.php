@@ -25,3 +25,12 @@ function addCategory($category_name){
     }
 
 }
+
+function getAllCategories(){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM public.category");
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+}
