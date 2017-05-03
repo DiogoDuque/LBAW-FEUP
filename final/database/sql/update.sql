@@ -66,12 +66,12 @@ SELECT update_member_profile_image_f(1, 1) AS Changed;
 
 
 -- Update the votes count on posts where it is needed
-CREATE OR REPLACE FUNCTION count_votes_f(id integer, last_update DATE, value BOOL) RETURNS INTEGER AS $BODY$
+CREATE OR REPLACE FUNCTION count_votes_f(id integer, last_update DATE, v BOOL) RETURNS INTEGER AS $BODY$
 DECLARE
   result INTEGER;
 BEGIN
   SELECT COUNT(*) INTO result FROM vote
-    WHERE vote.post_id=$1 AND vote.creation_date>$2 AND vote.value=$3;
+    WHERE vote.post_id=id AND vote.creation_date>last_update AND vote.value=v;
   RETURN result;
 END;
 $BODY$ LANGUAGE plpgsql;
@@ -79,8 +79,8 @@ $BODY$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION update_votes_in_posts_f (last_update DATE) RETURNS VOID AS $BODY$
 BEGIN
   UPDATE post
-    SET up_votes=up_votes+(count_votes_f(post.id,$1,TRUE)),
-      down_votes=down_votes+(count_votes_f(post.id,$1,FALSE));
+    SET up_votes=up_votes+(count_votes_f(post.id,last_update,TRUE)),
+      down_votes=down_votes+(count_votes_f(post.id,last_update,FALSE) - 2);
 END;
 $BODY$ LANGUAGE plpgsql;
 

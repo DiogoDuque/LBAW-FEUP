@@ -237,6 +237,32 @@ FOR EACH ROW
 WHEN (NEW.correct = TRUE AND OLD.correct = FALSE)
 EXECUTE PROCEDURE one_correct_answer_per_question_f();
 
+-- Deleting a vote decresases downvotes/upvotes
+
+CREATE FUNCTION update_votes_when_deleted_f()
+  RETURNS TRIGGER AS $$
+BEGIN
+  IF(OLD.value) -- upvote
+  THEN
+    UPDATE post
+    SET up_votes = COALESCE(postgres.public.post.up_votes, 0) - 1
+    WHERE id = old.post_id;
+  ELSE
+    UPDATE post
+    SET down_votes = COALESCE(postgres.public.post.down_votes, 0) - 1
+    WHERE id = old.post_id;
+  END IF;
+
+  RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_votes_when_deleted_tr
+AFTER DELETE
+  ON vote
+FOR EACH ROW
+EXECUTE PROCEDURE update_votes_when_deleted_f();
+
 
 /** OTHER INDEXES **/
 
