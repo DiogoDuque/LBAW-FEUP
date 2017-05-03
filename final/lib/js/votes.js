@@ -3,7 +3,7 @@ function castVote(elem, voteValue, username){
     // TODO: Allow Member to unvote.
     // TODO: Think how to update vote instantly on client but only update on server after a period of time.
 
-    if(username == ""){
+    if(username === ""){
         window.alert("You must login to vote!");
         //return;
     }
@@ -14,7 +14,7 @@ function castVote(elem, voteValue, username){
 
     var v = 0;
 
-    if(voteValue =="up")
+    if(voteValue ==="up")
     {
         v = 1;
     }
@@ -53,8 +53,15 @@ function castVote(elem, voteValue, username){
 $(document).ready(function () {
 
     $('.glyphicon-thumbs-up').on('click', function() {
-        var voteValue="up"; //vote.value
-        castVote($(this),voteValue, username);
+
+        if($(this).hasClass('on'))
+        {
+            $(this).removeClass('on');
+        }
+        else {
+            var voteValue = "up"; //vote.value
+            castVote($(this), voteValue, username);
+        }
 
     });
     $('.glyphicon-thumbs-down').on('click', function() {

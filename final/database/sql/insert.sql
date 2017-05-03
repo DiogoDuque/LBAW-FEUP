@@ -311,7 +311,7 @@ INSERT INTO public.promotiondemotion (privilege_level, member_id, admin_id) VALU
 
 /* REPORTS */
 
-INSERT INTO public.report (description, report_type, creator_id, post_id) VALUES ('The question is already answered in this link.', 'DuplicateQuestion', 30, 1);
+INSERT INTO public.report (description, report_type, creator_id, post_id) VALUES ('The question is already answered in this link.', 'Dup  licateQuestion', 30, 1);
 INSERT INTO public.report (description, report_type, creator_id, post_id) VALUES ('Should improve the English.', 'LackOfClarity', 19, 67);
 INSERT INTO public.report (description, report_type, creator_id, post_id) VALUES ('He wrote f***.', 'InnapropriateLanguage', 4, 13);
 INSERT INTO public.report (description, report_type, creator_id, post_id) VALUES ('I believe it is racist behaviour.', 'BadBehavior', 40, 100);
