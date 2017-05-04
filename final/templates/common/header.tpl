@@ -47,10 +47,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories <span
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Foods and Drinks</a></li>
-                        <li><a href="#">Sports</a></li>
-                        <li><a href="#">Computers</a></li>
-                        <li><a href="#">Art</a></li>
+                        {foreach $categories as $category}
+                            <li><a href="#">{$category.name}</a></li>
+                        {/foreach}
                     </ul>
                 </li>
 
@@ -63,14 +62,19 @@
             </ul>
 
             <!--Search Form (at the left side)-->
-            <form class="navbar-form navbar-right" role="search">
+            <form action="{$BASE_URL}pages/posts/search.php#results" class="navbar-form navbar-right" role="search">
                 <div class="form-group input-group">
-                    <input type="text" class="form-control" placeholder="Search..">
-                    <span class="input-group-btn">
+                    <input type="text" class="form-control" placeholder="Search.." name="query">
 
-                        <a href ="{$BASE_URL}pages/search.php" role="button" class="btn btn-default" type="button" data-toggle="tooltip" data-placement="bottom" title="Advanced search">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default" role="button" data-toggle="tooltip" data-placement="bottom" title="Advanced search">
+                            <span class="glyphicon glyphicon-search search-icon"></span>
+                        </button>
+                        <!--
+                        <a href ="{$BASE_URL}pages/posts/search.php" role="button" class="btn btn-default" type="button" data-toggle="tooltip" data-placement="bottom" title="Advanced search">
                                 <span class="glyphicon glyphicon-search search-icon"></span>
                         </a>
+                        -->
 
                     </span>
                 </div>

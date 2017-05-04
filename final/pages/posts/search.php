@@ -1,140 +1,76 @@
 <?php
 
 include_once("../../config/init.php");
+include_once ($BASE_DIR."database/categories.php");
+include_once ($BASE_DIR."database/questions.php");
+
+$url = preg_replace('/&page=(\d+)/','',$_SERVER['QUERY_STRING']);
+$query = "";
+$search_titles = true;
+$search_descriptions = false;
+$search_answers = false;
+$search_order = "Most Recent";
+$search_categories = [];
+$limit = 10;
+$page = 1;
+foreach($categories as $key => $value) {
+    $categories[$key]['checked'] = true;
+}
+
+$orders =  [
+    "Most Recent" => "post.date",
+    "Least Recent" => "foo",
+    "Best Score" => "foo",
+    "Worst Score" => "foo"
+];
+
+//Set form
+if(isset($_GET["query"]))
+    $query = $_GET["query"];
+
+if(isset($_GET["search_titles"]))
+    $search_titles = $_GET['search_titles'];
+if(isset($_GET["search_descriptions"]))
+    $search_descriptions = $_GET['search_descriptions'];
+if(isset($_GET["search_answers"]))
+    $search_answers = $_GET['search_answers'];
+if(isset($_GET["search_order"]))
+    $search_order = $_GET['search_order'];
+if(isset($_GET["limit"]))
+    $limit = $_GET['limit'];
+if(isset($_GET["page"]))
+    $page = $_GET['page'];
+if(isset($_GET["search_categories"])){
+    $search_categories = $_GET['search_categories'];
+    foreach($categories as $key => $value) {
+        $categories[$key]['checked'] = in_array($categories[$key]['id'], $search_categories);
+    }
+}
+
+
+//Search
+$results = [];
+if($query != "")
+    $results = search($query, $search_titles, $search_descriptions,$search_answers,$orders[$search_order],$search_categories,$limit,$page);
+
+$smarty->assign("query", $query);
+$smarty->assign("search_titles", $search_titles);
+$smarty->assign("search_descriptions", $search_descriptions);
+$smarty->assign("search_answers", $search_answers);
+$smarty->assign("search_order", $search_order);
+$smarty->assign("orders", $orders);
+$smarty->assign("categories", $categories);
+$smarty->assign("limit", $limit);
+
+
+$smarty->assign("page", $page);
+$smarty->assign("url", $url);
+
+
+$smarty->assign("results", $results);
 
 $smarty->display("common/header.tpl");
+$smarty->display("forms/search_form.tpl");
+$smarty->display("lists/search_results.tpl");
+$smarty->display("common/footer.tpl"); ?>
 
-?>
-
-<!--Content-->
-<div class="container">
-  <h1 class="text-center">Advanced Search</h1>
-
-  <form>
-    <div class="form-group">
-      <label for="text">Search for:</label>
-      <input type="text" class="form-control" id="text">
-    </div>
-    
-    <div class="container">
-      <div class="row">
-        
-        <div class="col-sm-4">
-          <div class="checkbox">
-            <label><input type="checkbox" value="">Search in Titles</label>
-          </div>
-        </div>
-        
-        <div class="col-sm-4">
-          <div class="checkbox">
-            <label><input type="checkbox" value="">Search in Descriptions</label>
-          </div>
-        </div>
-        
-        <div class="col-sm-4">
-          <div class="checkbox">
-            <label><input type="checkbox" value="">Search in Answers</label>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="order">Order by:</label>
-      <select class="form-control" id="order">
-        <option>Most Recent</option>
-        <option>Least Recent</option>
-        <option>Best Score</option>
-        <option>Most Voted</option>
-        <option>Least Voted</option>
-        <option>Peraltamometer</option>
-      </select>
-    </div>
-
-    <h5>Filter by Category</h5>
-
-    <div class="container">
-      <div class="row">
-        
-        <div class="col-sm-3">
-          <div class="checkbox">
-            <label><input type="checkbox" value="">Foods and Drinks</label>
-          </div>
-        </div>
-        
-        <div class="col-sm-3">
-          <div class="checkbox">
-            <label><input type="checkbox" value="">Sports</label>
-          </div>
-        </div>
-        
-        <div class="col-sm-3">
-          <div class="checkbox">
-            <label><input type="checkbox" value="">Computers</label>
-          </div>
-        </div>
-
-        <div class="col-sm-3">
-          <div class="checkbox">
-            <label><input type="checkbox" value="">Art</label>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  
-    <button type="submit" class="btn btn-success btn-block">Search</button>
-    <button type="reset" class="btn btn-danger btn-block">Reset</button>
-  </form>
-</div>
-
-<!-- RESULTS -->
-
-<h1 class="text-center">Results</h1>
-
-<!--Multi Link-->
-<div class="container answer">
-  <div class="row">
-    <div class="col-sm-9 pre">
-      <h4><a href="question.php" class="home-question-title">Is Picasso a Renaissance influence?</a><br>
-        <small>asked 55 seconds ago by <a href="../profile/view_profile.php">Peralta</a> in <a href="search.php">Arts</a></small>
-      </h4>
-    </div>
-    <div class="col-sm-1">
-      <h4 class="text-center">
-        <small>
-          <span class="glyphicon glyphicon-thumbs-up"></span>        
-          2 
-          <span class="glyphicon glyphicon-thumbs-up"></span>
-          upvotes
-        </small>
-      </h4>
-    </div>
-    <div class="col-sm-1">
-      <h4 class="text-center">
-        <small>
-          <span class="glyphicon glyphicon-thumbs-down"></span>        
-          5
-          <span class="glyphicon glyphicon-thumbs-down"></span>
-           downvotes
-        </small>
-      </h4>
-    </div>
-    <div class="col-sm-1">
-      <h4 class="text-center">
-        <small>
-          <span class="glyphicon glyphicon-comment"></span>
-          0
-          <span class="glyphicon glyphicon-comment"></span>
-           answers
-        </small>
-      </h4>
-    </div>
-  </div>
-</div>
-
-<hr class="main-menu-questions-divider">
-
-
-<?php $smarty->display("common/footer.tpl"); ?>
