@@ -28,7 +28,7 @@
             <li><a class="glyphicon glyphicon-comment" href="#" data-toggle="tooltip" title="Comment"></a></li>
             <li><a class="glyphicon glyphicon-flag" href="#" data-toggle="tooltip" title="Report"></a></li>
             {if $currentUser.username==$answer.author.username || $currentUser.privilege_level=="Administrator" || $currentUser.privilege_level=="Moderator"}
-                <li><a class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></a></li>
+                <li><a class="glyphicon glyphicon-pencil" href="{$BASE_URL}pages/posts/post_edit.php?id={$answer.post_id}"  data-toggle="tooltip" title="Edit"></a>
                 <li><a class="glyphicon glyphicon-trash" href="#" data-toggle="tooltip" title="Remove"></a></li>
             {/if}
         {/if}
