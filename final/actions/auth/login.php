@@ -2,13 +2,22 @@
     include_once ("../../config/init.php");
 
     include_once ($BASE_DIR."database/members.php");
+    include_once ($BASE_DIR."database/votes.php");
 
-	$username = $_POST['username'];
+    if (!isset($_POST['username']))
+        die('Missing username.');
+
+    if (!isset($_POST['password']))
+        die('Missing password.');
+
+
+    $username = $_POST['username'];
   	$password = $_POST['password'];  
 
 	if ($id = isLoginCorrect($username, $password)) {
 
 		$_SESSION['username'] = $username;
+		$_SESSION['votedPosts'] = getPostsVotedOn(getMemberByUsername($username)["id"]);
 
 		$destination = $BASE_URL."pages/profile/view_profile.php";
 

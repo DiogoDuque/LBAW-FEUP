@@ -239,29 +239,51 @@ EXECUTE PROCEDURE one_correct_answer_per_question_f();
 
 -- Deleting a vote decresases downvotes/upvotes
 
-CREATE FUNCTION update_votes_when_deleted_f()
+CREATE FUNCTION update_post_votes_f()
   RETURNS TRIGGER AS $$
 BEGIN
-  IF(OLD.value) -- upvote
+  IF (TG_OP = 'DELETE')
   THEN
-    UPDATE post
-    SET up_votes = COALESCE(postgres.public.post.up_votes, 0) - 1
-    WHERE id = old.post_id;
+    IF (OLD.value) -- upvote
+    THEN
+      UPDATE post
+      SET up_votes = up_votes - 1
+      WHERE id = old.post_id;
+    ELSE
+      UPDATE post
+      SET down_votes = down_votes - 1
+      WHERE id = old.post_id;
+    END IF;
+
   ELSE
-    UPDATE post
-    SET down_votes = COALESCE(postgres.public.post.down_votes, 0) - 1
-    WHERE id = old.post_id;
+
+    IF (TG_OP = 'UPDATE')
+    THEN
+      IF (OLD.value) -- upvote
+      THEN
+        UPDATE post
+        SET up_votes = up_votes - 1, down_votes = down_votes + 1
+        WHERE id = old.post_id;
+      ELSE
+        UPDATE post
+        SET down_votes = down_votes - 1, up_votes = up_votes + 1
+        WHERE id = old.post_id;
+      END IF;
+
+    END IF;
+
   END IF;
 
   RETURN OLD;
+
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER update_votes_when_deleted_tr
-AFTER DELETE
+CREATE TRIGGER update_post_votes_tr
+AFTER DELETE OR UPDATE
   ON vote
 FOR EACH ROW
-EXECUTE PROCEDURE update_votes_when_deleted_f();
+EXECUTE PROCEDURE update_post_votes_f();
 
 
 /** OTHER INDEXES **/

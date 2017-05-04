@@ -1,6 +1,6 @@
 <?php
 
-include_once ("../../config/init.php");
+include_once("../../config/init.php");
 
 include_once ($BASE_DIR."database/votes.php");
 include_once ($BASE_DIR."database/members.php");
@@ -40,7 +40,14 @@ else{
     $response['status'] = success;
 }
 
-updateVotes();
+if(updateVotes() != true) {
+    $response['status'] = error;
+}
+else{
+    $response['status'] = success;
+}
+
+$_SESSION['votedPosts'] = getPostsVotedOn(getMemberByUsername($_SESSION['username'])['id']);
 
 echo json_encode($response);
 

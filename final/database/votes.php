@@ -11,20 +11,21 @@ function addVote($post_id, $member_id, $value)
         $convertedVote = ($vote["value"]) ? 'true' : 'false';
 
         if($convertedVote === $value){
-            echo "Vote deleted.";
+            echo 'Deleted vote with value '.$value;
             return deleteVote($post_id, $member_id);
         }
         else{
-            echo "Vote updated.";
+            echo 'Updated vote with value '.$value;
             return updateVote($post_id, $member_id, $value);
         }
     }
     else {
 
+        echo 'Inserted vote with value '.$value;
+
         try {
             $stmt = $conn->prepare("INSERT INTO public.vote(post_id, member_id, value) VALUES (?, ?, ?)");
             $stmt->execute(array($post_id, $member_id, $value));
-            echo "Vote inserted.";
             return true;
         } catch (PDOException $err) {
 
@@ -50,11 +51,32 @@ function getVote($post_id, $member_id){
     }
 }
 
-function updateVote($post_id, $member_id, $value){
+function getPostsVotedOn($member_id){
     global $conn;
 
-    echo "Update: ";
-    var_dump($post_id, $member_id, $value);
+    try {
+        $stmt = $conn->prepare("SELECT vote.post_id FROM public.vote WHERE vote.member_id = ?");
+        $stmt->execute(array($member_id));
+
+        $results = $stmt->fetchAll();
+
+        $ret = array();
+
+        foreach ($results as $result)
+        {
+            array_push($ret, $result['post_id']);
+        }
+
+        return $ret;
+    }
+
+    catch (PDOException $err) {
+        echo $err->getMessage();
+    }
+}
+
+function updateVote($post_id, $member_id, $value){
+    global $conn;
 
     try {
         $stmt = $conn->prepare("UPDATE public.vote SET value = ? WHERE post_id = ? AND member_id = ?");
@@ -85,9 +107,46 @@ function deleteVote($post_id, $member_id){
 
 function updateVotes(){
 
+    $lastUpdate = getLastUpdateDate();
+
+    if($lastUpdate == "")
+    {
+        $lastUpdate = date('2017-01-01 00:00:00');
+    }
+
     global $conn;
 
-    $stmt = $conn->prepare("SELECT update_votes_in_posts_f (?)");
-    $stmt->execute(array(date('Y-m-d')));
+    try {
 
+
+        $stmt = $conn->prepare("SELECT update_votes_in_posts_f (?)");
+        $stmt->execute(array($lastUpdate));
+
+        var_dump($lastUpdate);
+
+        $currentDate = date('Y-m-d H:i:s');
+
+        $lastUpdate = $currentDate;
+        updateLastUpdateDate($lastUpdate);
+
+        return true;
+    }
+
+    catch (PDOException $err) {
+        echo $err->getMessage();
+        return false;
+    }
+
+}
+
+function updateLastUpdateDate($date) {
+    $file = 'lastUpdate.txt';
+
+    file_put_contents($file, $date);
+}
+
+function getLastUpdateDate(){
+    $file = 'lastUpdate.txt';
+
+    return file_get_contents($file);
 }

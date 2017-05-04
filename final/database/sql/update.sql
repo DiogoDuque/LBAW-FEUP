@@ -62,11 +62,11 @@ END;
 $BODY$ LANGUAGE PLPGSQL;
 
 -- Usage
-SELECT update_member_profile_image_f(1, 1) AS Changed;
+-- SELECT update_member_profile_image_f(1, 1) AS Changed;
 
 
 -- Update the votes count on posts where it is needed
-CREATE OR REPLACE FUNCTION count_votes_f(id integer, last_update DATE, v BOOL) RETURNS INTEGER AS $BODY$
+CREATE OR REPLACE FUNCTION count_votes_f(id integer, last_update TIMESTAMP, v BOOL) RETURNS INTEGER AS $BODY$
 DECLARE
   result INTEGER;
 BEGIN
@@ -76,16 +76,16 @@ BEGIN
 END;
 $BODY$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION update_votes_in_posts_f (last_update DATE) RETURNS VOID AS $BODY$
+CREATE OR REPLACE FUNCTION update_votes_in_posts_f (last_update TIMESTAMP) RETURNS VOID AS $BODY$
 BEGIN
   UPDATE post
     SET up_votes=up_votes+(count_votes_f(post.id,last_update,TRUE)),
-      down_votes=down_votes+(count_votes_f(post.id,last_update,FALSE) - 2);
+      down_votes=down_votes+(count_votes_f(post.id,last_update,FALSE));
 END;
 $BODY$ LANGUAGE plpgsql;
 
 -- Usage
-SELECT update_votes_in_posts_f('1999-01-08');
+-- SELECT update_votes_in_posts_f('2017-05-04 17:21:00');
 
 
 -- Update user reputation base on votes on his posts
@@ -107,4 +107,4 @@ END;
 $BODY$ LANGUAGE plpgsql;
 
 -- Usage
-SELECT update_reputation_f('1999-01-08');
+-- SELECT update_reputation_f('1999-01-08');
