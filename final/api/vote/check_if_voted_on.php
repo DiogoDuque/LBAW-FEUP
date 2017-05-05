@@ -8,14 +8,18 @@ if(!isset($_POST['post_id']))
 header('Content-Type: application/json');
 $response = array();
 
-var_dump(intval($_POST['post_id']), $_SESSION['votedPosts']);
+//var_dump(intval($_POST['post_id']), $_SESSION['votedPosts']);
 
-if(in_array(intval($_POST['post_id']), $_SESSION['votedPosts']))
+foreach ($_SESSION['votedPosts'] as $vote)
 {
-    $response['found'] = true;
-}
-else{
-    $response['found'] = false;
+    if(intval($_POST['post_id']) === $vote['post_id'])
+    {
+        $response['found'] = true;
+        $response['value'] = $vote['value'];
+    }
+    else{
+        $response['found'] = false;
+    }
 }
 
 echo json_encode($response);

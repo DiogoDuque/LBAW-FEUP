@@ -11,17 +11,13 @@ function addVote($post_id, $member_id, $value)
         $convertedVote = ($vote["value"]) ? 'true' : 'false';
 
         if($convertedVote === $value){
-            echo 'Deleted vote with value '.$value;
             return deleteVote($post_id, $member_id);
         }
         else{
-            echo 'Updated vote with value '.$value;
             return updateVote($post_id, $member_id, $value);
         }
     }
     else {
-
-        echo 'Inserted vote with value '.$value;
 
         try {
             $stmt = $conn->prepare("INSERT INTO public.vote(post_id, member_id, value) VALUES (?, ?, ?)");
@@ -55,19 +51,12 @@ function getPostsVotedOn($member_id){
     global $conn;
 
     try {
-        $stmt = $conn->prepare("SELECT vote.post_id FROM public.vote WHERE vote.member_id = ?");
+        $stmt = $conn->prepare("SELECT vote.post_id, vote.value FROM public.vote WHERE vote.member_id = ?");
         $stmt->execute(array($member_id));
 
         $results = $stmt->fetchAll();
 
-        $ret = array();
-
-        foreach ($results as $result)
-        {
-            array_push($ret, $result['post_id']);
-        }
-
-        return $ret;
+        return $results;
     }
 
     catch (PDOException $err) {
@@ -121,8 +110,6 @@ function updateVotes(){
 
         $stmt = $conn->prepare("SELECT update_votes_in_posts_f (?)");
         $stmt->execute(array($lastUpdate));
-
-        var_dump($lastUpdate);
 
         $currentDate = date('Y-m-d H:i:s');
 

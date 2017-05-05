@@ -32,12 +32,14 @@ function castVote(elem, voteValue, username){
 
             if(response.status === "success")
             {
-                elem.toggleClass('on');
+                score_of_post_elemt.fadeOut(200, function() {
+                    score_of_post_elemt.html(response.score);
+                    score_of_post_elemt.fadeIn().delay(200);
+                });
+
+                highlightMemberVotes(elem);
                 console.log("elem " + elem);
 
-                score_of_post_elemt.text(function(i,oldVal){
-                    return parseInt(oldVal,10) + v;
-                });
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -50,8 +52,6 @@ function highlightMemberVotes(elem){
 
     var post_id = elem.data("post_id");
 
-    console.log(post_id);
-
     $.ajax({
         type: "POST",
         url: BASE_URL+"api/vote/check_if_voted_on.php",
@@ -60,8 +60,23 @@ function highlightMemberVotes(elem){
         },
         success: function(response){
 
-            if(response.found === "true") {
-                //elem.addClass('on');
+            if(response.found === true) {
+
+                if(response.value == true)
+                {
+                    var up = $(".glyphicon-thumbs-up" + "[data-post_id='" + post_id + "']");
+                    up.addClass('on');
+                }
+                else
+                {
+                    var down = $(".glyphicon-thumbs-down" + "[data-post_id='" + post_id + "']");
+                    down.addClass('on');
+                }
+
+            }
+            else
+            {
+                elem.removeClass('on');
             }
 
         },
@@ -84,7 +99,7 @@ $(document).ready(function () {
         castVote($(this),voteValue, username);
     });
 
-    $(".score .glyphicon-thumbs-down, .score .glyphicon-thumbs-up").each(function() {
-        //highlightMemberVotes($(this));
+    $('.post_score').each(function() {
+        highlightMemberVotes($(this));
     });
 });

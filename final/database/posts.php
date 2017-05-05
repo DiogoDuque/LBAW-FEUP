@@ -9,6 +9,25 @@ function getPost($post_id){
     return $stmt->fetch();
 }
 
+function getPostScore($post_id){
+    global $conn;
+
+    try {
+        $stmt = $conn->prepare("SELECT * FROM public.post WHERE id = ?");
+        $stmt->execute(array($post_id));
+
+    } catch (PDOException $err) {
+
+        echo $err->getMessage();
+
+        return false;
+    }
+
+
+    $post = $stmt->fetch();
+
+    return (intval($post['up_votes']) - intval($post['down_votes']));
+}
 
 
 function deletePost($post_id){

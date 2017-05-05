@@ -4,6 +4,7 @@ include_once("../../config/init.php");
 
 include_once ($BASE_DIR."database/votes.php");
 include_once ($BASE_DIR."database/members.php");
+include_once ($BASE_DIR."database/posts.php");
 
 header('Content-Type: application/json');
 $response = array();
@@ -45,6 +46,7 @@ if(updateVotes() != true) {
 }
 else{
     $response['status'] = success;
+    $response['score'] = getPostScore($post_id);
 }
 
 $_SESSION['votedPosts'] = getPostsVotedOn(getMemberByUsername($_SESSION['username'])['id']);
