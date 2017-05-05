@@ -254,24 +254,6 @@ BEGIN
       SET down_votes = down_votes - 1
       WHERE id = old.post_id;
     END IF;
-
-  ELSE
-
-    IF (TG_OP = 'UPDATE')
-    THEN
-      IF (OLD.value) -- upvote
-      THEN
-        UPDATE post
-        SET up_votes = up_votes - 1, down_votes = down_votes + 1
-        WHERE id = old.post_id;
-      ELSE
-        UPDATE post
-        SET down_votes = down_votes - 1, up_votes = up_votes + 1
-        WHERE id = old.post_id;
-      END IF;
-
-    END IF;
-
   END IF;
 
   RETURN OLD;
@@ -280,7 +262,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_post_votes_tr
-AFTER DELETE OR UPDATE
+AFTER DELETE
   ON vote
 FOR EACH ROW
 EXECUTE PROCEDURE update_post_votes_f();

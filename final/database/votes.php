@@ -2,11 +2,9 @@
 
 function addVote($post_id, $member_id, $value)
 {
-    global $conn;
-
     $vote = getVote($post_id, $member_id);
 
-    if(!$vote === false) {
+    if(!($vote === false)) {
 
         $convertedVote = ($vote["value"]) ? 'true' : 'false';
 
@@ -14,21 +12,16 @@ function addVote($post_id, $member_id, $value)
             return deleteVote($post_id, $member_id);
         }
         else{
-            return updateVote($post_id, $member_id, $value);
+            $delete = deleteVote($post_id, $member_id);
+            $create = createVote($post_id, $member_id, $value);
+
+            return($delete && $create);
         }
     }
     else {
 
-        try {
-            $stmt = $conn->prepare("INSERT INTO public.vote(post_id, member_id, value) VALUES (?, ?, ?)");
-            $stmt->execute(array($post_id, $member_id, $value));
-            return true;
-        } catch (PDOException $err) {
+        return createVote($post_id, $member_id, $value);
 
-            echo $err->getMessage();
-
-            return false;
-        }
     }
 }
 
@@ -64,17 +57,17 @@ function getPostsVotedOn($member_id){
     }
 }
 
-function updateVote($post_id, $member_id, $value){
+function createVote($post_id, $member_id, $value){
     global $conn;
 
     try {
-        $stmt = $conn->prepare("UPDATE public.vote SET value = ? WHERE post_id = ? AND member_id = ?");
-        $stmt->execute(array($value, $post_id, $member_id));
+        $stmt = $conn->prepare("INSERT INTO public.vote(post_id, member_id, value) VALUES (?, ?, ?)");
+        $stmt->execute(array($post_id, $member_id, $value));
         return true;
-    }
+    } catch (PDOException $err) {
 
-    catch (PDOException $err) {
         echo $err->getMessage();
+
         return false;
     }
 }

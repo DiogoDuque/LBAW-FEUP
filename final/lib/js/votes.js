@@ -62,15 +62,18 @@ function highlightMemberVotes(elem){
 
             if(response.found === true) {
 
+                var up = $(".glyphicon-thumbs-up" + "[data-post_id='" + post_id + "']");
+                var down = $(".glyphicon-thumbs-down" + "[data-post_id='" + post_id + "']");
+
                 if(response.value == true)
                 {
-                    var up = $(".glyphicon-thumbs-up" + "[data-post_id='" + post_id + "']");
                     up.addClass('on');
+                    down.removeClass('on');
                 }
                 else
                 {
-                    var down = $(".glyphicon-thumbs-down" + "[data-post_id='" + post_id + "']");
                     down.addClass('on');
+                    up.removeClass('on');
                 }
 
             }

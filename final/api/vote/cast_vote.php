@@ -36,6 +36,8 @@ $voterId = intval(getMemberByUsername($_SESSION["username"])["id"]);
 if(addVote($post_id, $voterId, $voteValue) != true)
 {
     $response['status'] = error;
+    echo json_encode($response);
+    return;
 }
 else{
     $response['status'] = success;
@@ -43,6 +45,8 @@ else{
 
 if(updateVotes() != true) {
     $response['status'] = error;
+    echo json_encode($response);
+    return;
 }
 else{
     $response['status'] = success;
