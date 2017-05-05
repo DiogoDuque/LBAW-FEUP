@@ -9,6 +9,16 @@ function getCategory($category_id){
     return $stmt->fetch();
 }
 
+function deleteCategory($category_id){
+    global $conn;
+
+    $stmt = $conn->prepare("DELETE FROM public.category WHERE id = :id");
+    $stmt->bindParam(':id',$category_id,PDO::PARAM_INT);
+
+    return $stmt->execute();
+}
+
+
 function addCategory($category_name){
     global $conn;
 
