@@ -13,7 +13,7 @@ if (!isset($_SESSION['username']))
 //delete only happens if user==author or user.hasPermissions
 $member = getMemberByUsername($_SESSION['username']);
 $post = getPost($_GET['id']);
-if($member['privilege_level'] == "Member" || $member['id'] != $post['author_id'])
+if($member['privilege_level'] == "Member" && $member['id'] != $post['author_id'])
 	die('You don\'t have permissions for deleting this question...');
 
 //try to delete question
