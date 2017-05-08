@@ -5,6 +5,8 @@
     <ul class="actions pull-right">
         <li><a class="glyphicon glyphicon-flag" href="#" data-toggle="tooltip" title="Report"></a></li>
         <lti><a class="glyphicon glyphicon-pencil" href="#" data-toggle="tooltip" title="Edit"></a></lti>
-        <li><a class="glyphicon glyphicon-trash" href="#" data-toggle="tooltip" title="Remove"></a></li>
+        <li><a class="glyphicon glyphicon-trash"
+               href="{$BASE_URL}actions/post/comment_delete.php?id={$comment.id}"
+               data-toggle="tooltip" title="Remove"></a></li>
     </ul>
 </div>

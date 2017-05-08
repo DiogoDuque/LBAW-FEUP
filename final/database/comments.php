@@ -8,3 +8,24 @@ function getCommentsToPost($post_id){
 
     return $stmt->fetchAll();
 }
+
+
+function getComment($id){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM public.comment WHERE id = :id");
+    $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetch();
+}
+
+
+
+function deleteComment($id){
+    global $conn;
+
+    $stmt = $conn->prepare("DELETE FROM public.comment WHERE id = :id");
+    $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+    return $stmt->execute();
+}
