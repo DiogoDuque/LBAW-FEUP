@@ -21,19 +21,7 @@ $response = array();
 $adminId = intval(getMemberByUsername($_SESSION['username'])['id']);
 $targetMemberId = intval(getMemberByUsername($_POST['targetMemberUsername'])['id']);
 
-var_dump($_POST['targetMemberUsername'], $targetMemberId);
-
-if(!createPromotionDemotion($_POST['newPrivilegeLevel'], $targetMemberId, $adminId))
-{
-    $response['status'] = error;
-    $response['errorMessage'] = "Could not create new Promotion/Demotion";
-    echo json_encode($response);
-    return;
-}
-else
-{
-    $response['status'] = success;
-}
+$response = createPromotionDemotion($_POST['newPrivilegeLevel'], $targetMemberId, $adminId);
 
 echo json_encode($response);
 
