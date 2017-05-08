@@ -3,7 +3,6 @@ DROP FUNCTION IF EXISTS update_member_profile_image_f(INTEGER, INTEGER) CASCADE 
 DROP FUNCTION IF EXISTS update_reputation_f(DATE);
 
 DROP FUNCTION IF EXISTS count_votes_f(INTEGER, DATE, BOOLEAN) CASCADE ;
-DROP FUNCTION IF EXISTS check_admin_privileges_f() CASCADE ;
 
 DROP FUNCTION IF EXISTS find_answers_of_a_question_f(INTEGER) CASCADE ;
 DROP FUNCTION IF EXISTS find_posts_of_member_f(INTEGER) CASCADE ;

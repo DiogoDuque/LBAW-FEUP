@@ -54,8 +54,12 @@ $user = getMemberByUsername($_SESSION["username"]);
                                     <td><a href="mailto:<?=$user["email"]?>"><?=$user["email"]?></a></td>
                                 </tr>
                                 <tr>
-                                <td>Score:</td>
-                                <td>-5000</td>
+                                    <td>Score:</td>
+                                    <td>-5000</td>
+                                </tr>
+                                <tr>
+                                    <td>Member Privilege</td>
+                                    <td><?=$user['privilege_level']?></td>
                                 </tr>
 
                                 </tbody>

@@ -121,12 +121,12 @@ $smarty->display("common/header.tpl");
                         </div>
                         <div class="panel-body">
 
-                            <form class="form form-vertical">
+                            <form action="<?=$BASE_URL?>api/admin/promotion_demotion.php" method="POST" class="form form-vertical">
 
                                 <div class="control-group">
                                     <label>Name</label>
                                     <div class="controls">
-                                        <input type="text" class="form-control" placeholder="Enter Name">
+                                        <input type="text" name="targetMemberUsername" class="form-control" placeholder="Enter Name">
                                     </div>
                                 </div>
 
@@ -134,7 +134,7 @@ $smarty->display("common/header.tpl");
                                 <div class="control-group">
                                     <label>Permissions</label>
                                     <div class="controls">
-                                        <select class="form-control">
+                                        <select class="form-control" name="newPrivilegeLevel">
                                             <option>Moderator</option>
                                             <option>Admin</option>
                                         </select>
