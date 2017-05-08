@@ -1,5 +1,7 @@
 <?php
 
+// TODO : verify if member is admin
+
 include_once("../../config/init.php");
 include_once ($BASE_DIR."database/promotions_demotions.php");
 include_once ($BASE_DIR."database/members.php");
