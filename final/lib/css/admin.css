@@ -1,0 +1,15 @@
+.glyphicon { margin-right:10px; }
+
+.title{
+    margin: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.panel-group{
+    margin-top: 1rem;
+}
+
+#accordion > div > a > div{
+    color: #333;
+}
+

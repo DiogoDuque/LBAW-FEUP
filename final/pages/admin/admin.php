@@ -43,19 +43,60 @@ $memberInfos = getAllUsernamesAndPrivileges();
 $smarty->display("common/header.tpl");
 ?>
 
+<link rel="stylesheet" type="text/css" href= "<?=$BASE_URL?>lib/css/admin.css">
+
 <!-- Main -->
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <!-- Left column -->
-            <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+            <a class="title" href="#"><strong><i class="glyphicon glyphicon-dashboard"></i>My Dashboard</strong></a>
 
+            <div class="panel-group" id="accordion">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-folder-close">
+                            </span>Content
+                        </h4>
+                    </div>
+                </a>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">Articles</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="http://www.jquery2dotnet.com">News</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="http://www.jquery2dotnet.com">Newsletters</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">Comments</a>
+                                        <span class="badge">42</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <hr>
 
-            <ul class="list-unstyled">
+            <ul class="panel-group">
                 <li class="nav-header">
                     <a href="#" data-toggle="collapse" data-target="#menu2">
-                        <h5>Reports <i class="glyphicon glyphicon-chevron-right"></i></h5>
+                        <h5>Members<i class="glyphicon glyphicon-chevron-right"></i></h5>
                     </a>
 
                     <ul class="list-unstyled collapse" id="menu2">
@@ -74,7 +115,7 @@ $smarty->display("common/header.tpl");
         <div class="col-md-9">
 
             <!-- column 2 -->
-            <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
+            <a href="#"><strong></strong></a>
             <hr>
             <div class="row">
 
