@@ -32,7 +32,7 @@ CREATE TABLE public.member
   id              SERIAL PRIMARY KEY,
   username        VARCHAR(20)                         NOT NULL,
   email           VARCHAR(254)                        NOT NULL,
-  hashed_pass     CHAR(64)                            NOT NULL,
+  hashed_pass     VARCHAR(255)                        NOT NULL,
   privilege_level PRIVILEGELEVEL DEFAULT 'Member'     NOT NULL,
   reputation      INT DEFAULT 0                       NOT NULL,
   image_id        INT,

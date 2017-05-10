@@ -90,14 +90,14 @@ function createUser($username, $password, $email) {
 
     if(checkIfEmailExists($email))
     {
-        $_SESSION['error_messages'] =  "An account is already associated with the email given.";
+        $_SESSION['error_messages'] = "An account is already associated with the email given.";
 
         return -2;
     }
 
     try {
         $stmt = $conn->prepare("INSERT INTO member (username, email, hashed_pass)VALUES (?, ?, ?)");
-        $stmt->execute(array($username, $email, sha1($password)));
+        $stmt->execute(array($username, $email, password_hash($password, PASSWORD_BCRYPT)));
     }
     catch (PDOException $e)
     {
@@ -111,10 +111,15 @@ function isLoginCorrect($username, $password) {
     global $conn;
     $stmt = $conn->prepare("SELECT * 
                             FROM member 
-                            WHERE username = ? AND hashed_pass = ?");
-    $stmt->execute(array($username, sha1($password)));
+                            WHERE username = ?");
+    $stmt->execute(array($username));
 
-    return ($stmt->fetch()["id"] != null);
+    $user = $stmt->fetch();
+    if($user == null)
+        return "User does not exist!";
+    else if(!password_verify($password, $user['hashed_pass']))
+        return "Password was not correct! ".$user['hashed_pass'];
+    else return $user;
 }
 
 function getAllUsernamesAndPrivileges(){
