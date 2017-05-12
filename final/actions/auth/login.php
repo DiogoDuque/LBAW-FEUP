@@ -12,9 +12,10 @@
 
 
     $username = $_POST['username'];
-  	$password = $_POST['password'];  
+  	$password = $_POST['password'];
 
-	if ($id = isLoginCorrect($username, $password)) {
+    $loginResult = isLoginCorrect($username, $password);
+	if (is_array($loginResult)) {
 
 		$_SESSION['username'] = $username;
 		$_SESSION['votedPosts'] = getPostsVotedOn(getMemberByUsername($username)["id"]);
@@ -24,7 +25,7 @@
 		header("Location: ".$destination);
 
 	} else {
-		$_SESSION['error_messages'] = "Error: username or password wrong!";
+        $_SESSION['error_messages'] = $loginResult;
 
         $destination = $BASE_URL."pages/home.php";
 

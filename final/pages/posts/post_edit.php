@@ -55,7 +55,6 @@ $member_id = intval(getMemberByUsername($_SESSION["username"])["id"]);
         </div>
 
         <button type="submit" onclick="sendEditedText()" class="btn btn-success">Apply</button>
-        <button type="reset" onclick="resetEditedText()" class="btn btn-danger">Reset</button>
     </form>
 </div>
 

@@ -52,12 +52,12 @@
     $smarty->assign("question_id",$question_id );
 
 
-$smarty->assign("question_comments", $question_comments);
+    $smarty->assign("question_comments", $question_comments);
     $smarty->assign("question_answers", $question_answers);
 
     $smarty->assign("currentUser",$currentUser);
 
-
+    $isShareable=true;
     $smarty->display("common/header.tpl");
     $smarty->display("posts/question.tpl");
 
