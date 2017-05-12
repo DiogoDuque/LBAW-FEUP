@@ -6,7 +6,7 @@ include_once ($BASE_DIR."database/questions.php");
 
 $url = preg_replace('/&page=(\d+)/','',$_SERVER['QUERY_STRING']);
 $query = "";
-$search_titles = true;
+$search_titles = false;
 $search_descriptions = false;
 $search_answers = false;
 $search_order = "Most Recent";
@@ -18,10 +18,10 @@ foreach($categories as $key => $value) {
 }
 
 $orders =  [
-    "Most Recent" => "post.date",
-    "Least Recent" => "foo",
-    "Best Score" => "foo",
-    "Worst Score" => "foo"
+    "Most Recent" => "date DESC",
+    "Least Recent" => "date",
+    "Best Score" => "score DESC",
+    "Worst Score" => "score"
 ];
 
 //Set form
@@ -47,6 +47,13 @@ if(isset($_GET["search_categories"])){
     }
 }
 
+if(count($search_categories) == 0)
+    foreach($categories as $key => $value) {
+        array_push( $search_categories, $value['id']);
+    }
+
+if(!$search_descriptions && !$search_answers )
+    $search_titles = true;
 
 //Search
 $results = [];

@@ -64,7 +64,7 @@
                             class="caret"></span></a>
                     <ul class="dropdown-menu">
                         {foreach $categories as $category}
-                            <li><a href="#">{$category.name}</a></li>
+                            <li><a href="{$BASE_URL}pages/home.php?category={$category.id}">{$category.name}</a></li>
                         {/foreach}
                     </ul>
                 </li>

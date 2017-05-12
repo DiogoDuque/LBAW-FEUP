@@ -1,30 +1,15 @@
 <?php
 
-function getMostRecentQuestions($number_of_questions){
-    global $conn;
-
-    $stmt = $conn->prepare("SELECT * FROM public.question JOIN public.post ON question.post_id = post.id ORDER BY creation_date DESC LIMIT ?");
-    $stmt->execute(array($number_of_questions));
-
-    return $stmt->fetchAll();
+function getMostRecentQuestions($category, $number_of_questions){
+    return searchAll( "date DESC", $category,$number_of_questions, 1);
 }
 
-function getMostPopularQuestions($number_of_questions){
-    global $conn;
-
-    $stmt = $conn->prepare("SELECT * FROM public.question ORDER BY view_count DESC LIMIT ?");
-    $stmt->execute(array($number_of_questions));
-
-    return $stmt->fetchAll();
+function getMostPopularQuestions($category, $number_of_questions){
+    return searchAll( "score DESC", $category,$number_of_questions, 1);
 }
 
-function getMostControversialQuestions($number_of_questions){
-    global $conn;
-
-    $stmt = $conn->prepare("SELECT * FROM public.question JOIN public.post ON question.post_id = post.id ORDER BY down_votes DESC LIMIT ?");
-    $stmt->execute(array($number_of_questions));
-
-    return $stmt->fetchAll();
+function getMostControversialQuestions($category, $number_of_questions){
+    return searchAll( "post.down_votes DESC", $category,$number_of_questions, 1);
 }
 
 function getQuestion($post_id){
@@ -62,13 +47,64 @@ function submitQuestion($title, $category, $text, $author_id){
     return $post_id;
 }
 
+function searchAll($search_order,$search_categories,$limit,$page){
+    $offset = ($page-1)*$limit;
+    $cat_list = "{".implode(', ',$search_categories)."}";
+    global $conn;
+
+    $stmt = $conn->prepare(
+        "SELECT question.post_id AS id, question.title AS title, (post.up_votes - post.down_votes) AS score,
+                          member.id AS author_id ,member.username AS author, question.answer_count AS answer_count,
+                          category.id AS category_id, category.name AS category, version.date AS date, count(*) OVER() as count
+                    FROM question 
+                    JOIN post ON question.post_id = post.id
+                    JOIN version ON version.post_id = post.id
+                    JOIN member ON post.author_id = member.id
+                    JOIN category ON category.id = question.category_id
+                    WHERE category.id = ANY (:search_categories::int[])
+                    AND version.date=(SELECT MAX(version2.date) FROM version AS version2 WHERE version.id=version2.id)
+ 
+ 
+                    ORDER BY $search_order
+                    LIMIT :limit
+                    OFFSET :offset;"
+    );
+    $stmt->bindParam(':search_categories',$cat_list);
+    $stmt->bindParam(':limit',$limit,PDO::PARAM_INT);
+    $stmt->bindParam(':offset',$offset,PDO::PARAM_INT);
+
+
+    $stmt->execute();
+    $res =  $stmt->fetchAll();
+
+    $questions = [];
+    foreach($res as $key => $question){
+        $q = [
+            "id" => $question['id'],
+            "title" => $question['title'],
+            "score" => $question['score'],
+            "answer_count" => $question['answer_count'],
+            "author_id" => $question['author_id'],
+            "author" => $question['author'],
+            "category_id" => $question['category_id'],
+            "category" => $question['category'],
+            "date" => $question['date'],
+            "count" => $question['count'],
+        ];
+        array_push($questions, $q);
+    }
+    return $questions;
+}
+
 function search($query, $search_titles, $search_descriptions,$search_answers,$search_order,$search_categories,$limit,$page){
     $offset = ($page-1)*$limit;
     $cat_list = "{".implode(', ',$search_categories)."}";
     global $conn;
 
     $stmt = $conn->prepare(
-        "SELECT question.post_id, question.title, post.up_votes, post.down_votes, member.id ,member.username, question.answer_count, category.id, category.name, version.date, count(*) OVER() as count
+        "SELECT question.post_id AS id, question.title AS title, (post.up_votes - post.down_votes) AS score,
+                          member.id AS author_id ,member.username AS author, question.answer_count AS answer_count,
+                          category.id AS category_id, category.name AS category, version.date AS date, count(*) OVER() as count
                     FROM question 
                     JOIN post ON question.post_id = post.id
                     JOIN version ON version.post_id = post.id
@@ -90,32 +126,33 @@ function search($query, $search_titles, $search_descriptions,$search_answers,$se
                         ))
                     )
  
-                    ORDER BY :order
+ 
+                    ORDER BY $search_order
                     LIMIT :limit
                     OFFSET :offset;"
     );
     $stmt->bindParam(':search_categories',$cat_list);
     $stmt->bindParam(':query',$query,PDO::PARAM_STR);
-    $stmt->bindParam(':order',$search_order,PDO::PARAM_STR);
     $stmt->bindParam(':limit',$limit,PDO::PARAM_INT);
     $stmt->bindParam(':offset',$offset,PDO::PARAM_INT);
     $stmt->bindParam(':search_titles',$search_titles,PDO::PARAM_BOOL);
     $stmt->bindParam(':search_descriptions',$search_descriptions,PDO::PARAM_BOOL);
     $stmt->bindParam(':search_answers',$search_answers,PDO::PARAM_BOOL);
+
     $stmt->execute();
     $res =  $stmt->fetchAll();
 
     $questions = [];
     foreach($res as $key => $question){
         $q = [
-            "id" => $question['post_id'],
+            "id" => $question['id'],
             "title" => $question['title'],
-            "score" => $question['up_votes'] - $question['down_votes'],
+            "score" => $question['score'],
             "answer_count" => $question['answer_count'],
-            "author_id" => $question['id'],
-            "author_name" => $question['username'],
-            "category_id" => $question['category.id'],
-            "category_name" => $question['name'],
+            "author_id" => $question['author_id'],
+            "author" => $question['author'],
+            "category_id" => $question['category_id'],
+            "category" => $question['category'],
             "date" => $question['date'],
             "count" => $question['count'],
         ];
