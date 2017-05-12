@@ -4,6 +4,13 @@
     <title>HoWhy</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:url"           content="{$BASE_URL}" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="HoWhy" />
+    <meta property="og:description"   content="The best place to ask your questions!" />
+    <meta property="og:image"         content="{$BASE_URL}resources/img/howhy-logo-with-text.svg" />
+
     <link rel="stylesheet" type="text/css" href= "{$BASE_URL}vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href= "{$BASE_URL}lib/css/main.css">
 
@@ -19,6 +26,17 @@
     <link rel="icon" href="{$BASE_URL}resources/img/logo-64.ico">
 </head>
 <body>
+
+<?php if(isset($isShareable)){ ?>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+<?php } ?>
 
 <!--NavBar-->
 <nav class="navbar navbar-inverse">

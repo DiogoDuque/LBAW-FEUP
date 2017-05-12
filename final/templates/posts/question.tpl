@@ -47,7 +47,7 @@
             <div class="col-md-10">
                 <p>{$question_version.text}</p>
                 <ul class="actions pull-right">
-                    <li><a class="glyphicon glyphicon-link" href="" data-toggle="tooltip" title="Share"></a></li>
+                    <li><a class="glyphicon glyphicon-link" href="https://www.facebook.com/sharer/sharer.php?u={$BASE_URL}pages/posts/question.php?id={$question.post_id}" data-width="200" data-type="button_count" target="_blank" data-toggle="tooltip" title="Share"></a></li>
                     {if $currentUser}
                         <li><a class="glyphicon glyphicon-comment" href="" data-toggle="tooltip" title="Comment"></a>
                         </li>
