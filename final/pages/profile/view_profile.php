@@ -2,6 +2,8 @@
 
 include_once("../../config/init.php");
 include ($BASE_DIR."database/members.php");
+include ($BASE_DIR."database/votes.php");
+
 
 $smarty->display("common/header.tpl");
 
@@ -30,24 +32,8 @@ $user = getMemberByUsername($_SESSION["username"]);
                             <table class="table table-user-information">
                                 <tbody>
                                 <tr>
-                                    <td>Name:</td>
+                                    <td> Username:</td>
                                     <td><?=$user["username"]?></td>
-                                </tr>
-                                <tr>
-                                    <td>Age:</td>
-                                    <td>999</td>
-                                </tr>
-                                <tr>
-                                    <td>Date of Birth:</td>
-                                    <td>23/11/1788</td>
-                                </tr>
-                                <tr>
-                                    <td>Gender:</td>
-                                    <td>Male</td>
-                                </tr>
-                                <tr>
-                                    <td>Home Address:</td>
-                                    <td>China</td>
                                 </tr>
                                 <tr>
                                     <td>Email:</td>
@@ -55,7 +41,7 @@ $user = getMemberByUsername($_SESSION["username"]);
                                 </tr>
                                 <tr>
                                     <td>Score:</td>
-                                    <td>-5000</td>
+                                    <td><?=$score?></td>
                                 </tr>
                                 <tr>
                                     <td>Member Privilege</td>
@@ -66,11 +52,16 @@ $user = getMemberByUsername($_SESSION["username"]);
                                 
                             </table>
 
-                <div class="edit pull-right">	
-                    <a href="#" title="Edit" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+                <div class="edit pull-right">
+                    <a href="#"title="Edit" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
                     <i class="glyphicon glyphicon-edit"></i>
                     </a>
-            </div>
+                 </div>
+                            <div class="delete pull-right">
+                                <a href="../../actions/member/member_delete.php"title="Delete" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </a>
+                            </div>
 
                         </div>
                     </div>

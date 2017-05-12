@@ -130,3 +130,5 @@ function getLastUpdateDate(){
 
     return file_get_contents($file);
 }
+
+
