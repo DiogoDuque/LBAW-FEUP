@@ -11,7 +11,7 @@ $user = getMemberByUsername($_SESSION["username"]);
 
 ?>
 
-{
+
 
 <div class="container">
     <div class="row">
@@ -53,7 +53,7 @@ $user = getMemberByUsername($_SESSION["username"]);
                             </table>
 
                 <div class="edit pull-right">
-                    <a href="#"title="Edit" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
+                    <a href="../../pages/profile/update_profile.php"title="Edit" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
                     <i class="glyphicon glyphicon-edit"></i>
                     </a>
                  </div>

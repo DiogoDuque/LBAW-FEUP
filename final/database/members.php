@@ -128,3 +128,37 @@ function getAllUsernamesAndPrivileges(){
     $stmt->execute();
     return $stmt->fetchAll();
 }
+
+
+
+function updateUser($user,$username, $password, $email) {
+    global $conn;
+
+
+    if(checkIfUsernameExists($username))
+    {
+        $_SESSION['error_messages'] = "Username already exists.";
+
+        return -1;
+    }
+
+    if(checkIfEmailExists($email))
+    {
+        $_SESSION['error_messages'] = "An account is already associated with the email given.";
+
+        return -2;
+    }
+
+    try {
+        $stmt = $conn->prepare("UPDATE member SET username=?, email=?, hashed_pass=hashed_pass WHERE username=?");
+        $stmt->execute(array($username, $email, password_hash($password, PASSWORD_BCRYPT),$user));
+    }
+    catch (PDOException $e)
+    {
+        echo $e->getMessage();
+    }
+
+    return 0;
+}
+
+
