@@ -8,6 +8,8 @@ include ($BASE_DIR."database/votes.php");
 $smarty->display("common/header.tpl");
 
 $user = getMemberByUsername($_SESSION["username"]);
+if (!isset($_SESSION["username"]))
+    die('Missing profile ID.');
 
 ?>
 
@@ -57,10 +59,11 @@ $user = getMemberByUsername($_SESSION["username"]);
                     <i class="glyphicon glyphicon-edit"></i>
                     </a>
                  </div>
-                            <div class="delete pull-right">
-                                <a href="../../actions/member/member_delete.php"title="Delete" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                </a>
+                            <div class="control-group">
+                                <label></label>
+                                <div class="controls">
+                                    <button id="removeMember" type="submit" class="btn btn-primary">Remove</button>
+                                </div>
                             </div>
 
                         </div>
@@ -124,3 +127,38 @@ $user = getMemberByUsername($_SESSION["username"]);
 </div>
 
 <?php $smarty->display("common/footer.tpl"); ?>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#removeMember").click(function () {
+
+            //confirmation window
+            var password = window.prompt("Are you sure you want to remove your account? If you are, confirm your password:");
+            if (password == null)
+                return;
+
+            //ajax request
+            var usernames = $(".table.table-user-information tr td:nth-child(2)").get(0).innerHTML;
+            console.log(usernames[0]);
+
+
+
+            var requestData = [password, usernames];
+            $.ajax({
+                url: "../../actions/member/member_delete_user.php",
+                type: "POST",
+                data: {data: JSON.stringify(requestData)},
+                success: function (data) {
+                    window.alert(data.message + data.users);
+                    location.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus, errorThrown);
+                }
+            });
+
+        });
+    });
+</script>
