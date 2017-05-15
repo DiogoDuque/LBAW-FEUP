@@ -8,11 +8,11 @@ include ($BASE_DIR."database/members.php");
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:url"           content="{$BASE_URL}" />
+    <meta property="og:url"           content="<?=$BASE_URL?>" />
 
 
-    <link rel="stylesheet" type="text/css" href= "{$BASE_URL}vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href= "{$BASE_URL}lib/css/main.css">
+    <link rel="stylesheet" type="text/css" href= "<?=$BASE_URL?>vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href= "<?=$BASE_URL?>lib/css/main.css">
 
     <!--  include jquery and boostrap  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -24,35 +24,42 @@ include ($BASE_DIR."database/members.php");
 
 
 </head>
-<div class="modal fade" id="signUp-modal" role="dialog">
-    <div class="modal-dialog">
-        <!--Content here-->
-        <div class="modal-content">
-            <!-- The Header-->
-
-
-            <!-- Body(form)-->
-            <div class="modal-body">
-                <form action="../../actions/member/update_profile_action.php" method="post">
-                    <input type='hidden' name='posted' value='true'>
-
-                    <div class="form-group">
-                        <label for="username"><span class="glyphicon glyphicon-user"></span> New username</label>
-                        <input name="username" type="text" class="form-control" id="username_signup" placeholder="Enter username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email"><span class="glyphicon glyphicon-envelope"></span> New email</label>
-                        <input name="email" type="email" class="form-control" id="email_signup" placeholder="Enter email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> New password</label>
-                        <input name="password" type="password" class="form-control" id="psw_signup" placeholder="Enter password" required>
-                    </div>
-                    <button type="submit" class="btn btn-success btn-block" id="button_signup"><span
-                            class="glyphicon glyphicon-registration-mark"></span> Save Changes
-                    </button>
-                </form>
+<div class="row">
+    <div class="col-lg-5 col-offset-6 centered"></div>
+    <form class="form-horizontal" action="../../actions/member/update_profile_action.php" method="post">
+    <fieldset>
+        <div class="title">
+            <h1 class="">Edit Profile</h1>
+        </div>
+        <div class="control-group">
+            <!-- Username -->
+            <label class="control-label"  for="username">Username</label>
+            <div class="controls">
+                <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
             </div>
         </div>
-    </div>
+
+        <div class="control-group">
+            <!-- E-mail -->
+            <label class="control-label" for="email">E-mail</label>
+            <div class="controls">
+                <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <!-- Password-->
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+                <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+            </div>
+        </div>
+        <div class="control-group">
+            <!-- Button -->
+            <div class="controls">
+                <button class="btn btn-success">Save Changes</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
 </div>
