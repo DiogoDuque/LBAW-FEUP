@@ -14,8 +14,8 @@ $currentUser = getMemberByUsername($_SESSION['username']);
 
 $response['message']="All users were successfully deleted";
 $response['users']=" ";
-
-if(strcmp(str_replace(' ', '',$currentUser['hashed_pass']), sha1($password)) != 0){ //check for password
+//password_verify($password, $user['hashed_pass'])
+if(password_verify($password,str_replace(' ', '',$currentUser['hashed_pass']))) { //check for password
 	$response['message'] = "Password does not match";
 
 } else if($currentUser['privilege_level'] != "Administrator"){ //check for permissions
