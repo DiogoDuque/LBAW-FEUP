@@ -29,3 +29,17 @@ function deleteComment($id){
     $stmt->bindParam(':id',$id, PDO::PARAM_INT);
     return $stmt->execute();
 }
+
+function submitComment($post_id, $author_id, $text){
+    global $conn;
+
+    $stmt=$conn->prepare(
+        "INSERT INTO comment(post_id,member_id,text)
+                      VALUES (:post_id,:member_id,:text);");
+    $stmt->bindParam(':post_id',$post_id,PDO::PARAM_INT);
+    $stmt->bindParam(':member_id',$author_id,PDO::PARAM_INT);
+    $stmt->bindParam(':text',$text,PDO::PARAM_INT);
+    $stmt->execute();
+
+    return 0;
+}

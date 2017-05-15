@@ -71,9 +71,12 @@
         {/foreach}
 
         {*EDIT COMMENT FORM*}
-        {if (true)}
-            {*{include file='comments/comment_form.tpl'}*}
+        {if (isset($USERNAME))}
+            {assign "post_id" $question.post_id}
+            {include file='comments/comment_form.tpl'}
         {/if}
+
+
         <div class="answers">
 
             {if (count($question_answers) > 0)}
@@ -97,6 +100,6 @@
     var BASE_URL = "{$BASE_URL}";
 </script>
 
-
+<script type='text/javascript' src="{$BASE_URL}lib/js/comment.js"></script>
 <script type='text/javascript' src="{$BASE_URL}lib/js/votes.js">
 </script>

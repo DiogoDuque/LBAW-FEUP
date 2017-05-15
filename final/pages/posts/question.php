@@ -39,6 +39,7 @@
         $answer = $question_answers[$key];
         $answer_post = getPost($answer["post_id"]);
 
+        $question_answers[$key]["comments"] = getCommentsToPost($answer["post_id"]);
         $question_answers[$key]["post"] = $answer_post;
         $question_answers[$key]["author"] = getMemberById($answer_post["author_id"]);
         $question_answers[$key]["version"] = getLatestPostVersion($answer["post_id"]);
