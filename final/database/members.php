@@ -117,8 +117,8 @@ function isLoginCorrect($username, $password) {
     $user = $stmt->fetch();
     if($user == null)
         return "User does not exist!";
-    else if(!password_verify($password, $user['hashed_pass']))
-        return "Password was not correct! ".$user['hashed_pass'];
+    else if(!password_verify($password, substr($user['hashed_pass'],0,60)))
+        return "Password was not correct!".strlen($password)."------".strlen($user['hashed_pass']);
     else return $user;
 }
 
