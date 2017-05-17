@@ -51,3 +51,12 @@ function isAnswer($post_id) {
     else
         return false;
 }
+
+function getPostUser($user_id){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM public.post WHERE author_id = ?");
+    $stmt->execute(array($user_id));
+
+    return $stmt->fetchAll();
+}

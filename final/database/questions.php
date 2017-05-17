@@ -160,3 +160,4 @@ function search($query, $search_titles, $search_descriptions,$search_answers,$se
     }
     return $questions;
 }
+

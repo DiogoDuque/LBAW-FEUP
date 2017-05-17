@@ -3,15 +3,26 @@
 include_once("../../config/init.php");
 include ($BASE_DIR."database/members.php");
 include ($BASE_DIR."database/votes.php");
+include ($BASE_DIR."database/posts.php");
+
 
 
 $smarty->display("common/header.tpl");
 
-
 $user = getMemberById($_GET['id']);
-
+if($user["username"]==$USERNAME)
+    $user=getMemberByUsername($_SESSION["username"]);
+//$lastposts = getPostUser($user['id']);
 if (!isset($_SESSION["username"]))
     die('Missing profile ID.');
+
+//$array = array();
+
+/*for ($i = 0; $i < sizeof($lastposts); $i++)
+{
+    array_push($array,$lastposts['id']);
+    echo ($array[i]);
+}*/
 ?>
 
 <div class="container">
