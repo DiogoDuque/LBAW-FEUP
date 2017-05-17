@@ -7,13 +7,18 @@ include ($BASE_DIR."database/votes.php");
 
 $smarty->display("common/header.tpl");
 
-$user = getMemberByUsername($_SESSION["username"]);
+if(isset($_GET['id']))
+{
+    $user = getMemberById($_GET['id']);
+}
+else
+{
+    $user = getMemberByUsername($_SESSION["username"]);
+}
+
 if (!isset($_SESSION["username"]))
     die('Missing profile ID.');
-
 ?>
-
-
 
 <div class="container">
     <div class="row">
@@ -53,7 +58,7 @@ if (!isset($_SESSION["username"]))
                                 </tbody>
                                 
                             </table>
-
+                            <?php if(!isset($_GET['id'])) : ?>
                 <div class="edit pull-right">
                     <a href="../../pages/profile/update_profile.php"title="Edit" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning">
                     <i class="glyphicon glyphicon-edit"></i>
@@ -65,6 +70,8 @@ if (!isset($_SESSION["username"]))
                                     <button id="removeMember" type="submit" class="btn btn-primary">Remove</button>
                                 </div>
                             </div>
+                            <?php endif; ?>
+
 
                         </div>
                     </div>
