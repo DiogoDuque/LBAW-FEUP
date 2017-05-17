@@ -7,14 +7,8 @@ include ($BASE_DIR."database/votes.php");
 
 $smarty->display("common/header.tpl");
 
-if(isset($_GET['id']))
-{
-    $user = getMemberById($_GET['id']);
-}
-else
-{
-    $user = getMemberByUsername($_SESSION["username"]);
-}
+
+$user = getMemberById($_GET['id']);
 
 if (!isset($_SESSION["username"]))
     die('Missing profile ID.');
