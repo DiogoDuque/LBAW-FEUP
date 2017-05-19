@@ -41,7 +41,7 @@
         {include file='comments/comment.tpl'}
     {/foreach}
 
-    {*EDIT COMMENT FORM*}
+    {*ADD COMMENT FORM*}
     {if (isset($USERNAME))}
         {assign "post_id" $answer.post_id}
         {include file='comments/comment_form.tpl'}

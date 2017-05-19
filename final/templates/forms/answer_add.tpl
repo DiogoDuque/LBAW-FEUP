@@ -36,4 +36,5 @@
         </script>
 
         <button type="submit" onclick="sendAnswerText()" class="btn btn-success">Apply</button>
-        </div>
+    </form>
+</div>

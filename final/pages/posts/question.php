@@ -62,7 +62,7 @@
     $smarty->display("common/header.tpl");
     $smarty->display("posts/question.tpl");
 
-    $smarty->display("common/footer.tpl"); ?>
+    $smarty->display("common/footer.tpl");
 ?>
 
 <script type="text/javascript">

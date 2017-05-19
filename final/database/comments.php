@@ -3,7 +3,7 @@
 function getCommentsToPost($post_id){
     global $conn;
 
-    $stmt = $conn->prepare("SELECT * FROM public.comment WHERE post_id = ?");
+    $stmt = $conn->prepare("SELECT * FROM public.comment WHERE post_id = ? ORDER BY creation_date");
     $stmt->execute(array($post_id));
 
     return $stmt->fetchAll();
@@ -29,6 +29,16 @@ function deleteComment($id){
     $stmt->bindParam(':id',$id, PDO::PARAM_INT);
     return $stmt->execute();
 }
+
+function editComment($id, $text){
+    global $conn;
+
+    $stmt = $conn->prepare("UPDATE public.comment SET text = :text, last_modification_date=current_date WHERE id = :id");
+    $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+    $stmt->bindParam(':text',$text, PDO::PARAM_STR);
+    return $stmt->execute();
+}
+
 
 function submitComment($post_id, $author_id, $text){
     global $conn;
