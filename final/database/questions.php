@@ -28,7 +28,9 @@ function submitQuestion($title, $category, $text, $author_id){
     $stmt->bindParam(':author_id',$author_id,PDO::PARAM_INT);
     $stmt->execute();
 
-    $post_id = intval($conn->lastInsertId());
+    $stmt=$conn->prepare("SELECT MAX(id) as id FROM post");
+    $stmt->execute();
+    $post_id=$stmt->fetch()['id'];
 
     $stmt = $conn->prepare("SELECT id FROM public.category WHERE name=?");
     $stmt->execute(array($category));
@@ -162,3 +164,11 @@ function search($query, $search_titles, $search_descriptions,$search_answers,$se
     return $questions;
 }
 
+function getQuestionTitle($post_id){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT question.title FROM public.question WHERE post_id = ?");
+    $stmt->execute(array($post_id));
+
+    return $stmt->fetch();
+}
