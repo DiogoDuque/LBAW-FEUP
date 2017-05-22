@@ -20,7 +20,7 @@ $title = $_POST['title'];
 $category = $_POST['category'];
 $text = $_POST['text'];
 
-$author_id = intval(getMemberByUsername($_SESSION["username"])["id"]); //TODO get from logged in, not hardcoded
+$author_id = intval(getMemberByUsername($_SESSION["username"])["id"]);
 
 $question_id = submitQuestion($title, $category, $text, $author_id);
 
