@@ -4,6 +4,8 @@ include_once("../../config/init.php");
 include ($BASE_DIR."database/members.php");
 include ($BASE_DIR."database/votes.php");
 include ($BASE_DIR."database/posts.php");
+include ($BASE_DIR."database/answers.php");
+include ($BASE_DIR."database/questions.php");
 
 
 
@@ -12,11 +14,12 @@ $smarty->display("common/header.tpl");
 $user = getMemberById($_GET['id']);
 if($user["username"]==$USERNAME)
     $user=getMemberByUsername($_SESSION["username"]);
-//$lastposts = getPostUser($user['id']);
+$lastposts = getPostUser($user['id']);
 if (!isset($_SESSION["username"]))
     die('Missing profile ID.');
 
-//$array = array();
+$array = array();
+
 
 /*for ($i = 0; $i < sizeof($lastposts); $i++)
 {
@@ -101,36 +104,30 @@ if (!isset($_SESSION["username"]))
             <table class="table table-striped table-hover">
                 <thead>
                 <tr class="bg-primary">
-                    <th>Category</th>
-                    <th>Date</th>
                     <th>Question</th>
+                    <th>Date</th>
+                    <th>Category</th>
                 </tr>
                 </thead>
+                <?php for ($i = 0; $i < sizeof($lastposts); $i++){
+                    $aux;
+                array_push($array,$lastposts[$i]['id']);
+
+                if(isAnswer($array[$i])){
+                    $aux=getQuestionId($array[$i]);
+                }
+                    else {
+                    $aux=$array[$i];
+                    }
+                    $title=getQuestionTitle($aux);
+
+                    ?>
 
                 <tr>
-                    <td>Animals</td>
-                    <td>24/2/2000</td>
-                    <td><a href="#">What is an animal?</a></td>
+                    <td><a class="" href="<?=$BASE_URL.'pages/posts/question.php?id='.$aux?>"><?= $title['title']?></a> </td>
                 </tr>
-
-                <tr>
-                    <td>Food</td>
-                    <td>28/3/2001</td>
-                    <td><a href="#">What is the best food in the world?</a></td>
-                </tr>
-
-                <tr>
-                    <td>School</td>
-                    <td>1/2/2004</td>
-                    <td><a href="#">How do i learn faster?</a></td>
-                </tr>
-
-                <tr>
-                    <td>Computers</td>
-                    <td>4/3/2017</td>
-                    <td><a href="#">What is the main difference between DFS and BFS?</a></td>
-                </tr>
-            </table>
+                <?php } ?>
+                </table>
 
 
 

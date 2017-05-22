@@ -51,7 +51,7 @@
                     {if $currentUser}
                         <li><a class="glyphicon glyphicon-comment" href="" data-toggle="tooltip" title="Comment"></a>
                         </li>
-                        <li><a class="glyphicon glyphicon-flag" href="" data-toggle="tooltip" title="Report"></a></li>
+                        <li><a class="glyphicon glyphicon-flag report_button" href="{$question.post_id}" data-toggle="tooltip" title="Report"></a></li>
                         {if $currentUser.username==$question_author.username || $currentUser.privilege_level=="Administrator" || $currentUser.privilege_level=="Moderator"}
                             <li><a class="glyphicon glyphicon-pencil"
                                    href="{$BASE_URL}pages/posts/post_edit.php?id={$question.post_id}"
@@ -95,7 +95,7 @@
     {/if}
 </div>
 
-<!-- Modal -->
+<!-- Comment Modal -->
 <div id="comment_edit_modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -109,10 +109,45 @@
                 <form class="comment_edit_form" action="../../actions/post/comment_edit.php" method="post">
                     <div class="form-group">
                         <input type="hidden" name="comment_id">
-                        <textarea class="formgroup" name="edited_text"></textarea>
+                        <textarea class="formgroup form-control" name="edited_text"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-success edit_comment_apply">Apply</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Report Modal -->
+<div id="report_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Report</h4>
+            </div>
+            <div class="modal-body">
+                <form class="report_form" action="../../actions/report/report_add.php" method="post">
+                    <input type="hidden" name="post_id">
+                    <div class="form-group">
+                        <label for="report_type">Type:</label>
+                        <select id="report_type" class="form-control" name="type" required>
+                            <option value="DuplicateQuestion">Duplicate Question</option>
+                            <option value="LackOfClarity">Lack Of Clarity</option>
+                            <option value="InnapropriateLanguage">Innapropriate Language</option>
+                            <option value="BadBehavior">Bad Behavior</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="report_description">Description:</label>
+                        <textarea id="report_description" class="formgroup form-control" name="description" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </div>
         </div>
@@ -125,6 +160,6 @@
     var BASE_URL = "{$BASE_URL}";
 </script>
 
+<script type='text/javascript' src="{$BASE_URL}lib/js/report.js"></script>
 <script type='text/javascript' src="{$BASE_URL}lib/js/comment.js"></script>
-<script type='text/javascript' src="{$BASE_URL}lib/js/votes.js">
-</script>
+<script type='text/javascript' src="{$BASE_URL}lib/js/votes.js"></script>
