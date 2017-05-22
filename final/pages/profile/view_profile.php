@@ -1,11 +1,11 @@
 <?php
 
 include_once("../../config/init.php");
-include ($BASE_DIR."database/members.php");
-include ($BASE_DIR."database/votes.php");
-include ($BASE_DIR."database/posts.php");
-include ($BASE_DIR."database/answers.php");
-include ($BASE_DIR."database/questions.php");
+include_once($BASE_DIR."database/members.php");
+include_once($BASE_DIR."database/votes.php");
+include_once($BASE_DIR."database/posts.php");
+include_once($BASE_DIR."database/answers.php");
+include_once($BASE_DIR."database/questions.php");
 
 
 
