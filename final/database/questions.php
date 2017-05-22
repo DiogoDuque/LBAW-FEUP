@@ -65,7 +65,7 @@ function searchAll($search_order,$search_categories,$limit,$page){
                     JOIN member ON post.author_id = member.id
                     JOIN category ON category.id = question.category_id
                     WHERE category.id = ANY (:search_categories::int[])
-                    AND version.date=(SELECT MAX(version2.date) FROM version AS version2 WHERE version.id=version2.id)
+                    AND version.date=(SELECT MAX(version2.date) FROM version AS version2 WHERE version.post_id=version2.post_id)
  
  
                     ORDER BY $search_order
@@ -114,7 +114,7 @@ function search($query, $search_titles, $search_descriptions,$search_answers,$se
                     JOIN member ON post.author_id = member.id
                     JOIN category ON category.id = question.category_id
                     WHERE category.id = ANY (:search_categories::int[])
-                    AND version.date=(SELECT MAX(version2.date) FROM version AS version2 WHERE version.id=version2.id)
+                    AND version.date=(SELECT MAX(version2.date) FROM version AS version2 WHERE version.post_id=version2.post_id)
                     AND(
                     (:search_titles AND to_tsvector(question.title) @@ plainto_tsquery(:query))
                     OR (:search_descriptions AND to_tsvector(version.text) @@ plainto_tsquery(:query))
@@ -124,7 +124,7 @@ function search($query, $search_titles, $search_descriptions,$search_answers,$se
                         JOIN post AS postA ON answer.post_id = postA.id
                         JOIN version AS versionA ON postA.id = versionA.post_id
                         WHERE answer.question_id =question.post_id
-                        AND versionA.date =(SELECT MAX(versionA2.date) FROM version AS versionA2 WHERE versionA.id=versionA2.id)
+                        AND versionA.date =(SELECT MAX(versionA2.date) FROM version AS versionA2 WHERE versionA.post_id=versionA2.post_id)
                         AND to_tsvector(version.text) @@ plainto_tsquery(:query)
                         ))
                     )
