@@ -47,7 +47,7 @@
             <div class="col-md-10">
                 <p>{$question_version.text}</p>
                 <ul class="actions pull-right">
-                    <li><a class="fb-share-button" href="https://www.facebook.com/sharer/sharer.php?u={$BASE_URL}pages/posts/question.php?id={$question.post_id}" data-width="200" data-type="button_count" target="_blank" data-toggle="tooltip" title="Share"></a></li>
+                    <li><div class="fb-share-button" data-href="http://gnomo.fe.up.pt/~lbaw1623/LBAW-FEUP/final/pages/posts/question.php?id={$question_author.id}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fgnomo.fe.up.pt%2F%7Elbaw1623%2FLBAW-FEUP%2Ffinal%2Fpages%2Fposts%2Fquestion.php%3Fid%3D&amp;src=sdkpreparse">Partilhar</a></div></li>
                     {if $currentUser}
                         <li><a class="glyphicon glyphicon-comment comment_add_toogle" href="" data-toggle="tooltip" title="Comment"></a>                        </li>
                         <li><a class="glyphicon glyphicon-flag report_button" href="{$question.post_id}" data-toggle="tooltip" title="Report"></a></li>
