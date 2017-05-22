@@ -161,3 +161,11 @@ function search($query, $search_titles, $search_descriptions,$search_answers,$se
     return $questions;
 }
 
+function getQuestionTitle($post_id){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT question.title FROM public.question WHERE post_id = ?");
+    $stmt->execute(array($post_id));
+
+    return $stmt->fetch();
+}
