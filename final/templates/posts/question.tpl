@@ -47,10 +47,9 @@
             <div class="col-md-10">
                 <p>{$question_version.text}</p>
                 <ul class="actions pull-right">
-                    <li><a class="glyphicon glyphicon-link" href="https://www.facebook.com/sharer/sharer.php?u={$BASE_URL}pages/posts/question.php?id={$question.post_id}" data-width="200" data-type="button_count" target="_blank" data-toggle="tooltip" title="Share"></a></li>
+                    <li><a class="fb-share-button" href="https://www.facebook.com/sharer/sharer.php?u={$BASE_URL}pages/posts/question.php?id={$question.post_id}" data-width="200" data-type="button_count" target="_blank" data-toggle="tooltip" title="Share"></a></li>
                     {if $currentUser}
-                        <li><a class="glyphicon glyphicon-comment" href="" data-toggle="tooltip" title="Comment"></a>
-                        </li>
+                        <li><a class="glyphicon glyphicon-comment comment_add_toogle" href="" data-toggle="tooltip" title="Comment"></a>                        </li>
                         <li><a class="glyphicon glyphicon-flag report_button" href="{$question.post_id}" data-toggle="tooltip" title="Report"></a></li>
                         {if $currentUser.username==$question_author.username || $currentUser.privilege_level=="Administrator" || $currentUser.privilege_level=="Moderator"}
                             <li><a class="glyphicon glyphicon-pencil"
@@ -62,19 +61,22 @@
                         {/if}
                     {/if}
                 </ul>
+
+                {*COMMENTS*}
+
+                {foreach $question_comments as $comment}
+                    {include file='comments/comment.tpl'}
+                {/foreach}
+
+                {*EDIT COMMENT FORM*}
+                {if (isset($USERNAME))}
+                    {assign "post_id" $question.post_id}
+                    {include file='comments/comment_form.tpl'}
+                {/if}
             </div>
+
         </div>
-        {*COMMENTS*}
 
-        {foreach $question_comments as $comment}
-            {include file='comments/comment.tpl'}
-        {/foreach}
-
-        {*EDIT COMMENT FORM*}
-        {if (isset($USERNAME))}
-            {assign "post_id" $question.post_id}
-            {include file='comments/comment_form.tpl'}
-        {/if}
 
 
         <div class="answers">

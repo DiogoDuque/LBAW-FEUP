@@ -1,4 +1,4 @@
-<div class="comment col-md-9 col-md-offset-3">
+<div class="comment col-md-11 col-md-offset-1 comment_add_form" style="display:none">
     <div class="widget-area no-padding blank">
         <div class="comment-box">
             <form action="{$BASE_URL}actions/post/comment_add.php" class="comment_form" method="post"

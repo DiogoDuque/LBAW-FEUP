@@ -66,3 +66,13 @@ $(".comment_edit_form").submit(function(event) {
     });
 
 });
+
+$(".comment_add_toogle").click(function(event) {
+
+    event.preventDefault();
+
+    var button = $( this );
+    var form = button.parent().parent().parent().find(".comment_add_form");
+    form.toggle(500);
+
+});
