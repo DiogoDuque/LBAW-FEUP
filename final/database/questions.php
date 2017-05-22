@@ -35,9 +35,10 @@ function submitQuestion($title, $category, $text, $author_id){
 
     $category_id = intval($stmt->fetch()["id"]);
 
-    $stmt=$conn->prepare("INSERT INTO public.question (post_id,title,category_id) VALUES($post_id,:title,:category_id)");
+    $stmt=$conn->prepare("INSERT INTO public.question (post_id,title,category_id) VALUES(:post_id,:title,:category_id)");
+    $stmt->bindParam(':post_id',$post_id,PDO::PARAM_INT);
     $stmt->bindParam(':title',$title,PDO::PARAM_STR);
-    $stmt->bindParam(':category_id',$category_id,PDO::PARAM_STR);
+    $stmt->bindParam(':category_id',$category_id,PDO::PARAM_INT);
     $stmt->execute();
 
     $stmt=$conn->prepare("INSERT INTO public.version (post_id,member_id,text) VALUES ($post_id,$author_id,:text)");
