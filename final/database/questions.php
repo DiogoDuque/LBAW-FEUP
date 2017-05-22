@@ -28,7 +28,9 @@ function submitQuestion($title, $category, $text, $author_id){
     $stmt->bindParam(':author_id',$author_id,PDO::PARAM_INT);
     $stmt->execute();
 
-    $post_id = intval($conn->lastInsertId());
+    $stmt=$conn->prepare("SELECT MAX(id) as id FROM post");
+    $stmt->execute();
+    $post_id=$stmt->fetch()['id'];
 
     $stmt = $conn->prepare("SELECT id FROM public.category WHERE name=?");
     $stmt->execute(array($category));
