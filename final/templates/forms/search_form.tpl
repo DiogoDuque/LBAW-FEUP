@@ -4,8 +4,8 @@
 
     <form id="search_form">
         <div class="form-group">
-            <label for="text">Search for:</label>
-            <input type="text" class="form-control" name="query" value="{$query}">
+            <label for="query">Search for:</label>
+            <input id="query" type="text" class="form-control" name="query" value="{$query}">
         </div>
 
         <div class="container">
@@ -39,8 +39,8 @@
         </div>
 
         <div class="form-group">
-            <label for="order">Order by:</label>
-            <select class="form-control" name="search_order">
+            <label for="search_order">Order by:</label>
+            <select id="search_order" class="form-control" name="search_order">
                 {foreach $orders as $order => $value}
                     <option value="{$order}"
                             {if $order == $search_order} selected{/if}>
