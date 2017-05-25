@@ -172,3 +172,12 @@ function getQuestionTitle($post_id){
 
     return $stmt->fetch();
 }
+
+function getQuestionCategory($post_id){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT question.category_id FROM public.question WHERE post_id = ?");
+    $stmt->execute(array($post_id));
+
+    return $stmt->fetch();
+}

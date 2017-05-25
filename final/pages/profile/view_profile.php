@@ -1,12 +1,12 @@
 <?php
 
 include_once("../../config/init.php");
-include_once($BASE_DIR."database/members.php");
-include_once($BASE_DIR."database/votes.php");
-include_once($BASE_DIR."database/posts.php");
-include_once($BASE_DIR."database/answers.php");
-include_once($BASE_DIR."database/questions.php");
-
+include ($BASE_DIR."database/members.php");
+include ($BASE_DIR."database/votes.php");
+include ($BASE_DIR."database/posts.php");
+include ($BASE_DIR."database/answers.php");
+include ($BASE_DIR."database/questions.php");
+include ($BASE_DIR."database/versions.php");
 
 
 $smarty->display("common/header.tpl");
@@ -105,8 +105,8 @@ $array = array();
                 <thead>
                 <tr class="bg-primary">
                     <th>Question</th>
-                    <th>Date</th>
                     <th>Category</th>
+                    <th>Date</th>
                 </tr>
                 </thead>
                 <?php for ($i = 0; $i < sizeof($lastposts); $i++){
@@ -120,12 +120,19 @@ $array = array();
                     $aux=$array[$i];
                     }
                     $title=getQuestionTitle($aux);
+                    $cat_id=getQuestionCategory($aux);
+                    $cat=getCategory($cat_id['category_id']);
+                    $version=getLatestPostVersion($aux);
 
                     ?>
 
-                <tr>
-                    <td><a class="" href="<?=$BASE_URL.'pages/posts/question.php?id='.$aux?>"><?= $title['title']?></a> </td>
+                <tr><td><a class="" href="<?=$BASE_URL.'pages/posts/question.php?id='.$aux?>"><?= $title['title']?></a> </td>
+                    <td><?php echo $cat['name'] ?></td>
+                    <td><?php echo $version['date'] ?></td>
                 </tr>
+
+
+
                 <?php } ?>
                 </table>
 
