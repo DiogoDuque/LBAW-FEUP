@@ -1,6 +1,10 @@
 <?php
 
 include_once("../../config/init.php");
+include_once($BASE_DIR . "database/reports.php");
+
+$results = getReports(0, "any");
+$smarty->assign("results", $results);
 $smarty->display("common/header.tpl");
 
 ?>
@@ -10,11 +14,11 @@ $smarty->display("common/header.tpl");
     <div class="container">
         <div class="row">
 
-            <?php $smarty->display("admin/side_menu.tpl"); ?>
+            <?php
+            $smarty->display("admin/side_menu.tpl");
+            $smarty->display("admin/reports.tpl");
+            ?>
 
-            <div class="col-md-9">
-
-            </div>
 
         </div>
 
