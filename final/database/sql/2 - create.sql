@@ -38,6 +38,7 @@ CREATE TABLE public.member
   image_id        INT,
   creation_date   TIMESTAMP DEFAULT current_timestamp NOT NULL,
   category_ids    INT [],
+  isBanned          BOOLEAN DEFAULT FALSE               NOT NULL,
   CONSTRAINT member_image_id_fk FOREIGN KEY (image_id) REFERENCES public.image (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE UNIQUE INDEX member_username_uindex

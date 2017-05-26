@@ -2,6 +2,15 @@
 include_once("../../config/init.php");
 include_once($BASE_DIR . "database/members.php");
 
+if(!isset($_SESSION['username']))
+    die('You are not logged in!');
+
+$userPrivilegeLevel=getMemberByUsername($_SESSION['username'])['privilege_level'];
+if(!isset($userPrivilegeLevel))
+    die('You are not logged in!');
+else if(strcmp($userPrivilegeLevel,'Member')==0)
+    die('You don\'t have permissions to see this page...');
+
 function displayMembersList($members, $privilege)
 {
     ?>
@@ -28,7 +37,7 @@ function displayMembersList($members, $privilege)
             <div class="control-group">
                 <label></label>
                 <div class="controls">
-                    <button id="removeMember" type="submit" class="btn btn-primary">Remove</button>
+                    <button type="submit" class="removeMember btn btn-primary">Remove</button>
                 </div>
             </div>
         </div>
@@ -92,7 +101,7 @@ $smarty->display("common/footer.tpl");
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $("#removeMember").click(function () {
+        $(".removeMember").click(function () {
             var membersList = $("li.list-group-item.list-group-item-primary.active");
 
             //check if there are users to be removed
@@ -100,7 +109,7 @@ $smarty->display("common/footer.tpl");
                 return;
 
             //confirmation window
-            var password = window.prompt("Are you sure you want to remove " + membersList.length + " members? If you are, confirm your password:");
+            var password = window.prompt("Are you sure you want to ban " + membersList.length + " members? If you are, confirm your password:");
             if (password == null)
                 return;
 
@@ -111,7 +120,7 @@ $smarty->display("common/footer.tpl");
             }
             var requestData = [password, usernames];
             $.ajax({
-                url: "../../actions/member/member_delete.php",
+                url: "../../actions/member/member_ban.php",
                 type: "POST",
                 data: {data: JSON.stringify(requestData)},
                 success: function (data) {
