@@ -14,18 +14,13 @@ $smarty->display("common/header.tpl");
 $user = getMemberById($_GET['id']);
 if($user["username"]==$USERNAME)
     $user=getMemberByUsername($_SESSION["username"]);
+
 $lastposts = getPostUser($user['id']);
 if (!isset($_SESSION["username"]))
     die('Missing profile ID.');
 
 $array = array();
 
-
-/*for ($i = 0; $i < sizeof($lastposts); $i++)
-{
-    array_push($array,$lastposts['id']);
-    echo ($array[i]);
-}*/
 ?>
 
 <div class="container">
@@ -42,7 +37,19 @@ $array = array();
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../../resources/img/user.png" class="img-circle img-responsive"> </div>
+                        <div class="col-md-3 col-lg-3 " align="center">  <img alt="User Pic" src="../../resources/img/user.png" class="img-circle img-responsive">
+                            <br>
+                              <form action="{$BASE_URL}actions/member/update_img_action.php" method="post" enctype="multipart/form-data">
+
+                            <label>Photo:<br>  <br>
+                                <input type="file" name="photo">
+                            </label>
+
+                            <input type="submit" value="Submit">
+
+                              </form>
+
+                        </div>
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
                                 <tbody>
@@ -59,9 +66,14 @@ $array = array();
                                     <td><?=$score?></td>
                                 </tr>
                                 <tr>
-                                    <td>Member Privilege</td>
+                                    <td>Member Privilege:</td>
                                     <td><?=$user['privilege_level']?></td>
                                 </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
 
                                 </tbody>
                                 
