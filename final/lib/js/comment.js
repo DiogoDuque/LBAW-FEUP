@@ -56,7 +56,7 @@ $(".comment_edit_form").submit(function(event) {
         data: data,
         success: function(){
             var comment = $('.comment[data-comment-id="' + data.id + '"]');
-            comment.find("p").html(data.text);
+            comment.find("p").text(data.text);
             var modal = $("#comment_edit_modal");
             modal.modal("hide");
         },

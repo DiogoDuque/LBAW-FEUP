@@ -30,13 +30,14 @@
 
     foreach ($question_comments as $key => $value)
     {
-        $comment = $question_comments[$key];
+        $comment = $value;
         $question_comments[$key]["member"] = getMemberById($comment["member_id"]);
+        $question_comments[$key]["text"] = htmlspecialchars($comment["text"], ENT_QUOTES, 'UTF-8');
     }
 
     foreach ($question_answers as $key => $value)
     {
-        $answer = $question_answers[$key];
+        $answer = $value;
         $answer_post = getPost($answer["post_id"]);
 
         $question_answers[$key]["comments"] = getCommentsToPost($answer["post_id"]);
