@@ -40,83 +40,20 @@ function displayMembersList($members, $privilege)
 
 $memberInfos = getAllUsernamesAndPrivileges();
 
-$smarty->display("common/header.tpl");
-?>
+$smarty->display("common/header.tpl"); ?>
 
-<link rel="stylesheet" type="text/css" href= "<?=$BASE_URL?>lib/css/admin.css">
+<link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>lib/css/admin.css">
 
 <!-- Main -->
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <!-- Left column -->
-            <a class="title" href="#"><strong><i class="glyphicon glyphicon-dashboard"></i>My Dashboard</strong></a>
 
-            <div class="panel-group" id="accordion">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <span class="glyphicon glyphicon-folder-close">
-                            </span>Content
-                        </h4>
-                    </div>
-                </a>
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">Articles</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="http://www.jquery2dotnet.com">News</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="http://www.jquery2dotnet.com">Newsletters</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">Comments</a>
-                                        <span class="badge">42</span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-
-            <ul class="panel-group">
-                <li class="nav-header">
-                    <a href="#" data-toggle="collapse" data-target="#menu2">
-                        <h5>Members<i class="glyphicon glyphicon-chevron-right"></i></h5>
-                    </a>
-
-                    <ul class="list-unstyled collapse" id="menu2">
-                        <li><a href="#">Reports</a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <ul class="list-unstyled collapse" id="menu3">
-                    <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Facebook</a></li>
-                </ul>
-            </ul>
-        </div><!-- /col-3 -->
+        <?php $smarty->display("admin/side_menu.tpl"); ?>
 
         <div class="col-md-9">
 
-            <!-- column 2 -->
-            <a href="#"><strong></strong></a>
             <hr>
+
             <div class="row">
 
                 <!-- center left-->
@@ -148,10 +85,7 @@ $smarty->display("common/header.tpl");
 
                 <div class="col-md-6">
 
-                    <?php
-                    $smarty->display("admin/categories_menu.tpl");
-
-                    ?>
+                    <?php $smarty->display('admin/categories_menu.tpl') ?>
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -162,12 +96,14 @@ $smarty->display("common/header.tpl");
                         </div>
                         <div class="panel-body">
 
-                            <form action="<?=$BASE_URL?>api/admin/promotion_demotion.php" method="POST" class="form form-vertical">
+                            <form action="<?= $BASE_URL ?>api/admin/promotion_demotion.php" method="POST"
+                                  class="form form-vertical">
 
                                 <div class="control-group">
                                     <label>Name</label>
                                     <div class="controls">
-                                        <input type="text" name="targetMemberUsername" class="form-control" placeholder="Enter Name">
+                                        <input type="text" name="targetMemberUsername" class="form-control"
+                                               placeholder="Enter Name">
                                     </div>
                                 </div>
 
@@ -202,7 +138,11 @@ $smarty->display("common/header.tpl");
 </div>
 <!-- /Main -->
 
-<?php $smarty->display("common/footer.tpl"); ?>
+<?php
+
+$smarty->display("common/footer.tpl");
+
+?>
 
 <script type="text/javascript" src="../../lib/js/membersTabelAdmin.js"></script>
 
