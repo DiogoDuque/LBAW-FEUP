@@ -12,7 +12,7 @@ include_once ($BASE_DIR."database/versions.php");
 $smarty->display("common/header.tpl");
 
 $user = getMemberById($_GET['id']);
-if($user["username"]==$USERNAME)
+if($user["username"]==$username)
     $user=getMemberByUsername($_SESSION["username"]);
 
 $lastposts = getPostUser($user['id']);
@@ -21,9 +21,20 @@ if (!isset($_SESSION["username"]))
 
 $array = array();
 
-?>
+
+//img
+    if (file_exists($BASE_DIR.'resources/img/'.$user['username'].'.png'))
+      $photo = 'resources/img/'.$user['username'].'.png';
+    if (file_exists($BASE_DIR.'resources/img/'.$user['username'].'.jpg'))
+      $photo = 'images/users/'.$tweet['username'].'.jpg';
+    if (!$photo) $photo = 'resources/img/user.png';
+
+    ?>
+
 
 <div class="container">
+
+
     <div class="row">
 
         <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
@@ -37,17 +48,22 @@ $array = array();
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3 " align="center">  <img alt="User Pic" src="../../resources/img/user.png" class="img-circle img-responsive">
+                        <div class="col-md-3 col-lg-3 " align="center">  <img alt="User Pic" src="<?=$BASE_URL.$photo?>" class="img-circle img-responsive">
+
                             <br>
-                              <form action="{$BASE_URL}actions/member/update_img_action.php" method="post" enctype="multipart/form-data">
+                            <?php if(!isset($_GET['id'])) : ?>
+                              <form action="<?=$BASE_URL.'actions/member/update_img_action.php'?>" method="post" enctype="multipart/form-data">
 
                             <label>Photo:<br>  <br>
                                 <input type="file" name="photo">
                             </label>
+                              <input type="hidden" name="username" value=<?=$user['username']?>>
 
                             <input type="submit" value="Submit">
 
                               </form>
+                                                        <?php endif; ?>
+
 
                         </div>
                         <div class=" col-md-9 col-lg-9 ">
