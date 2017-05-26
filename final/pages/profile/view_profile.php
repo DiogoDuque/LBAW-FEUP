@@ -29,6 +29,9 @@ $array = array();
       $photo = 'images/users/'.$tweet['username'].'.jpg';
     if (!$photo) $photo = 'resources/img/user.png';
 
+
+//score
+$score=getScore($user['id']);
     ?>
 
 
@@ -79,7 +82,7 @@ $array = array();
                                 </tr>
                                 <tr>
                                     <td>Score:</td>
-                                    <td><?=$score?></td>
+                                    <td><?=$score['sum']?></td>
                                 </tr>
                                 <tr>
                                     <td>Member Privilege:</td>
