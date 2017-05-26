@@ -178,11 +178,11 @@
 
                     <div class="form-group">
                         <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
-                        <input name="username" type="text" class="form-control" id="username_signup" placeholder="Enter username" required>
+                        <input name="username" type="text" class="form-control" id="username_signup" placeholder="Enter username" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-                        <input name="email" type="email" class="form-control" id="email_signup" placeholder="Enter email" required>
+                        <input name="email" type="email" class="form-control" id="email_signup" placeholder="Enter email" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
