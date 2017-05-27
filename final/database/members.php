@@ -119,6 +119,8 @@ function isLoginCorrect($username, $password) {
         return "User does not exist!";
     else if(!password_verify($password, substr($user['hashed_pass'],0,60)))
         return "Password was not correct!";
+    else if ($user['isbanned'])
+        return "User is banned and cannot login right now!";
     else return $user;
 }
 

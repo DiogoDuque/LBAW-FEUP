@@ -35,7 +35,7 @@ function editComment($id, $text){
 
     $stmt = $conn->prepare("UPDATE public.comment SET text = :text, last_modification_date=current_date WHERE id = :id");
     $stmt->bindParam(':id',$id, PDO::PARAM_INT);
-    $stmt->bindParam(':text',$text, PDO::PARAM_STR);
+    $stmt->bindParam(':text',htmlspecialchars($text, ENT_QUOTES, 'UTF-8'), PDO::PARAM_STR);
     return $stmt->execute();
 }
 
@@ -48,7 +48,7 @@ function submitComment($post_id, $author_id, $text){
                       VALUES (:post_id,:member_id,:text);");
     $stmt->bindParam(':post_id',$post_id,PDO::PARAM_INT);
     $stmt->bindParam(':member_id',$author_id,PDO::PARAM_INT);
-    $stmt->bindParam(':text',$text,PDO::PARAM_INT);
+    $stmt->bindParam(':text',htmlspecialchars($text, ENT_QUOTES, 'UTF-8'),PDO::PARAM_INT);
     $stmt->execute();
 
     return 0;

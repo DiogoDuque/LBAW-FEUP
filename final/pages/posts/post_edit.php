@@ -31,7 +31,7 @@ $member_id = intval(getMemberByUsername($_SESSION["username"])["id"]);
         <div class="new-post">
 
             <textarea id="summernote" class="formgroup"  name="edited_text">
-                    <?=$currentVersion["text"]?>
+                    <?=htmlspecialchars($currentVersion["text"], ENT_QUOTES, 'UTF-8')?>
             </textarea>
 
             <script>

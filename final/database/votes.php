@@ -131,4 +131,15 @@ function getLastUpdateDate(){
     return file_get_contents($file);
 }
 
+function getScore($user_id){
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT SUM(post.up_votes - post.down_votes) FROM public.post WHERE author_id = ?");
+    $stmt->execute(array($user_id));
+
+    return $stmt->fetch();
+}
+
+
+
 

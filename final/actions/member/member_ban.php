@@ -25,9 +25,9 @@ if(!password_verify($password,substr($user['hashed_pass'],0,60))) { //check for 
 	global $conn;
 	foreach ($usernames as $user) {
 		$user=mb_substr($user,1,NULL,"UTF-8");
-		$stmt = $conn->prepare("DELETE FROM member WHERE username = ?");
-		if(!$stmt->execute(array($user))){ //if operation went wrong
-			$response['message'] = "Some users may have not been deleted: ";
+		$stmt = $conn->prepare("UPDATE member SET isbanned = ? WHERE username = ?");
+		if(!$stmt->execute(array(true,$user))){ //if operation went wrong
+			$response['message'] = "Some users may have not been banned: ";
 			$response['users'] = $response['users'].$user." ";
 		}
 	}

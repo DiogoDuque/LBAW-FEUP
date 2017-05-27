@@ -12,8 +12,9 @@ include_once ($BASE_DIR."database/versions.php");
 $smarty->display("common/header.tpl");
 
 $user = getMemberById($_GET['id']);
-if($user["username"]==$USERNAME)
+if($user["username"]==$username)
     $user=getMemberByUsername($_SESSION["username"]);
+
 $lastposts = getPostUser($user['id']);
 if (!isset($_SESSION["username"]))
     die('Missing profile ID.');
@@ -21,14 +22,22 @@ if (!isset($_SESSION["username"]))
 $array = array();
 
 
-/*for ($i = 0; $i < sizeof($lastposts); $i++)
-{
-    array_push($array,$lastposts['id']);
-    echo ($array[i]);
-}*/
-?>
+//img
+    if (file_exists($BASE_DIR.'resources/img/'.$user['username'].'.png'))
+      $photo = 'resources/img/'.$user['username'].'.png';
+    if (file_exists($BASE_DIR.'resources/img/'.$user['username'].'.jpg'))
+      $photo = 'images/users/'.$tweet['username'].'.jpg';
+    if (!$photo) $photo = 'resources/img/user.png';
+
+
+//score
+$score=getScore($user['id']);
+    ?>
+
 
 <div class="container">
+
+
     <div class="row">
 
         <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
@@ -42,7 +51,24 @@ $array = array();
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../../resources/img/user.png" class="img-circle img-responsive"> </div>
+                        <div class="col-md-3 col-lg-3 " align="center">  <img alt="User Pic" src="<?=$BASE_URL.$photo?>" class="img-circle img-responsive">
+
+                            <br>
+                            <?php if(!isset($_GET['id'])) : ?>
+                              <form action="<?=$BASE_URL.'actions/member/update_img_action.php'?>" method="post" enctype="multipart/form-data">
+
+                            <label>Photo:<br>  <br>
+                                <input type="file" name="photo">
+                            </label>
+                              <input type="hidden" name="username" value=<?=$user['username']?>>
+
+                            <input type="submit" value="Submit">
+
+                              </form>
+                                                        <?php endif; ?>
+
+
+                        </div>
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
                                 <tbody>
@@ -56,12 +82,17 @@ $array = array();
                                 </tr>
                                 <tr>
                                     <td>Score:</td>
-                                    <td><?=$score?></td>
+                                    <td><?=$score['sum']?></td>
                                 </tr>
                                 <tr>
-                                    <td>Member Privilege</td>
+                                    <td>Member Privilege:</td>
                                     <td><?=$user['privilege_level']?></td>
                                 </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
 
                                 </tbody>
                                 
