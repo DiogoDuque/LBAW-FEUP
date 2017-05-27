@@ -20,7 +20,7 @@ function getReports($page, $category = "any"){
     if($category == "any") {
 
         $stmt = $conn->prepare(
-            "SELECT report.report_type AS type, report.description AS description,
+            "SELECT report.report_type AS type, report.description AS description, report.id AS id,
             member.username AS report_author,
             member.id AS report_author_id,
             member2.username AS post_author,
