@@ -1,5 +1,8 @@
 <!--Content-->
 <div class="container">
+
+    <h1>{$title}</h1>
+
     <!--Tabs-->
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#recent">Recent</a></li>

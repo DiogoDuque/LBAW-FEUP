@@ -8,16 +8,22 @@ include_once ($BASE_DIR."database/answers.php");
 include_once ($BASE_DIR."database/questions.php");
 include_once ($BASE_DIR."database/versions.php");
 
-
-$smarty->display("common/header.tpl");
-
 $user = getMemberById($_GET['id']);
 if($user["username"]==$username)
     $user=getMemberByUsername($_SESSION["username"]);
 
 $lastposts = getPostUser($user['id']);
-if (!isset($_SESSION["username"]))
-    die('Missing profile ID.');
+if (!isset($_SESSION["username"])) {
+
+    $_SESSION['error_messages'] = "You must be logged in to see members' profiles.";
+
+    $destination = $BASE_URL."pages/home.php";
+
+    header( "refresh:3;url={$destination}" );
+    $smarty->assign('redirect_destiny', $destination);
+    $smarty->display('common/info.tpl');
+    die();
+}
 
 $array = array();
 
@@ -32,6 +38,9 @@ $array = array();
 
 //score
 $score=getScore($user['id']);
+
+$smarty->display("common/header.tpl");
+
     ?>
 
 
