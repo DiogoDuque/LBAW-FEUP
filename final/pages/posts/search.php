@@ -78,6 +78,9 @@ $smarty->assign("results", $results);
 
 $smarty->display("common/header.tpl");
 $smarty->display("forms/search_form.tpl");
-$smarty->display("lists/search_results.tpl");
+
+if($query != "")
+    $smarty->display("lists/search_results.tpl");
+
 $smarty->display("common/footer.tpl"); ?>
 

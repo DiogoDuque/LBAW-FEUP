@@ -1,3 +1,5 @@
+<link rel="stylesheet" href= "{$BASE_URL}lib/css/search.css">
+
 <!--Content-->
 <div class="container">
     <h1 class="text-center">Advanced Search</h1>
@@ -49,7 +51,7 @@
             </select>
         </div>
 
-        <h5>Filter by Category(<a id="all_categories">Select All</a>|<a id="no_categories">Unselect All</a>)</h5>
+        <h5>Filter by Category (<a class="categories" id="all_categories">Select All</a>|<a class="categories" id="no_categories">Unselect All</a>)</h5>
 
         <div class="container">
             <div class="row">
