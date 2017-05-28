@@ -26,7 +26,7 @@ $orders =  [
 
 //Set form
 if(isset($_GET["query"]))
-    $query = $_GET["query"];
+    $query = htmlspecialchars($_GET["query"], ENT_QUOTES, 'UTF-8');
 
 if(isset($_GET["search_titles"]))
     $search_titles = $_GET['search_titles'];
