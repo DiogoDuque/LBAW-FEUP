@@ -27,6 +27,10 @@
     $question_answers = getAnswersToQuestion($question_id);
     $currentUser = getMemberByUsername($_SESSION['username']);
 
+    //prevent XSS
+    $question['title'] = htmlspecialchars($question['title'], ENT_QUOTES, 'UTF-8');
+    $question_version['text'] = htmlspecialchars($question_version['text'], ENT_QUOTES, 'UTF-8');
+
 
     foreach ($question_comments as $key => $value)
     {
