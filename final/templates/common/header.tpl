@@ -205,19 +205,60 @@
 
 <script>
 
-    $('#button_signup').prop('disabled', true);
-
-    $('#psw_signup, #confirm_psw_signup').on('keyup', function () {
-        if ($('#psw_signup').val() == $('#confirm_psw_signup').val()) {
-            $('#message').html('Matching').css('color', 'green');
-            $('#button_signup').prop('disabled', false);
-        } else {
-            $('#message').html('Not Matching').css('color', 'red');
+    function showErrorMessage(message){
+        $('#message').html(message).css('color', 'red');
             $('#button_signup').prop('disabled', true);
+    }
+
+    function validate(){
+        var pattern = /[^\w\d]+/;
+
+        var username = $('#username_signup').val();
+        if(username.length<4 || username.length>20){
+            showErrorMessage("Username must have between 4 and 20 characters.");
+            return;
         }
 
-        console.log($('#psw_signup').val());
-        console.log($('#confirm_psw_signup').val());
+        var usernameHasSymbols = pattern.test(username);
+        if(usernameHasSymbols){
+            showErrorMessage("Username can only contain characters and numbers.");
+            return;
+        }
+
+        var email = $('#email_signup').val();
+        var emailIsCorrect = /[\w\d]+@[\w\d]+/.test(email);
+        console.log(emailIsCorrect);
+        if(!emailIsCorrect){
+            showErrorMessage("Email does not appear to be correct.");
+            return;
+        }
+
+        var password = $('#psw_signup').val();
+        if(password.length<4 || password.length>20){
+            showErrorMessage("Password must have between 4 and 20 characters.");
+            return;
+        }
+
+        var passwordHasSymbols = pattern.test(password);
+        if(passwordHasSymbols){
+            showErrorMessage("Password can only contain characters and numbers.");
+            return;
+        }
+
+        var passwordConf = $('#confirm_psw_signup').val();
+        if(password != passwordConf){
+            showErrorMessage("Password is not matching.");
+            return;
+        }
+
+        $('#message').html('');
+        $('#button_signup').prop('disabled', false);
+    }
+
+    $('#button_signup').prop('disabled', true);
+
+    $('#username_signup, #email_signup, #psw_signup, #confirm_psw_signup').on('keyup', function () {
+        validate();
     });
 
 </script>
