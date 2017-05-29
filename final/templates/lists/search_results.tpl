@@ -10,13 +10,7 @@
     </div>
 
     <div class="container answer text-center">
-        <ul class="pagination pagination-lg">
-            <li><a href="?{$url}&page={max($page-1, 1)}">«</a></li>
-            {for $var=1 to $results['0'].count/$limit}
-                <li><a href="?{$url}&page={$var}">{$var}</a></li>
-            {/for}
-            <li><a href="?{$url}&page={min($page+1, $results['0'].count/$limit)}">»</a></li>
-        </ul>
+        {include file='common/pagination.tpl'}
     </div>
 {else}
     <h2 class="text-center">No questions where found when searching for "{$query}".<br>Sugestions:</h2>
@@ -25,3 +19,4 @@
 
 
 <hr class="main-menu-questions-divider">
+
