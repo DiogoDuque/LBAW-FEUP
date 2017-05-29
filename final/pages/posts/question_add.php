@@ -23,12 +23,13 @@ $smarty->display("common/header.tpl");
     <form action="<?=$BASE_URL?>actions/post/question_add.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" required>
+            <input id="title" type="text" class="form-control" name="title" required>
         </div>
 
         <div class="form-group">
             <label for="category">Category</label>
             <select class="form-control" id="category" name="category" required>
+                <option value="">Choose</option>
             <?php
                 foreach ($categories as $category) {
                     echo '<option>'.$category['name'].'</option>';

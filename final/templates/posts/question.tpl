@@ -144,6 +144,7 @@
                     <div class="form-group">
                         <label for="report_type">Type:</label>
                         <select id="report_type" class="form-control" name="type" required>
+                            <option value="">Choose</option>
                             <option value="DuplicateQuestion">Duplicate Question</option>
                             <option value="LackOfClarity">Lack Of Clarity</option>
                             <option value="InnapropriateLanguage">Innapropriate Language</option>
