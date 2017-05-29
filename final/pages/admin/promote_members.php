@@ -56,7 +56,7 @@ $smarty->display("common/header.tpl");
                 <div class="panel-heading">
                     <div class="panel-title">
                         <i class="glyphicon glyphicon-wrench pull-right"></i>
-                        <h4>Add Staff</h4>
+                        <h4>Promote or Demote Staff</h4>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -72,6 +72,7 @@ $smarty->display("common/header.tpl");
                             </select>
                         </div>
 
+                        <br>
 
                         <div class="control-group">
                             <label>Permissions</label>
@@ -79,6 +80,7 @@ $smarty->display("common/header.tpl");
                                 <select class="form-control" name="newPrivilegeLevel">
                                     <option>Moderator</option>
                                     <option>Admin</option>
+                                    <option>Member</option>
                                 </select>
                             </div>
                         </div>
