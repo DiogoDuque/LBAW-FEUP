@@ -86,7 +86,7 @@
                     <input type="text" class="form-control" placeholder="Search.." name="query">
 
                     <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default" role="button" data-toggle="tooltip" data-placement="bottom" title="Advanced search">
+                        <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Advanced search">
                             <span class="glyphicon glyphicon-search search-icon"></span>
                         </button>
                         <!--
@@ -134,7 +134,7 @@
 
             <!-- Body(form)-->
             <div class="modal-body">
-                <form role="form" action="{$BASE_URL}actions/auth/login.php" method="post">
+                <form action="{$BASE_URL}actions/auth/login.php" method="post">
                     <div class="form-group">
                         <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
                         <input name="username" type="text" class="form-control" id="username" placeholder="Enter Username" required>
@@ -177,19 +177,19 @@
                     <input type='hidden' name='posted' value='true'>
 
                     <div class="form-group">
-                        <label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
+                        <label for="username_signup"><span class="glyphicon glyphicon-user"></span> Username</label>
                         <input name="username" type="text" class="form-control" id="username_signup" placeholder="Enter username" autocomplete="off" required>
                     </div>
                     <div class="form-group">
-                        <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+                        <label for="email_signup"><span class="glyphicon glyphicon-envelope"></span> Email</label>
                         <input name="email" type="email" class="form-control" id="email_signup" placeholder="Enter email" autocomplete="off" required>
                     </div>
                     <div class="form-group">
-                        <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                        <label for="psw_signup"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
                         <input name="password" type="password" class="form-control" id="psw_signup" placeholder="Enter password" required>
                     </div>
                     <div class="form-group">
-                        <label for="confirm_psw"><span class="glyphicon glyphicon-eye-ope"></span> Confirm Password</label>
+                        <label for="confirm_psw_signup"><span class="glyphicon glyphicon-eye-ope"></span> Confirm Password</label>
                         <input name="confirm_password" type="password" class="form-control" id="confirm_psw_signup" placeholder="Reenter password" required><span id='message'></span>
                     </div>
                     <button type="submit" class="btn btn-success btn-block" id="button_signup"><span
