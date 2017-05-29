@@ -1,3 +1,7 @@
+p {
+    line-height: 1.4;
+}
+
 /* Remove the navbar's default rounded borders and increase the bottom margin */ 
 .navbar {
   margin-bottom: 50px;
