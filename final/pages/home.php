@@ -19,8 +19,19 @@ else {
 }
 
 $mostRecent = getMostRecentQuestions($search_categories,10);
+foreach ($mostRecent as $key => $value) {
+	$mostRecent[$key]['title'] = htmlspecialchars($value['title'], ENT_QUOTES, 'UTF-8');
+}
+
 $mostPopular = getMostPopularQuestions($search_categories,10);
+foreach ($mostPopular as $key => $value) {
+	$mostPopular[$key]['title'] = htmlspecialchars($value['title'], ENT_QUOTES, 'UTF-8');
+}
+
 $mostControversial = getMostControversialQuestions($search_categories,10);
+foreach ($mostControversial as $key => $value) {
+	$mostControversial[$key]['title'] = htmlspecialchars($value['title'], ENT_QUOTES, 'UTF-8');
+}
 
 $smarty->assign("title", $title);
 $smarty->assign("recents", $mostRecent);
