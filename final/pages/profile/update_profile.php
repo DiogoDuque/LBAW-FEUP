@@ -25,7 +25,7 @@ include_once ($BASE_DIR."database/members.php");
 
 </head>
 <div class="row">
-    <div class="col-lg-5 col-offset-6 centered"></div>
+    <div class="col-lg-6 col-offset-6 centered">
     <form class="form-horizontal" action="../../actions/member/update_profile_action.php" method="post">
     <fieldset>
         <div class="title">
@@ -62,4 +62,5 @@ include_once ($BASE_DIR."database/members.php");
         </div>
     </fieldset>
 </form>
+    </div>
 </div>
