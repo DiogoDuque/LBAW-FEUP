@@ -29,7 +29,7 @@
                 </div>
             </form>
 
-        </div><!--/panel content-->
+        </div>
 
         <div class="panel-body">
             <form id="remove_category" action="../../actions/admin/remove_category.php" method="post"
@@ -55,7 +55,7 @@
                 </div>
             </form>
 
-        </div><!--/panel content-->
-    </div><!--/panel-->
+        </div>
+    </div>
 </div>
 <script type='text/javascript' src="{$BASE_URL}lib/js/admin_categories_menu.js"></script>

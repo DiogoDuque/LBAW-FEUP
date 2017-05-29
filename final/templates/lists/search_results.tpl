@@ -2,7 +2,7 @@
 
 {if count($results) > 0}
 
-    <!--Multi Link-->
+
     <div class="container answer">
         {foreach $results as $i=>$question}
             {include file='lists/question_list_item.tpl'}

@@ -1,18 +1,5 @@
 <div id="report-{$report.id}" class="row">
 
-    <!--
-    $report.id
-    $report.type
-    $report.description
-    $report.report_author_id
-    $report.report_author
-    $report.post_author_id
-    $report.post_author
-    $report.question_id
-    $report.category_id
-    $report.post_text
-
-    -->
     <div class="col-sm-10 pre">
         <div class="panel-group">
             <div class="panel panel-default">

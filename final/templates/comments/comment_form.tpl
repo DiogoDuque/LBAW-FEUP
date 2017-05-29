@@ -7,6 +7,6 @@
                 <textarea placeholder="Comment" name="text" required></textarea>
                 <button type="submit" class="btn btn-success green">Apply</button>
             </form>
-        </div><!-- Status Upload  -->
-    </div><!-- Widget Area -->
+        </div>
+    </div>
 </div>

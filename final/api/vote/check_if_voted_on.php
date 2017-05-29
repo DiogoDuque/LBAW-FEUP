@@ -8,8 +8,6 @@ if(!isset($_POST['post_id']))
 header('Content-Type: application/json');
 $response = array();
 
-//var_dump(intval($_POST['post_id']), $_SESSION['votedPosts']);
-
 foreach ($_SESSION['votedPosts'] as $vote)
 {
     if(intval($_POST['post_id']) === $vote['post_id'])
