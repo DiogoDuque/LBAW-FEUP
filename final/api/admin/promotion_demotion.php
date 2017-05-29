@@ -1,7 +1,5 @@
 <?php
 
-// TODO : verify if member is admin
-
 include_once("../../config/init.php");
 include_once ($BASE_DIR."database/promotions_demotions.php");
 include_once ($BASE_DIR."database/members.php");
@@ -18,9 +16,13 @@ if(!isset($_POST['newPrivilegeLevel']))
 header('Content-Type: application/json');
 $response = array();
 
-$adminId = intval(getMemberByUsername($_SESSION['username'])['id']);
-$targetMemberId = intval(getMemberByUsername($_POST['targetMemberUsername'])['id']);
+$admin = getMemberByUsername($_SESSION['username']);
 
+if(strcmp($admin['privilege_level'],"Administrator")!=0)
+    die("Only Administrators have access to this feature!");
+
+$adminId=intval($admin['id']);
+$targetMemberId = intval(getMemberByUsername($_POST['targetMemberUsername'])['id']);
 $response = createPromotionDemotion($_POST['newPrivilegeLevel'], $targetMemberId, $adminId);
 
 echo json_encode($response);

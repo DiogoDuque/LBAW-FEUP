@@ -9,8 +9,6 @@ include_once ($BASE_DIR."database/posts.php");
 header('Content-Type: application/json');
 $response = array();
 
-//TODO - RECEBER AJAX e dar às variaveis
-
 if(!isset($_SESSION["username"]))
     die("You must be logged in to vote.");
 

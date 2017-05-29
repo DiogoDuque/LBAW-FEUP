@@ -196,18 +196,17 @@ $smarty->display("common/header.tpl");
                 return;
 
             //ajax request
-            var usernames = $(".table.table-user-information tr td:nth-child(2)").get(0).innerHTML;
-            console.log(usernames[0]);
+            var username = $(".table.table-user-information tr td:nth-child(2)").get(0).innerHTML;
 
 
 
-            var requestData = [password, usernames];
+            var requestData = [password, username];
             $.ajax({
                 url: "../../actions/member/member_delete_user.php",
                 type: "POST",
                 data: {data: JSON.stringify(requestData)},
                 success: function (data) {
-                    window.alert(data.message + data.users);
+                    window.alert(data);
                     location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

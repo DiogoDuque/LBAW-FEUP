@@ -6,7 +6,7 @@ include_once ($BASE_DIR."database/categories.php");
 //Check permissions
 $member = getMemberByUsername($_SESSION['username']);
 if($member['privilege_level'] != "Administrator")
-    die('You don\'t have permissions for perform this action...');
+    die('You don\'t have permissions to perform this action...');
 
 $id = $_POST['id'];
 $id = deleteCategory($id);
