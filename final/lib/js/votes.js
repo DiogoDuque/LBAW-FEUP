@@ -32,10 +32,7 @@ function castVote(elem, voteValue, username){
 
             if(response.status === "success")
             {
-                score_of_post_elemt.fadeOut(200, function() {
-                    score_of_post_elemt.html(response.score);
-                    score_of_post_elemt.fadeIn().delay(200);
-                });
+                score_of_post_elemt.html(response.score);
 
                 highlightMemberVotes(elem);
                 console.log("elem " + elem);
