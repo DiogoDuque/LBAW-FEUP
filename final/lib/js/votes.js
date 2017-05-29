@@ -1,11 +1,7 @@
 function castVote(elem, voteValue, username){
 
-    // TODO: See why color isn't updating on voting.
-    // TODO: Think how to update vote instantly on client but only update on server after a period of time.
-
     if(username === ""){
         window.alert("You must login to vote!");
-        //return;
     }
     var post_id = elem.data("post_id");
     var score_of_post_elemt = $( "p.post_score" + "[data-post_id='" + post_id + "']");
@@ -90,12 +86,12 @@ $(document).ready(function () {
 
     $('.score .glyphicon-thumbs-up').on('click', function() {
 
-        var voteValue = "up"; //vote.value
+        var voteValue = "up";
         castVote($(this), voteValue, username);
 
     });
     $('.score .glyphicon-thumbs-down').on('click', function() {
-        var voteValue="down"; //vote.value
+        var voteValue="down";
         castVote($(this),voteValue, username);
     });
 

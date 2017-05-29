@@ -1,6 +1,3 @@
-/**
- * Created by SpardaMarco on 22/05/2017.
- */
 $(".report_button").click(function(event) {
 
     event.preventDefault();
