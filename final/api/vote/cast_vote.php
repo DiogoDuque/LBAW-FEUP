@@ -10,7 +10,15 @@ header('Content-Type: application/json');
 $response = array();
 
 if(!isset($_SESSION["username"]))
-    die("You must be logged in to vote.");
+{
+    $_SESSION['error_messages'] = "You must be logged in to vote.";
+    $destination = $BASE_URL . "pages/home.php";
+
+    header("refresh:3;url={$destination}");
+    $smarty->assign('redirect_destiny', $destination);
+    $smarty->display('common/info.tpl');
+    die();
+}
 
 if(!isset($_POST["value"]))
     die("No value for vote passed.");

@@ -5,10 +5,26 @@
     include_once ($BASE_DIR."database/votes.php");
 
     if (!isset($_POST['username']))
-        die('Missing username.');
+    {
+        $_SESSION['error_messages'] = "Missing username.";
+        $destination = $BASE_URL . "pages/home.php";
 
-    if (!isset($_POST['password']))
-        die('Missing password.');
+        header("refresh:3;url={$destination}");
+        $smarty->assign('redirect_destiny', $destination);
+        $smarty->display('common/info.tpl');
+        die();
+
+    }
+
+    if (!isset($_POST['password'])){
+        $_SESSION['error_messages'] = "Missing password.";
+        $destination = $BASE_URL . "pages/home.php";
+
+        header("refresh:3;url={$destination}");
+        $smarty->assign('redirect_destiny', $destination);
+        $smarty->display('common/info.tpl');
+        die();
+    }
 
 
     $username = $_POST['username'];

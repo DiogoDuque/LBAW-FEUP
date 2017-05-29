@@ -3,7 +3,15 @@
 include_once("../../config/init.php");
 
 if(!isset($_SESSION['username']))
-    die("Member not authenticated.");
+{
+    $_SESSION['error_messages'] = "Member is not authenticated.";
+    $destination = $BASE_URL . "pages/home.php";
+
+    header("refresh:3;url={$destination}");
+    $smarty->assign('redirect_destiny', $destination);
+    $smarty->display('common/info.tpl');
+    die();
+}
 
 $smarty->display("common/header.tpl");
 

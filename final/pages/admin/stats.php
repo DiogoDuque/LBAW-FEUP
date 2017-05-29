@@ -8,7 +8,15 @@ include_once($BASE_DIR . "database/votes.php");
 include_once($BASE_DIR . "database/comments.php");
 
 if(!isset($_SESSION['username']))
-    die('You are not logged in!');
+{
+    $_SESSION['error_messages'] = "You are not logged in.";
+    $destination = $BASE_URL . "pages/home.php";
+
+    header("refresh:3;url={$destination}");
+    $smarty->assign('redirect_destiny', $destination);
+    $smarty->display('common/info.tpl');
+    die();
+}
 
 $userPrivilegeLevel=getMemberByUsername($_SESSION['username'])['privilege_level'];
 if(!isset($userPrivilegeLevel))
@@ -39,7 +47,7 @@ $smarty->assign("totalNumberOfComments", $totalNumberOfComments);
 
             <?php
                 $smarty->display("admin/side_menu.tpl");
-                $smarty->display("admin/stats.tpl");
+                $smarty->display("admin/general_stats.tpl");
             ?>
 
         </div>
