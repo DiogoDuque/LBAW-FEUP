@@ -27,6 +27,9 @@ $self = ($_SESSION["username"] == $user['username']);
 
 //posts
 $lastposts = getPostUser($user['id']);
+foreach ($lastposts as $key => $value) {
+    $lastposts[$key]['title'] = htmlspecialchars($value['title'], ENT_QUOTES, 'UTF-8');
+}
 //score
 $score=getScore($user['id']);
 
