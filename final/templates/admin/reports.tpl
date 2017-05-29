@@ -11,5 +11,6 @@
         {/foreach}
     </div><!--/row-->
 
+    <script type='text/javascript' src="{$BASE_URL}lib/js/reports_menu.js"></script>
     <hr>
 </div><!--/col-span-9-->

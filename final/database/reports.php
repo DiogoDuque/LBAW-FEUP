@@ -52,3 +52,12 @@ function getReports($page, $category = "any"){
     }
     return 0;
 }
+
+function deleteReport($id){
+    global $conn;
+
+    $stmt = $conn->prepare("DELETE FROM public.report WHERE id = :id");
+    $stmt->bindParam(':id',$id,PDO::PARAM_INT);
+
+    return $stmt->execute();
+}
