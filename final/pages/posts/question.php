@@ -40,7 +40,7 @@
     {
         $comment = $value;
         $question_comments[$key]["member"] = getMemberById($comment["member_id"]);
-        $question_comments[$key]["text"] = htmlspecialchars($comment["text"], ENT_QUOTES, 'UTF-8');
+        $question_comments[$key]["text"] = htmlspecialchars_decode($comment["text"], ENT_QUOTES);
     }
 
     foreach ($question_answers as $key => $value)
@@ -49,9 +49,13 @@
         $answer_post = getPost($answer["post_id"]);
 
         $question_answers[$key]["comments"] = getCommentsToPost($answer["post_id"]);
+        $question_answers[$key]["comments"]["text"] = htmlspecialchars_decode($question_answers[$key]["comments"]["text"], ENT_QUOTES);
+
         $question_answers[$key]["post"] = $answer_post;
         $question_answers[$key]["author"] = getMemberById($answer_post["author_id"]);
         $question_answers[$key]["version"] = getLatestPostVersion($answer["post_id"]);
+
+        $question_answers[$key]["version"]["text"] = htmlspecialchars_decode($question_answers[$key]["version"]["text"], ENT_QUOTES);
     }
     $smarty->assign("question", $question);
     $smarty->assign("question_post", $question_post);
