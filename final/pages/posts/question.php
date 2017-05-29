@@ -33,7 +33,7 @@
     include_once($BASE_DIR.'vendors/htmlpurifier-4.9.2/library/HTMLPurifier.auto.php');
     $config = HTMLPurifier_Config::createDefault();
     $purifier = new HTMLPurifier($config);
-    $question_version['text'] = $purifier->purify($question_version['text']);
+    $question_version['text'] = htmlspecialchars_decode($question_version['text'], ENT_QUOTES);
 
 
     foreach ($question_comments as $key => $value)
