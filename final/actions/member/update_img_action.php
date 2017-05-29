@@ -24,8 +24,14 @@ header("Location: {$BASE_URL}pages/profile/view_profile.php");
 if(!isset($_SESSION['username']))
     die("You must be logged in to access this feature.");
 
+$member = getMemberByUsername($_SESSION['username']);
 $photo = $_FILES['photo'];
 $filename = addImageToServer($photo);
 
-$id = intval(getMemberByUsername($_SESSION['username'])[id]);
+deleteImageFromServer($member["filename"]);
+
+$id = intval($member[id]);
+
 addImage($id, $filename);
+
+header("Location: {$BASE_URL}pages/profile/view_profile.php");

@@ -4,7 +4,7 @@
         <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 toppad" >
 
             <!-- User Panel-->
             <div class="panel panel-info">
@@ -14,7 +14,7 @@
 
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3 " align="center">
+                        <div class="col-md-4 col-lg-4 " align="center">
                             {if $member.filename}
                                 <img alt="User Pic" src="{$BASE_URL}resources/uploads/{$member.filename}" class="img-circle img-responsive">
                             {else}
@@ -24,24 +24,23 @@
                             <br>
 
                             {if $self}
-                                <form action="{$BASE_URL}actions/member/update_img_action.php" method="post" enctype="multipart/form-data">
-
-                                    <label>Photo:<br>  <br>
-                                        <input type="file" name="photo">
+                                <form class="form-group" action="{$BASE_URL}actions/member/update_img_action.php" method="post" enctype="multipart/form-data">
+                                    <label class="btn btn-primary btn-block">
+                                        <span>No file selected</span>
+                                        <input id="image-upload" type="file" name="photo" style="display: none">
                                     </label>
-                                    <input type="hidden" name="username" value=<?=$user['username']?>
-                                    <input type="submit" value="Submit">
+                                    <input type="submit" value="Submit" class="btn btn-success btn-block">
 
                                 </form>
                             {/if}
 
 
                         </div>
-                        <div class=" col-md-9 col-lg-9 ">
+                        <div class="col-md-8 col-lg-8">
                             <table class="table table-user-information">
                                 <tbody>
                                 <tr>
-                                    <td> Username:</td>
+                                    <td>Username:</td>
                                     <td>{$member.username}</td>
                                 </tr>
                                 <tr>
@@ -72,7 +71,7 @@
                                 <div class="control-group">
                                     <label></label>
                                     <div class="controls">
-                                        <button id="removeMember" type="submit" class="btn btn-primary">Remove</button>
+                                        <button id="removeMember" type="submit" class="btn btn-danger">Remove</button>
                                     </div>
                                 </div>
                             {/if}

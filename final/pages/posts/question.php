@@ -53,7 +53,6 @@
         $question_answers[$key]["author"] = getMemberById($answer_post["author_id"]);
         $question_answers[$key]["version"] = getLatestPostVersion($answer["post_id"]);
     }
-
     $smarty->assign("question", $question);
     $smarty->assign("question_post", $question_post);
     $smarty->assign("question_category",$question_category );
@@ -73,42 +72,3 @@
 
     $smarty->display("common/footer.tpl");
 ?>
-
-<script type="text/javascript">
-
-    function getGET(qs) {
-        qs = qs.split("+").join(" ");
-        var params = {},
-            tokens,
-            re = /[?&]?([^=]+)=([^&]*)/g;
-        while (tokens = re.exec(qs)) {
-            params[decodeURIComponent(tokens[1])]
-                = decodeURIComponent(tokens[2]);
-        }
-        return params;
-    }
-
-    $(document).ready(function () {
-        $(".glyphicon-trash").click(function () {
-            var elem = $(this).parent().parent().parent().parent();
-            var author = elem.children(".userInfo").children(".user").children("a").get(0).innerHTML;
-            var text = elem.children("div").children("p").get(0).innerHTML;
-            var questionId = getGET(document.location.search)["id"];
-
-            var requestData = [author, text, questionId];
-            $.ajax({
-                url: "../../actions/post/answer_delete.php",
-                type: "POST",
-                data: {data: JSON.stringify(requestData)},
-                success: function (data) {
-                    window.alert(data.message);
-                    location.reload();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(textStatus, errorThrown);
-                }
-            });
-
-        });
-    });
-</script>

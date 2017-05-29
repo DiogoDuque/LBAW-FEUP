@@ -26,4 +26,11 @@ $(document).ready(function () {
         });
 
     });
+
+    $(document).ready( function() {
+        $('#image-upload').change(function(){
+            $(this).parent().find("span").text($(this).val());
+        });
+    });
 });
+

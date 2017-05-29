@@ -60,6 +60,6 @@ function addImageToServer($file){
 
 function deleteImageFromServer($filename){
     global $BASE_DIR;
-    $target_dir = $BASE_DIR."uploads/";
+    $target_dir = $BASE_DIR."resources/uploads/";
     unlink($target_dir.$filename);
 }

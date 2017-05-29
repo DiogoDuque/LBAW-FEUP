@@ -3,7 +3,7 @@
 
 <!--Content-->
 <div class="container">
-    {if $question eq null}
+    {if !$question.post_id}
         {include file='common/not_found.tpl'}
     {else}
         <ol class="breadcrumb">
@@ -171,3 +171,5 @@
 <script type='text/javascript' src="{$BASE_URL}lib/js/report.js"></script>
 <script type='text/javascript' src="{$BASE_URL}lib/js/comment.js"></script>
 <script type='text/javascript' src="{$BASE_URL}lib/js/votes.js"></script>
+
+<script type="text/javascript" src="{$BASE_URL}lib/js/question.js"></script>
