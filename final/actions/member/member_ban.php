@@ -15,10 +15,10 @@ $currentUser = getMemberByUsername($_SESSION['username']);
 $response['message']="All users were successfully deleted";
 $response['users']=" ";
 
-if(!password_verify($password,substr($user['hashed_pass'],0,60))) { //check for password
+if(!password_verify($password,substr($user['hashed_pass'],0,60))) {
 	$response['message'] = "Password does not match";
 
-} else if($currentUser['privilege_level'] != "Administrator"){ //check for permissions
+} else if($currentUser['privilege_level'] != "Administrator"){
 	$response['message'] = "User does not have permissions for that";
 
 } else{

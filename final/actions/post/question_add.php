@@ -15,7 +15,6 @@ if (!isset($_POST['text']))
 if(!isset($_SESSION['username']))
     die("You must be logged in to ask a question");
 
-// Gather data for creating
 $title = $_POST['title'];
 $category = $_POST['category'];
 $text = $_POST['text'];

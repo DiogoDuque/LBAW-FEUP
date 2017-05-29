@@ -9,12 +9,10 @@ if (!isset($_GET['id']))
 if (!isset($_SESSION['username']))
     die('Member not authenticated.');
 
-//delete only happens if user==author or user.hasPermissions
 $member = getMemberByUsername($_SESSION['username']);
 if($member['privilege_level'] == "Member")
 	die('You don\'t have permissions for deleting a question...');
 
-//try to delete question
 if(deletePost($_GET['id']))
 	$_SESSION['error_messages'] = "Post deleted successfully!";
 else $_SESSION['error_messages'] = "Error: could not delete post...";

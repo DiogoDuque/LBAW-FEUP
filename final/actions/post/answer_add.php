@@ -19,12 +19,8 @@ $post_id =($_POST["post_id"]);
 
 
 $question=getQuestion($post_id);
-//echo($question);
 
-
-// Gather data for creating
-
-$author_id = intval(getMemberByUsername($_SESSION["username"])["id"]); //TODO get from logged in, not hardcoded
+$author_id = intval(getMemberByUsername($_SESSION["username"])["id"]);
 
 $question_id = submitAnswer($post_id,$text, $author_id);
 
@@ -37,4 +33,3 @@ $destination = $BASE_URL."pages/posts/question.php?id=".$question_id;
 
 header("Location: ".$destination);
 
-//TODO make verifications and return result

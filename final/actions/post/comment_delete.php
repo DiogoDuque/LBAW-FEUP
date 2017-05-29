@@ -9,12 +9,10 @@ if (!isset($_POST['id']))
 if (!isset($_SESSION['username']))
     die('Member not authenticated.');
 
-//delete only happens if user==author or user.hasPermissions
 $member = getMemberByUsername($_SESSION['username']);
 if($member['privilege_level'] == "Member")
 	die('You don\'t have permissions for deleting a comment...');
 
-//try to delete question
 $id = $_POST['id'];
 $id = deleteComment($id);
 

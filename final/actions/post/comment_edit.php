@@ -16,7 +16,6 @@ if (!isset($_SESSION["username"]))
 $text = $_POST["text"];
 $comment_id = $_POST["id"];
 
-//delete only happens if user.hasPermissions
 $member = getMemberByUsername($_SESSION['username']);
 $comment = getComment($comment_id);
 if($member['privilege_level'] == "Member" && $member['id'] != $comment['member_id'])

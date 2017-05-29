@@ -4,8 +4,6 @@ include_once ("../../config/init.php");
 include_once ($BASE_DIR."database/answers.php");
 include_once ($BASE_DIR."database/posts.php");
 
-
-
 if (!isset($_POST['edited_text']))
     die('Missing text.');
 if (!isset($_POST['post_id']))
