@@ -23,7 +23,7 @@ $smarty->display("common/header.tpl");
             <select class="form-control" id="category" name="category" required>
             <?php
                 foreach ($categories as $category) {
-                    echo '<option>'.$category['name'].'<option>';
+                    echo '<option>'.$category['name'].'</option>';
                 }
             ?>
             </select>
