@@ -54,7 +54,7 @@
                     <tr>
                         <td>
                             <span class="text-primary"></span><a
-                                    href="{$BASE_URL}pages/admin/manage_categories  .php">Manage categories</a>
+                                    href="{$BASE_URL}pages/admin/manage_categories.php">Manage categories</a>
                         </td>
                     </tr>
                 </table>

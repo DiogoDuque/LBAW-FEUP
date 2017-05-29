@@ -84,7 +84,7 @@ $smarty->display("common/header.tpl");
 
                         </table>
 
-                    </div>>
+                    </div>
                 </div>
             </div>
 
@@ -127,7 +127,6 @@ $smarty->display("common/header.tpl");
 
         });
 
-        console.log("click");
 
     </script>
 
