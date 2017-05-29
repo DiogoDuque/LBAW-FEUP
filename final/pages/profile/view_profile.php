@@ -38,6 +38,5 @@ $smarty->assign("self", $self);
 $smarty->display("common/header.tpl");
 $smarty->display("member/profile.tpl");
 $smarty->display("common/footer.tpl"); ?>
-\
 
 

@@ -130,7 +130,7 @@ function isLoginCorrect($username, $password) {
 
 function getAllUsernamesAndPrivileges(){
     global $conn;
-    $stmt = $conn->prepare("SELECT username, privilege_level FROM member");
+    $stmt = $conn->prepare("SELECT username, privilege_level FROM member ORDER BY username");
     $stmt->execute();
     return $stmt->fetchAll();
 }
@@ -184,7 +184,7 @@ function searchMemberByName($username){
 
     global $conn;
 
-    $stmt = $conn->prepare("SELECT * FROM member WHERE LOWER(username) LIKE LOWER(?)");
+    $stmt = $conn->prepare("SELECT * FROM member WHERE LOWER(username) LIKE LOWER(?) ORDER BY username");
     $stmt->execute(array($search));
 
     return $stmt->fetchAll();
