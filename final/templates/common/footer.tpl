@@ -1,17 +1,12 @@
 <!--Footer-->
 <footer class="container-fluid text-center">
     <div class="row">
-        <div class="col-sm-3">
-            <a href="#">About Us</a>
+        <div class="col-sm-3 pull-left">
+            <a href="{$BASE_URL}pages/FAQ.php">Frequently asked questions</a>
         </div>
-        <div class="col-sm-3">
-            <a href="#">Contacts</a>
-        </div>
-        <div class="col-sm-3">
-            <a href="#">Sitemap</a>
-        </div>
-        <div class="col-sm-3">
-            <a href="#">Site Rules</a>
+
+        <div class="col-sm-3 pull-right">
+            ®LBAW1623
         </div>
     </div>
 </footer>

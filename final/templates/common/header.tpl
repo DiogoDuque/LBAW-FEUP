@@ -77,7 +77,7 @@
                 {if $PERMISSIONS=="Administrator" || $PERMISSIONS=="Moderator"}
 
                     <!--Admin Page(more content)-->
-                    <li><a href="{$BASE_URL}pages/admin/admin.php">Control Panel</a></li>
+                    <li><a href="{$BASE_URL}pages/admin/reports.php">Control Panel</a></li>
 
                 {/if}
 
