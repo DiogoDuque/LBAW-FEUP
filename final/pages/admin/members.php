@@ -37,7 +37,7 @@ function displayMembersList($members, $privilege)
             <div class="control-group">
                 <label></label>
                 <div class="controls">
-                    <button type="submit" class="removeMember btn btn-primary">Remove</button>
+                    <button type="submit" class="removeMember btn btn-primary">Ban</button>
                 </div>
             </div>
         </div>

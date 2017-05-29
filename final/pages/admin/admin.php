@@ -37,7 +37,7 @@ function displayMembersList($members, $privilege)
             <div class="control-group">
                 <label></label>
                 <div class="controls">
-                    <button type="submit" class="removeMember btn btn-primary">Remove</button>
+                    <button type="submit" class="removeMember btn btn-primary">Ban</button>
                 </div>
             </div>
         </div>
@@ -164,7 +164,7 @@ $smarty->display("common/footer.tpl");
                 return;
 
             //confirmation window
-            var password = window.prompt("Are you sure you want to remove " + membersList.length + " members? If you are, confirm your password:");
+            var password = window.prompt("Are you sure you want to ban " + membersList.length + " members? If you are, confirm your password:");
             if (password == null)
                 return;
 
@@ -175,7 +175,7 @@ $smarty->display("common/footer.tpl");
             }
             var requestData = [password, usernames];
             $.ajax({
-                url: "../../actions/member/member_delete.php",
+                url: "../../actions/member/member_ban.php",
                 type: "POST",
                 data: {data: JSON.stringify(requestData)},
                 success: function (data) {
