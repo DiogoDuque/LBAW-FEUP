@@ -91,7 +91,7 @@
                 {include file='posts/answer.tpl'}
             {/foreach}
         </div>
-        {if (isset($USERNAME))}
+        {if (isset($USERNAME)) && $question_author!=$currentUser}
             {include file='forms/answer_add.tpl'}
         {/if}
     {/if}
