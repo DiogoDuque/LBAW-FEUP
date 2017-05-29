@@ -55,7 +55,22 @@ function isAnswer($post_id) {
 function getPostUser($user_id){
     global $conn;
 
-    $stmt = $conn->prepare("SELECT * FROM public.post WHERE author_id = ?");
+    $stmt = $conn->prepare("
+          SELECT version.date AS date, main_question.title AS title, main_question.main_id AS id,
+          category.id AS category_id, category.name AS category
+          FROM public.post
+          JOIN version ON post.id = version.post_id
+          JOIN (
+              SELECT question.category_id AS category_id, question.title AS title, question.post_id AS main_id, question.post_id AS out_id
+              FROM question
+              UNION ALL
+              SELECT question.category_id AS category_id, question.title AS title, question.post_id AS main_id, answer.post_id AS out_id
+              FROM question
+              JOIN answer ON question.post_id = answer.question_id
+            ) main_question ON main_question.out_id = post.id
+          JOIN category ON category.id = main_question.category_id
+          WHERE author_id = ?
+          AND version.date=(SELECT MAX(version2.date) FROM version AS version2 WHERE version.post_id=version2.post_id)");
     $stmt->execute(array($user_id));
 
     return $stmt->fetchAll();
