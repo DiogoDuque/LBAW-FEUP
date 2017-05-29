@@ -15,11 +15,10 @@ $smarty->display("common/header.tpl");
     <link rel="stylesheet" type="text/css" href= "<?=$BASE_URL?>vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href= "<?=$BASE_URL?>lib/css/main.css">
 
-    <!--  include jquery and boostrap  -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- include summernote css/js (text editor) -->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 
@@ -33,7 +32,6 @@ $smarty->display("common/header.tpl");
             <h1 class="">Edit Profile</h1>
         </div>
         <div class="control-group">
-            <!-- Username -->
             <label class="control-label"  for="username">Username</label>
             <div class="controls">
                 <input type="text" id="usernameInfo" name="username" placeholder="" class="input-xlarge">
@@ -41,7 +39,6 @@ $smarty->display("common/header.tpl");
         </div>
 
         <div class="control-group">
-            <!-- E-mail -->
             <label class="control-label" for="email">E-mail</label>
             <div class="controls">
                 <input type="email" id="emailInfo" name="email" placeholder="" class="input-xlarge">
@@ -49,7 +46,6 @@ $smarty->display("common/header.tpl");
         </div>
 
         <div class="control-group">
-            <!-- Password-->
             <label class="control-label" for="password">Password</label>
             <div class="controls">
                 <input type="password" id="passwordInfo" name="password" placeholder="" class="input-xlarge">
@@ -57,7 +53,6 @@ $smarty->display("common/header.tpl");
         </div>
 
         <div class="control-group">
-            <!-- Password-->
             <label class="control-label" for="password">Password</label>
             <div class="controls">
                 <input type="password" id="confirmPasswordInfo" name="confirmPassword" placeholder="" class="input-xlarge">
@@ -66,7 +61,6 @@ $smarty->display("common/header.tpl");
 
         <span id='infoMessage'></span>
         <div class="control-group">
-            <!-- Button -->
             <div class="controls">
                 <button id="button_edit" class="btn btn-success">Save Changes</button>
             </div>

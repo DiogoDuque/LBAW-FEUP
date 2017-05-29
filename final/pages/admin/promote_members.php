@@ -95,9 +95,9 @@ $smarty->display("common/header.tpl");
                         </div>
 
                     </form>
-                </div><!--/panel content-->
-            </div><!--/panel-->
-        </div><!--/col-span-6-->
+                </div>
+            </div>
+        </div>
 
 
 
@@ -117,10 +117,7 @@ $smarty->display("common/header.tpl");
                 };
             },
             processResults: function (data) {
-                // parse the results into the format expected by Select2
-                // since we are using custom formatting functions we do not need to
-                // alter the remote JSON data, except to indicate that infinite
-                // scrolling can be used
+
 
                 return {
                     results: data
@@ -128,7 +125,7 @@ $smarty->display("common/header.tpl");
             },
             cache: true
         },
-        escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+        escapeMarkup: function (markup) { return markup; },
         minimumInputLength: 1,
         templateResult: formatState,
         templateSelection: formatState

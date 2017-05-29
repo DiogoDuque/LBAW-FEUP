@@ -84,9 +84,9 @@ $smarty->display("common/header.tpl");
 
                         </table>
 
-                    </div><!--/panel content-->
-                </div><!--/panel-->
-            </div><!--/col-span-6-->
+                    </div>>
+                </div>
+            </div>
 
 
         </div>
