@@ -26,9 +26,15 @@
 
                 <!--User-->
                 <div class="user">
-                    <img alt="User Pic" src="{$BASE_URL}resources/img/user.png" class="img-circle img-responsive"
-                         width="100"
-                         height="100">
+                    {if $question_author.filename}
+                        <img alt="User Pic" src="{$BASE_URL}resources/uploads/{$question_author.filename}" class="img-circle img-responsive"
+                             width="100"
+                             height="100">
+                    {else}
+                        <img alt="User Pic" src="{$BASE_URL}resources/img/user.png" class="img-circle img-responsive"
+                             width="100"
+                             height="100">
+                    {/if}
                     <a href="{$BASE_URL}pages/profile/view_profile.php?id={$question_author.id}">{$question_author.username}</a>
                 </div>
 
