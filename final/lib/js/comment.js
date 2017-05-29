@@ -84,7 +84,9 @@ $(".comment-delete").click(function(event) {
     var url = form.attr( 'href' );
     var comment =  form.parent().parent().parent();
     var id = comment.data("comment-id");
-    alert(url);
+    var confirmation = confirm("Are you sure you want to delete this comment?");
+    if(!confirmation)
+        return;
     var data = {
         id: id
     }

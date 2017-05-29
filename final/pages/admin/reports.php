@@ -14,6 +14,10 @@ else if(strcmp($userPrivilegeLevel,'Member')==0)
 include_once($BASE_DIR . "database/reports.php");
 
 $results = getReports(0, "any");
+foreach ($results as $key=>$result){
+    $results[$key]['description'] = htmlspecialchars($result['description'], ENT_QUOTES, 'UTF-8');
+}
+
 $smarty->assign("results", $results);
 $smarty->display("common/header.tpl");
 

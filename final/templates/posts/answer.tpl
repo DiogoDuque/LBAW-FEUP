@@ -1,16 +1,25 @@
-<small class="pull-right">
-    {$answer.post.up_votes}
-    <span class="glyphicon glyphicon-thumbs-up"></span>
-    {$answer.post.down_votes}
-    <span class="glyphicon glyphicon-thumbs-down"></span>
-</small>
+
 
 <div class="answer row">
+    <small class="pull-right">
+        {$answer.post.up_votes}
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        {$answer.post.down_votes}
+        <span class="glyphicon glyphicon-thumbs-down"></span>
+    </small>
+
     <div class="userInfo col-md-2">
         <!--User-->
         <div class="user">
-            <img alt="User Pic" src="{$BASE_URL}resources/img/user.png" class="img-circle img-responsive"
-                 width="100" height="100">
+            {if $answer.author.filename}
+                <img alt="User Pic" src="{$BASE_URL}resources/uploads/{$answer.author.filename}" class="img-circle img-responsive"
+                     width="100"
+                     height="100">
+            {else}
+                <img alt="User Pic" src="{$BASE_URL}resources/img/user.png" class="img-circle img-responsive"
+                     width="100"
+                     height="100">
+            {/if}
             <a href="{$BASE_URL}pages/profile/view_profile.php?id={$answer.author.id}">{$answer.author.username}</a>
         </div>
         <!--Score-->
@@ -29,7 +38,7 @@
             <li><a class="glyphicon glyphicon-flag report_button" href="{$answer.post_id}" data-toggle="tooltip" title="Report"></a></li>
             {if $currentUser.username==$answer.author.username || $currentUser.privilege_level=="Administrator" || $currentUser.privilege_level=="Moderator"}
                 <li><a class="glyphicon glyphicon-pencil" href="{$BASE_URL}pages/posts/post_edit.php?id={$answer.post_id}"  data-toggle="tooltip" title="Edit"></a>
-                <li><a class="glyphicon glyphicon-trash" href="#" data-toggle="tooltip" title="Remove"></a></li>
+                <li><a class="glyphicon glyphicon-trash answer-delete" href="#" data-toggle="tooltip" title="Remove"></a></li>
             {/if}
         {/if}
         </ul>

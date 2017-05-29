@@ -30,16 +30,6 @@ $lastposts = getPostUser($user['id']);
 //score
 $score=getScore($user['id']);
 
-//img
-    if (file_exists($BASE_DIR.'resources/img/'.$user['username'].'.png'))
-      $photo = 'resources/img/'.$user['username'].'.png';
-    if (file_exists($BASE_DIR.'resources/img/'.$user['username'].'.jpg'))
-      $photo = 'images/users/'.$tweet['username'].'.jpg';
-    if (!$photo) $photo = 'resources/img/user.png';
-
-
-
-
 $smarty->assign("member", $user);
 $smarty->assign("score", $score);
 $smarty->assign("lastPosts", $lastposts);

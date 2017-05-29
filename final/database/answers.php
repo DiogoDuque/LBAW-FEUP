@@ -26,7 +26,9 @@ function submitAnswer($question_id, $text, $author_id){
     $stmt->bindParam(':author_id',$author_id,PDO::PARAM_INT);
     $stmt->execute();
 
-    $post_id = intval($conn->lastInsertId());
+    $stmt=$conn->prepare("SELECT MAX(id) FROM public.post");
+    $stmt->execute();
+    $post_id=$stmt->fetch()['max'];
 
     $stmt=$conn->prepare("INSERT INTO public.answer (post_id,question_id) VALUES($post_id,:question_id)");
     $stmt->bindParam(':question_id',$question_id,PDO::PARAM_INT);
