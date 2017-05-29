@@ -15,12 +15,16 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3 col-lg-3 " align="center">
-                            <img alt="User Pic" src="<?=$BASE_URL.$photo?>" class="img-circle img-responsive">
+                            {if $member.filename}
+                                <img alt="User Pic" src="{$BASE_URL}resources/uploads/{$member.filename}" class="img-circle img-responsive">
+                            {else}
+                                <img alt="User Pic" src="{$BASE_URL}resources/img/user.png" class="img-circle img-responsive">
+                            {/if}
 
                             <br>
 
                             {if $self}
-                                <form action="<?=$BASE_URL.'actions/member/update_img_action.php'?>" method="post" enctype="multipart/form-data">
+                                <form action="{$BASE_URL}actions/member/update_img_action.php" method="post" enctype="multipart/form-data">
 
                                     <label>Photo:<br>  <br>
                                         <input type="file" name="photo">

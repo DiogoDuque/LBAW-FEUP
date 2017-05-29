@@ -3,8 +3,8 @@
 include_once ("../../config/init.php");
 
 include_once ($BASE_DIR."database/members.php");
-
-
+include_once ($BASE_DIR."database/images.php");
+/*
 $photo = $_FILES['photo'];
 $extension = end(explode(".", $photo["name"]));
 $username = $_POST["username"];
@@ -20,4 +20,12 @@ move_uploaded_file($photo["tmp_name"], $BASE_DIR . "resources/img/" . $username 
 
 header("Location: {$BASE_URL}pages/profile/view_profile.php");
 
-?>
+?>*/
+if(!isset($_SESSION['username']))
+    die("You must be logged in to access this feature.");
+
+$photo = $_FILES['photo'];
+$filename = addImageToServer($photo);
+
+$id = intval(getMemberByUsername($_SESSION['username'])[id]);
+addImage($id, $filename);

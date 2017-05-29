@@ -12,7 +12,11 @@ if(isset($_POST['action']) && function_exists($_POST['action'])) {
 function getMemberById($id){
     global $conn;
 
-    $stmt = $conn->prepare("SELECT * FROM public.member WHERE id = ?");
+    $stmt = $conn->prepare("
+        SELECT member.*, image.filename
+        FROM public.member 
+        LEFT JOIN image ON (member.image_id = image.id)
+        WHERE member.id = ?");
     $stmt->execute(array($id));
 
     return $stmt->fetch();
@@ -21,7 +25,7 @@ function getMemberById($id){
 function getMemberByUsername($username){
     global $conn;
 
-    $stmt = $conn->prepare("SELECT * FROM public.member WHERE username = ?");
+    $stmt = $conn->prepare("SELECT member.*, image.filename FROM public.member LEFT JOIN image ON (member.image_id = image.id) WHERE username = ?");
     $stmt->execute(array($username));
 
     return $stmt->fetch();

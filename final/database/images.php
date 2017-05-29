@@ -5,11 +5,10 @@ function addImage($member_id, $filename){
 
     $stmt=$conn->prepare("INSERT INTO public.image(filename) VALUES (?) RETURNING id");
     $stmt->execute(array($filename));
-    $id = $stmt->fetch();
+    $id = intval($stmt->fetch()[id]);
 
     $stmt=$conn->prepare("UPDATE public.member SET image_id = ? WHERE id = ?");
     $stmt->execute(array($id, $member_id));
-
     return $id;
 }
 
@@ -32,32 +31,30 @@ function deleteImage($id){
 }
 
 function addImageToServer($file){
-    $file = $_FILES["fileToUpload"];
-   //
     global $BASE_DIR;
 
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])) {
         $check = getimagesize($file["tmp_name"]);
         if($check == false) {
-            return -1;
+           die("The file is not an image.");
         }
     }
 
     // Check file size
     if ($file["size"] > 1024*1024) {
-        return -2;
+        die("The image is too big.");
     }
 
     $imageFileType = pathinfo(basename($file["name"]),PATHINFO_EXTENSION);
     $filename = time().".".$imageFileType;
-    $target_dir = $BASE_DIR."uploads/";
+    $target_dir = $BASE_DIR."resources/uploads/";
 
     // if everything is ok, try to upload file
     if (move_uploaded_file($file["tmp_name"], $target_dir.$filename)) {
         return $filename;
     } else {
-        return -3;
+        die("Something failed. We are sorry...");
     }
 }
 
