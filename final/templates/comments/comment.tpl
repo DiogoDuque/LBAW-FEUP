@@ -4,9 +4,9 @@
     <ul class="actions pull-right">
         {if $currentUser.username==$comment.member.username || $currentUser.privilege_level=="Administrator" || $currentUser.privilege_level=="Moderator"}
             <li><a class="glyphicon glyphicon-pencil comment_edit_button" href="{$comment.id}" data-toggle="tooltip" title="Edit"></a></li>
-            <li><a class="glyphicon glyphicon-trash"
-               href="{$BASE_URL}actions/post/comment_delete.php?id={$comment.id}"
-               data-toggle="tooltip" title="Remove"></a>
+            <li><a class="glyphicon glyphicon-trash comment-delete"
+               href="{$BASE_URL}actions/post/comment_delete.php"
+               data-toggle="tooltip" title="{$BASE_URL}Remove"></a>
             </li>
         {/if}
     </ul>

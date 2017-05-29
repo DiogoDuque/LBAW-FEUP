@@ -16,7 +16,7 @@ if (!isset($_SESSION['username']))
 //delete only happens if user.hasPermissions
 $member = getMemberByUsername($_SESSION['username']);
 if($member['privilege_level'] == "Member")
-	die('You don\'t have permissions for deleting this answer...');
+	die('You don\'t have permissions for deleting an answer...');
 
 //TODO check if post has right text
 global $conn;

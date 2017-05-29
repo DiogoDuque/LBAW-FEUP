@@ -76,3 +76,28 @@ $(".comment_add_toogle").click(function(event) {
     form.toggle(500);
 
 });
+
+$(".comment-delete").click(function(event) {
+    event.preventDefault();
+
+    var form = $( this );
+    var url = form.attr( 'href' );
+    var comment =  form.parent().parent().parent();
+    var id = comment.data("comment-id");
+    alert(url);
+    var data = {
+        id: id
+    }
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(data){
+            form.parent().parent().parent().remove();
+        },
+        error: function(xhr){
+            alert("An error occured: " + xhr.status + " " + xhr.statusText);
+        }
+    });
+});

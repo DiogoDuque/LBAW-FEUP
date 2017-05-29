@@ -152,7 +152,7 @@ function updateUser($user,$username, $password, $email) {
     }
 
     try {
-        $stmt = $conn->prepare("UPDATE member SET username=?, email=?, hashed_pass=hashed_pass WHERE username=?");
+        $stmt = $conn->prepare("UPDATE public.member SET username=?, email=?, hashed_pass=? WHERE username=?");
         $stmt->execute(array($username, $email, password_hash($password, PASSWORD_BCRYPT),$user));
     }
     catch (PDOException $e)

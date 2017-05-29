@@ -27,6 +27,7 @@ function deleteComment($id){
 
     $stmt = $conn->prepare("DELETE FROM public.comment WHERE id = :id");
     $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+
     return $stmt->execute();
 }
 
