@@ -31,7 +31,7 @@ $lastposts = getPostUser($user['id']);
 $score=getScore($user['id']);
 
 //img
-var_dump($user);
+//var_dump($user);
 if($user[image_id] != null)
     $photo = 'resources/img/user.png';
 

@@ -48,6 +48,7 @@
     $smarty->assign("question_category",$question_category );
     $smarty->assign("question_author", $question_author);
     $smarty->assign("question_version", $question_version);
+    $smarty->assign("question_id",$question_id );
 
     $smarty->assign("question_comments", $question_comments);
     $smarty->assign("question_answers", $question_answers);
