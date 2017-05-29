@@ -19,6 +19,7 @@ foreach ($results as $key=>$result){
 }
 
 $smarty->assign("results", $results);
+$smarty->assign("limit", 10);
 $smarty->display("common/header.tpl");
 
 ?>
