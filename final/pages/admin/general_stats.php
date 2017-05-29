@@ -20,9 +20,24 @@ if(!isset($_SESSION['username']))
 
 $userPrivilegeLevel=getMemberByUsername($_SESSION['username'])['privilege_level'];
 if(!isset($userPrivilegeLevel))
-    die('You are not logged in!');
-else if(strcmp($userPrivilegeLevel,'Member')==0)
-    die('You don\'t have permissions to see this page...');
+{
+    $_SESSION['error_messages'] = "You are not logged in.";
+    $destination = $BASE_URL . "pages/home.php";
+
+    header("refresh:3;url={$destination}");
+    $smarty->assign('redirect_destiny', $destination);
+    $smarty->display('common/info.tpl');
+    die();
+}
+else if(strcmp($userPrivilegeLevel,'Member')==0){
+    $_SESSION['error_messages'] = "You don't have permissions to view this page.";
+    $destination = $BASE_URL . "pages/home.php";
+
+    header("refresh:3;url={$destination}");
+    $smarty->assign('redirect_destiny', $destination);
+    $smarty->display('common/info.tpl');
+    die();
+}
 
 $smarty->display("common/header.tpl");
 

@@ -1,6 +1,7 @@
 <?php
 
 include_once("../../config/init.php");
+include_once($BASE_DIR . "database/categories.php");
 
 if(!isset($_SESSION['username']))
 {
@@ -12,7 +13,6 @@ if(!isset($_SESSION['username']))
     $smarty->display('common/info.tpl');
     die();
 }
-
 
 $userPrivilegeLevel=getMemberByUsername($_SESSION['username'])['privilege_level'];
 if(!isset($userPrivilegeLevel))
@@ -35,23 +35,7 @@ else if(strcmp($userPrivilegeLevel,'Member')==0){
     die();
 }
 
-include_once($BASE_DIR . "database/reports.php");
-
-if(!isset($_GET["page"]))
-    $page = 1;
-else
-    $page = $_GET["page"];
-
-$results = getReports($page - 1, "any");
-foreach ($results as $key=>$result){
-    $results[$key]['description'] = htmlspecialchars($result['description'], ENT_QUOTES, 'UTF-8');
-}
-
-$smarty->assign("results", $results);
-$smarty->assign("limit", 10);
-$smarty->display("common/header.tpl");
-
-?>
+$smarty->display("common/header.tpl"); ?>
 
     <link rel="stylesheet" type="text/css" href="<?= $BASE_URL ?>lib/css/admin.css">
 
@@ -59,17 +43,21 @@ $smarty->display("common/header.tpl");
         <div class="row">
 
             <?php
-            $smarty->display("admin/side_menu.tpl");
-            $smarty->display("admin/reports.tpl");
+
+            $smarty->display('admin/side_menu.tpl');
+
+            $smarty->display('admin/categories_menu.tpl');
+
             ?>
 
-
         </div>
-
     </div>
+
+
+
 
 <?php
 
-$smarty->display('common/footer.tpl');
+$smarty->display("common/footer.tpl");
 
-
+?>

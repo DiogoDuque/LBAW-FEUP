@@ -2,7 +2,7 @@
 include_once("../../config/init.php");
 include_once($BASE_DIR . "database/members.php");
 
-if (!isset($_SESSION['username'])){
+if (!isset($_SESSION['username'])) {
     $_SESSION['error_messages'] = "You are not logged in or your session expire.";
     $destination = $BASE_URL . "pages/home.php";
 
@@ -13,12 +13,25 @@ if (!isset($_SESSION['username'])){
 }
 
 $userPrivilegeLevel = getMemberByUsername($_SESSION['username'])['privilege_level'];
-if (!isset($userPrivilegeLevel))
-    die('You are not logged in!');
-else if (strcmp($userPrivilegeLevel, 'Member') == 0)
-    die('You don\'t have permissions to see this page...');
+if (!isset($userPrivilegeLevel)) {
+    $_SESSION['error_messages'] = "You are not logged in.";
+    $destination = $BASE_URL . "pages/home.php";
 
-if(!isset($_SESSION["member_infos"]))
+    header("refresh:3;url={$destination}");
+    $smarty->assign('redirect_destiny', $destination);
+    $smarty->display('common/info.tpl');
+    die();
+} else if (strcmp($userPrivilegeLevel, 'Member') == 0) {
+    $_SESSION['error_messages'] = "You don't have permissions to view this page.";
+    $destination = $BASE_URL . "pages/home.php";
+
+    header("refresh:3;url={$destination}");
+    $smarty->assign('redirect_destiny', $destination);
+    $smarty->display('common/info.tpl');
+    die();
+}
+
+if (!isset($_SESSION["member_infos"]))
     $_SESSION["member_infos"] = getAllUsernamesAndPrivileges();
 
 function displayMembersList($members, $privilege)
@@ -35,7 +48,7 @@ function displayMembersList($members, $privilege)
         echo " id=\"moderators\"";
     else echo " id=\"admins\""; ?>>
 
-        <h3 class="text-center"><? $privilege . "s" ?></h3>
+        <h3 class="text-center"><?= $privilege . "s" ?></h3>
         <div class="well" style="max-height: 300px;overflow: auto;">
             <ul class="list-group checked-list-box">
                 <?php foreach ($members as $member) {
@@ -44,12 +57,7 @@ function displayMembersList($members, $privilege)
                     }
                 } ?>
             </ul>
-            <div class="control-group">
-                <label></label>
-                <div class="controls">
-                    <button type="submit" class="removeMember btn btn-primary">Ban</button>
-                </div>
-            </div>
+
         </div>
     </div>
     <?php
@@ -68,33 +76,54 @@ $smarty->display("common/header.tpl"); ?>
 
         <div class="col-md-9">
 
-            <hr>
+            <div class="panel panel-default">
 
-            <div class="row" id="test">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <i class="glyphicon glyphicon-wrench pull-right"></i>
+                        <h4>Ban Members</h4>
+                    </div>
+                </div>
 
-                <input id="searchMembers" type="text" class="form-control" name="username" autocomplete="off" value="<?=$_SESSION["member_search_input"]?>">
+                <div class="panel-body">
+
+                <div class="row" id="test">
+
+                    <input id="searchMembers" type="text" class="form-control" name="username" autocomplete="off"
+                           value="<?= $_SESSION["member_search_input"] ?>">
 
 
-                <ul class="nav nav-tabs" id="myTab">
-                    <li class="active"><a href="#members" data-toggle="tab">Members</a></li>
-                    <li><a href="#moderators" data-toggle="tab">Moderators</a></li>
-                    <li><a href="#admins" data-toggle="tab">Admins</a></li>
-                </ul>
-                <div id="userList" class="tab-content">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="active"><a href="#members" data-toggle="tab">Members</a></li>
+                        <li><a href="#moderators" data-toggle="tab">Moderators</a></li>
+                        <li><a href="#admins" data-toggle="tab">Admins</a></li>
+                    </ul>
+                    <div id="userList" class="tab-content">
 
-                    <?php
-                    displayMembersList($_SESSION["member_infos"], "Member");
-                    displayMembersList($_SESSION["member_infos"], "Moderator");
-                    displayMembersList($_SESSION["member_infos"], "Administrator");
-                    ?>
+                        <?php
+                        displayMembersList($_SESSION["member_infos"], "Member");
+                        displayMembersList($_SESSION["member_infos"], "Moderator");
+                        displayMembersList($_SESSION["member_infos"], "Administrator");
+                        ?>
 
+
+                    </div>
+
+                    <div class="control-group">
+                        <label></label>
+                        <div class="controls">
+                            <button type="submit" class="removeMember btn btn-primary">Ban</button>
+                        </div>
+                    </div>
+
+                </div>
 
                 </div>
 
             </div>
 
+
         </div><!--/row-->
-        <hr>
     </div><!--/col-span-9-->
 </div>
 </div>
@@ -133,10 +162,10 @@ $smarty->display("common/footer.tpl");
 
     })
     ;
-    
+
     function banCheck() {
 
-        $(document).on('click', '.removeMember', function(){
+        $(document).on('click', '.removeMember', function () {
             console.log("Here!");
 
             var membersList = $("li.list-group-item.list-group-item-primary.active");
@@ -170,9 +199,8 @@ $smarty->display("common/footer.tpl");
             });
 
         });
-        
-    }
 
+    }
 
 
 </script>

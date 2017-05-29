@@ -17,3 +17,10 @@
     margin: 0 0 1rem 0 ;
 }
 
+.panel-body{
+    margin: 1rem;
+}
+
+.well{
+    margin-top: 0;
+}

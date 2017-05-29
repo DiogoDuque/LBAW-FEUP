@@ -26,7 +26,13 @@
                     <tr>
                         <td>
                             <span class="text-primary"></span><a
-                                    href="{$BASE_URL}pages/admin/members.php">Manage members</a>
+                                    href="{$BASE_URL}pages/admin/ban_members.php">Ban members</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="text-primary"></span><a
+                                    href="{$BASE_URL}pages/admin/promote_members.php">Promote/Demote members</a>
                         </td>
                     </tr>
                 </table>
@@ -95,7 +101,7 @@
                     <tr>
                         <td>
                             <span class="text-primary"></span><a
-                                    href="{$BASE_URL}pages/admin/stats.php">View general stats</a>
+                                    href="{$BASE_URL}pages/admin/general_stats.php">View general stats</a>
                         </td>
                     </tr>
                 </table>

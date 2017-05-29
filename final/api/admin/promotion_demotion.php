@@ -7,7 +7,7 @@ include_once ($BASE_DIR."database/members.php");
 if(!isset($_SESSION['username']))
     die("No logged in account detected.");
 
-if(!isset($_POST['targetMemberUsername']))
+if(!isset($_POST['targetId']))
     die("No member to apply promotion or demotion.");
 
 if(!isset($_POST['newPrivilegeLevel']))
@@ -21,8 +21,10 @@ $admin = getMemberByUsername($_SESSION['username']);
 if(strcmp($admin['privilege_level'],"Administrator")!=0)
     die("Only Administrators have access to this feature!");
 
+
 $adminId=intval($admin['id']);
-$targetMemberId = intval(getMemberByUsername($_POST['targetMemberUsername'])['id']);
+
+$targetMemberId = intval($_POST['targetId']);
 $response = createPromotionDemotion($_POST['newPrivilegeLevel'], $targetMemberId, $adminId);
 
 echo json_encode($response);
