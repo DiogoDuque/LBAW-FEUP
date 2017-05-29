@@ -8,12 +8,12 @@ include_once ($BASE_DIR."database/members.php");
 
 if (!isset($_POST['title']))
     die('Missing title.');
-
 if (!isset($_POST['category']))
     die('Missing post category.');
-
 if (!isset($_POST['text']))
     die("Missing text.");
+if(!isset($_SESSION['username']))
+    die("You must be logged in to ask a question");
 
 // Gather data for creating
 $title = $_POST['title'];

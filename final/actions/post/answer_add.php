@@ -9,9 +9,10 @@ include_once ($BASE_DIR."database/questions.php");
 
 if (!isset($_POST['edited_text']))
     die('Missing text.');
-
 if (!isset($_POST['post_id']))
     die('Missing post ID.');
+if(!isset($_SESSION['username']))
+    die("You must be logged in to write an answer");
 
 $text = $_POST["edited_text"];
 $post_id =($_POST["post_id"]);
