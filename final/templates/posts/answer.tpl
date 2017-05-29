@@ -1,5 +1,4 @@
 
-
 <div class="answer row">
     <small class="pull-right">
         {$answer.post.up_votes}
@@ -9,7 +8,7 @@
     </small>
 
     <div class="userInfo col-md-2">
-        <!--User-->
+
         <div class="user">
             {if $answer.author.filename}
                 <img alt="User Pic" src="{$BASE_URL}resources/uploads/{$answer.author.filename}" class="img-circle img-responsive"
@@ -22,14 +21,14 @@
             {/if}
             <a href="{$BASE_URL}pages/profile/view_profile.php?id={$answer.author.id}">{$answer.author.username}</a>
         </div>
-        <!--Score-->
+
         <ul class="score">
             <li><span class="glyphicon glyphicon-thumbs-up" data-post_id="{$answer.post_id}" ></span></li>
             <li><p class="post_score" data-post_id="{$answer.post_id}">{$answer.post.up_votes - $answer.post.down_votes}</p></li>
             <li><span class="glyphicon glyphicon-thumbs-down" data-post_id="{$answer.post_id}" ></span></li>
         </ul>
     </div>
-    <!--Text-->
+
     <div class="col-md-10">
         <p>{$answer.version.text}</p>
         <ul class="actions pull-right">
@@ -43,18 +42,17 @@
         {/if}
         </ul>
 
-        {*COMMENTS*}
+
 
         {foreach $answer.comments as $comment}
             {include file='comments/comment.tpl'}
         {/foreach}
 
-        {*ADD COMMENT FORM*}
+
         {if (isset($USERNAME))}
             {assign "post_id" $answer.post_id}
             {include file='comments/comment_form.tpl'}
         {/if}
     </div>
-
 
 </div>

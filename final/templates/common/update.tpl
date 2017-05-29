@@ -13,28 +13,24 @@
     <link rel="stylesheet" type="text/css" href= "{$BASE_URL}vendors/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href= "{$BASE_URL}lib/css/main.css">
 
-    <!--  include jquery and boostrap  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- include summernote css/js (text editor) -->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 
-    <!--icon-->
     <link rel="icon" href="{$BASE_URL}resources/img/logo-64.ico">
 </head>
 <div class="modal fade" id="signUp-modal" role="dialog">
     <div class="modal-dialog">
-        <!--Content here-->
+
         <div class="modal-content">
-            <!-- The Header-->
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4><span class="glyphicon glyphicon-lock"></span>Sign Up</h4>
             </div>
 
-            <!-- Body(form)-->
             <div class="modal-body">
                 <form action="{$BASE_URL}actions/auth/signup.php" method="post">
                     <input type='hidden' name='posted' value='true'>

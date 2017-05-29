@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{$BASE_URL}lib/css/question.css">
 
 
-<!--Content-->
+
 <div class="container">
     {if !$question.post_id}
         {include file='common/not_found.tpl'}
@@ -11,7 +11,7 @@
             <li> {$question_category.name} </li>
             <li class="active">{$question.title}</li>
         </ol>
-        <!--Title-->
+
         <h2>{$question.title}</h2>
         <small class="pull-right">
             {$question_post.up_votes}
@@ -19,12 +19,12 @@
             {$question_post.down_votes}
             <span class="glyphicon glyphicon-thumbs-down"></span>
         </small>
-        <!--Question-->
+
         <div class="question row">
 
             <div class="userInfo col-md-2">
 
-                <!--User-->
+
                 <div class="user">
                     {if $question_author.filename}
                         <img alt="User Pic" src="{$BASE_URL}resources/uploads/{$question_author.filename}" class="img-circle img-responsive"
@@ -38,7 +38,7 @@
                     <a href="{$BASE_URL}pages/profile/view_profile.php?id={$question_author.id}">{$question_author.username}</a>
                 </div>
 
-                <!--Score-->
+
                 <ul class="score">
                     <li><span class="glyphicon glyphicon-thumbs-up" data-post_id="{$question.post_id}"></span></li>
                     <li><p class="post_score"
@@ -49,7 +49,7 @@
 
             </div>
 
-            <!--Text-->
+
             <div class="col-md-10">
                 <p>{$question_version.text}</p>
                 <ul class="actions pull-right">
@@ -68,13 +68,13 @@
                     {/if}
                 </ul>
 
-                {*COMMENTS*}
+
 
                 {foreach $question_comments as $comment}
                     {include file='comments/comment.tpl'}
                 {/foreach}
 
-                {*EDIT COMMENT FORM*}
+
                 {if (isset($USERNAME))}
                     {assign "post_id" $question.post_id}
                     {include file='comments/comment_form.tpl'}
@@ -103,11 +103,10 @@
     {/if}
 </div>
 
-<!-- Comment Modal -->
+
 <div id="comment_edit_modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -128,11 +127,9 @@
     </div>
 </div>
 
-<!-- Report Modal -->
 <div id="report_modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>

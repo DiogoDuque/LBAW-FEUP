@@ -1,6 +1,5 @@
 <link rel="stylesheet" href= "{$BASE_URL}lib/css/search.css">
 
-<!--Content-->
 <div class="container">
     <h1 class="text-center">Advanced Search</h1>
 

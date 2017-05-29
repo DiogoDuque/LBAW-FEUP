@@ -1,4 +1,4 @@
-<!--Footer-->
+
 <footer class="container-fluid text-center">
     <div class="row">
         <div class="col-sm-3 pull-left">

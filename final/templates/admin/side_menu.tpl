@@ -1,5 +1,4 @@
 <div class="col-md-3">
-    <!-- Left column -->
     <a class="title" href="{$BASE_URL}pages/admin/admin.php"><strong><i class="glyphicon glyphicon-dashboard"></i>My Dashboard</strong></a>
 
     <div class="panel-group" id="accordion">

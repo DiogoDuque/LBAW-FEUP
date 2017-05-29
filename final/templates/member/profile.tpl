@@ -6,7 +6,6 @@
 
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 toppad" >
 
-            <!-- User Panel-->
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title" align="center">User Profile</h3>
@@ -84,7 +83,6 @@
     </div>
 </div>
 
-<!--Historico-->
 <div class="container">
     <div class="row">
         <div class="title" align="center">
