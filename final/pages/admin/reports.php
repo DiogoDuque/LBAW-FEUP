@@ -13,7 +13,12 @@ else if(strcmp($userPrivilegeLevel,'Member')==0)
 
 include_once($BASE_DIR . "database/reports.php");
 
-$results = getReports(0, "any");
+if(!isset($_GET["page"]))
+    $page = 1;
+else
+    $page = $_GET["page"];
+
+$results = getReports($page - 1, "any");
 foreach ($results as $key=>$result){
     $results[$key]['description'] = htmlspecialchars($result['description'], ENT_QUOTES, 'UTF-8');
 }
