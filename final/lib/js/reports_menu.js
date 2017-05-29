@@ -1,6 +1,3 @@
-/**
- * Created by SpardaMarco on 29/05/2017.
- */
 $('.no-collapse').on('click', function (e) {
     e.stopPropagation();
 });

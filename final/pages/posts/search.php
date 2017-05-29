@@ -24,7 +24,6 @@ $orders =  [
     "Worst Score" => "score"
 ];
 
-//Set form
 if(isset($_GET["query"]))
     $query = htmlspecialchars($_GET["query"], ENT_QUOTES, 'UTF-8');
 
@@ -55,7 +54,6 @@ if(count($search_categories) == 0)
 if(!$search_descriptions && !$search_answers )
     $search_titles = true;
 
-//Search
 $results = [];
 if($query != "")
     $results = search($query, $search_titles, $search_descriptions,$search_answers,$orders[$search_order],$search_categories,$limit,$page);

@@ -16,9 +16,6 @@
     border-top: solid 1px lightgray;
 }
 
-
-/*USER*/
-
 .user{
     text-align: center;
 }
@@ -27,9 +24,6 @@
     display: block;
     margin: 0 auto;
 }
-
-
-/*SCORE*/
 
 .score{
     margin: 15px -10px;

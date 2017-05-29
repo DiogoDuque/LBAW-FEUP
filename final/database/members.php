@@ -1,7 +1,5 @@
 <?php
 
-// TODO: Verify with professor if we can use these functions or the PDO's exceptions should be enough
-
 if(isset($_POST['action']) && function_exists($_POST['action'])) {
 
     $action = $_POST['action'];
