@@ -163,4 +163,15 @@ function updateUser($user,$username, $password, $email) {
     return 0;
 }
 
+function getNumberOfMembers(){
+
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT reltuples::bigint AS estimate FROM pg_class WHERE  oid = 'public.member'::regclass;");
+    $stmt->execute();
+
+    return $stmt->fetch()["estimate"];
+
+}
+
 

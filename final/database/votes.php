@@ -140,6 +140,17 @@ function getScore($user_id){
     return $stmt->fetch();
 }
 
+function getNumberOfVotes(){
+
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT reltuples::bigint AS estimate FROM pg_class WHERE  oid = 'public.vote'::regclass;");
+    $stmt->execute();
+
+    return $stmt->fetch()["estimate"];
+
+}
+
 
 
 

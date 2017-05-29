@@ -1,6 +1,6 @@
 <div class="col-md-3">
     <!-- Left column -->
-    <a class="title" href="#"><strong><i class="glyphicon glyphicon-dashboard"></i>My Dashboard</strong></a>
+    <a class="title" href="{$BASE_URL}pages/admin/admin.php"><strong><i class="glyphicon glyphicon-dashboard"></i>My Dashboard</strong></a>
 
     <div class="panel-group" id="accordion">
 
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </a>
-        <div id="collapseMembers" class="panel-collapse collapse in">
+        <div id="collapseMembers" class="panel-collapse collapse">
             <div class="panel-body">
                 <table class="table">
                     <tr>
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </a>
-        <div id="collapseCategories" class="panel-collapse collapse in">
+        <div id="collapseCategories" class="panel-collapse collapse">
             <div class="panel-body">
                 <table class="table">
                     <tr>
@@ -66,7 +66,7 @@
                 </div>
             </div>
         </a>
-        <div id="collapseReports" class="panel-collapse collapse in">
+        <div id="collapseReports" class="panel-collapse collapse">
             <div class="panel-body">
                 <table class="table">
                     <tr>
@@ -78,7 +78,35 @@
                 </table>
             </div>
         </div>
+
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseStats">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-list-alt">
+                            </span>Stats
+                    </h4>
+                </div>
+            </div>
+        </a>
+        <div id="collapseStats" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <span class="text-primary"></span><a
+                                    href="{$BASE_URL}pages/admin/stats.php">View general stats</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 
 </div>
+
+<script>
+
+
+</script>
 

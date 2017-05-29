@@ -181,3 +181,14 @@ function getQuestionCategory($post_id){
 
     return $stmt->fetch();
 }
+
+function getNumberOfQuestions(){
+
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT reltuples::bigint AS estimate FROM pg_class WHERE  oid = 'public.question'::regclass;");
+    $stmt->execute();
+
+    return $stmt->fetch()["estimate"];
+
+}

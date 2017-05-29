@@ -53,3 +53,14 @@ function submitComment($post_id, $author_id, $text){
 
     return 0;
 }
+
+function getNumberOfComments(){
+
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT reltuples::bigint AS estimate FROM pg_class WHERE  oid = 'public.comment'::regclass;");
+    $stmt->execute();
+
+    return $stmt->fetch()["estimate"];
+
+}

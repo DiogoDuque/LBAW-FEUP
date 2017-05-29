@@ -38,3 +38,14 @@ function submitAnswer($question_id, $text, $author_id){
 
     return $post_id;
 }
+
+function getNumberOfAnswers(){
+
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT reltuples::bigint AS estimate FROM pg_class WHERE  oid = 'public.answer'::regclass;");
+    $stmt->execute();
+
+    return $stmt->fetch()["estimate"];
+
+}
