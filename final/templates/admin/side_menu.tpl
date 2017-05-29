@@ -26,7 +26,7 @@
                     <tr>
                         <td>
                             <span class="text-primary"></span><a
-                                    href="#">Manage members</a>
+                                    href="{$BASE_URL}pages/admin/members.php">Manage members</a>
                         </td>
                     </tr>
                 </table>

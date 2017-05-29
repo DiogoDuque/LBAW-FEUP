@@ -174,4 +174,17 @@ function getNumberOfMembers(){
 
 }
 
+function searchMemberByName($username){
+
+    $search = "%".$username."%";
+
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM member WHERE LOWER(username) LIKE LOWER(?)");
+    $stmt->execute(array($search));
+
+    return $stmt->fetchAll();
+
+}
+
 
