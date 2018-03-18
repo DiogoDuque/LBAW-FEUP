@@ -5,19 +5,25 @@ services:
     build: ./database/sql
     volumes:
       - /var/lib/postgresql
+    environment:
+      POSTGRES_DB: lbaw1623
+      POSTGRES_USER: lbaw1623
+      POSTGRES_PASSWORD: bj66ak24
 
   smarty:
     build: .
     depends_on:
       - postgres
+    ports:
+      - "80:8000"
   
   pgadmin:
     links:
       - postgres:postgres
     image: fenglc/pgadmin4
     environment: 
-      DEFAULT_USER: ldso-master
-      DEFAULT_PASSWORD: ldso
+      DEFAULT_USER: postgres
+      DEFAULT_PASSWORD: postgres
     volumes:
       - /data/pgadmin:/root/.pgadmin
     ports:
