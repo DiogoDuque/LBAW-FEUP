@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ERROR);
 
-$BASE_DIR = "~/Projects/LBAW-FEUP/final/";
+$BASE_DIR = "/usr/src/app/";
 $BASE_URL = "localhost/";
 //$BASE_DIR = "/opt/lbaw/lbaw1623/public_html/LBAW-FEUP/final/";
 //$BASE_URL = "/~lbaw1623/LBAW-FEUP/final/";
