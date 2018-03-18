@@ -1,0 +1,24 @@
+version: '2.1'
+
+services:
+  postgres:
+    build: ./database/sql
+    volumes:
+      - /var/lib/postgresql
+
+  smarty:
+    build: .
+    depends_on:
+      - postgres
+  
+  pgadmin:
+    links:
+      - postgres:postgres
+    image: fenglc/pgadmin4
+    environment: 
+      DEFAULT_USER: ldso-master
+      DEFAULT_PASSWORD: ldso
+    volumes:
+      - /data/pgadmin:/root/.pgadmin
+    ports:
+      - "5050:5050"

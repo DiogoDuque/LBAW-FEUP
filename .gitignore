@@ -1,5 +1,4 @@
 .idea/
 templates_c/
-*/config/*
 */resources/uploads/*
 /final/api/vote/lastUpdate.txt
