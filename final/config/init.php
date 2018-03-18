@@ -1,6 +1,6 @@
 <?php
 
-session_set_cookie_params(3600,'/~lbaw1623');
+session_set_cookie_params(3600,'/');
 session_start();
 
 ini_set('display_errors', 1);
@@ -8,11 +8,11 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ERROR);
 
 $BASE_DIR = "/usr/src/app/";
-$BASE_URL = "localhost/";
+$BASE_URL = "/";
 //$BASE_DIR = "/opt/lbaw/lbaw1623/public_html/LBAW-FEUP/final/";
 //$BASE_URL = "/~lbaw1623/LBAW-FEUP/final/";
 
-$conn = new PDO('pgsql:host=dbm; dbname=lbaw1623', 'lbaw1623', 'bj66ak24');
+$conn = new PDO('pgsql:host=postgres; dbname=lbaw1623', 'lbaw1623', 'bj66ak24');
 $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

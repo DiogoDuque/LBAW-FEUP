@@ -21,6 +21,7 @@ services:
     links:
       - postgres:postgres
     image: fenglc/pgadmin4
+    container_name: postgres
     environment: 
       DEFAULT_USER: postgres
       DEFAULT_PASSWORD: postgres
